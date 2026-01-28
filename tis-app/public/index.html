@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIS | Information Security Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- SheetJS for Excel Download -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+
+<body class="overflow-hidden">
+
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar"
+            class="text-white w-64 flex-shrink-0 flex flex-col transition-all duration-300 relative z-40">
+            <div class="p-6 flex items-center gap-3">
+                <div class="bg-white p-2 rounded-lg shadow-lg">
+                    <i class="fas fa-shield-halved text-[#1e3a8a] text-xl"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight">TIS Portal</span>
+            </div>
+
+            <nav class="mt-4 flex-grow overflow-y-auto px-4 custom-scrollbar">
+                <div class="text-[10px] uppercase font-bold text-blue-400 mb-2 px-3">메인 메뉴</div>
+                <ul class="space-y-1 mb-6">
+                    <li><a href="#home" class="nav-link flex items-center gap-3 p-3 rounded-xl" data-section="home"><i
+                                class="fas fa-house-chimney w-5"></i><span>대시보드</span></a></li>
+                    <li><a href="#security-center" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="security_center"><i class="fas fa-graduation-cap w-5"></i><span>교육
+                                센터</span></a></li>
+                    <li><a href="#incident" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="incident"><i class="fas fa-bullhorn w-5"></i><span>인시던트 신고</span></a></li>
+                    <li><a href="#security-request" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="security_request"><i class="fas fa-paper-plane w-5"></i><span>보안 요청
+                                관리</span></a></li>
+                </ul>
+
+                <div class="text-[10px] uppercase font-bold text-blue-400 mb-2 px-3">보안 관리</div>
+                <ul class="space-y-1 mb-6">
+                    <li><a href="#system-status" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="system_status"><i class="fas fa-microchip w-5"></i><span>시스템 상태</span></a>
+                    </li>
+                    <li><a href="#assets" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="assets"><i class="fas fa-laptop w-5"></i><span>자산 관리</span></a></li>
+                    <li><a href="#access" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="access"><i class="fas fa-key w-5"></i><span>권한 관리</span></a></li>
+                </ul>
+
+                <div class="text-[10px] uppercase font-bold text-blue-400 mb-2 px-3">정책 및 가이드</div>
+                <ul class="space-y-1 mb-6">
+                    <li><a href="#policy" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="policy"><i class="fas fa-file-shield w-5"></i><span>보안 규정</span></a></li>
+                    <li><a href="#pledge-select" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="pledge_select"><i class="fas fa-signature w-5"></i><span>보안 서약서</span></a>
+                    </li>
+                    <li><a href="#checklist" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="checklist"><i class="fas fa-list-check w-5"></i><span>체크리스트</span></a></li>
+                </ul>
+
+                <div class="text-[10px] uppercase font-bold text-blue-400 mb-2 px-3">기타</div>
+                <ul class="space-y-1 mb-6">
+                    <li><a href="#reports" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="reports"><i class="fas fa-chart-pie w-5"></i><span>통계 / 리포트</span></a></li>
+                    <li><a href="#process" class="nav-link flex items-center gap-3 p-3 rounded-xl"
+                            data-section="process"><i class="fas fa-diagram-project w-5"></i><span>업무 프로세스</span></a>
+                    </li>
+                    <li><a href="#faq" class="nav-link flex items-center gap-3 p-3 rounded-xl" data-section="faq"><i
+                                class="fas fa-circle-question w-5"></i><span>FAQ</span></a></li>
+                </ul>
+                <div class="text-[10px] uppercase font-bold text-red-400 mb-2 px-3 flex items-center gap-2">
+                    <i class="fas fa-lock text-[8px]"></i> 관리자 메뉴
+                </div>
+                <ul class="space-y-1 mb-6">
+                    <li><a href="#admin-menu"
+                            class="nav-link flex items-center gap-3 p-3 rounded-xl border border-transparent hover:border-red-500/20"
+                            data-section="admin_menu"><i class="fas fa-sliders w-5"></i><span>메뉴 커스텀</span></a></li>
+                    <li><a href="#admin-pledge-mgmt"
+                            class="nav-link flex items-center gap-3 p-3 rounded-xl border border-transparent hover:border-red-500/20"
+                            data-section="admin_pledge_mgmt"><i class="fas fa-file-signature w-5"></i><span>보안서약
+                                현황</span></a></li>
+                    <li><a href="#cve-manager"
+                            class="nav-link flex items-center gap-3 p-3 rounded-xl border border-transparent hover:border-red-500/20"
+                            data-section="cve_manager"><i class="fas fa-bug w-5"></i><span>CVE 취약점 관리</span></a></li>
+                    <li><a href="#admin-stats"
+                            class="nav-link flex items-center gap-3 p-3 rounded-xl border border-transparent hover:border-red-500/20"
+                            data-section="admin_stats"><i class="fas fa-gauge-high w-5"></i><span>전체 로그 관리</span></a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Quick Actions Widget -->
+            <div class="p-4 border-t border-blue-800/50">
+                <div class="bg-blue-900/50 rounded-xl p-3 border border-blue-400/20">
+                    <p class="text-[10px] font-bold text-blue-300 uppercase mb-2">Quick Actions</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="bg-blue-500 hover:bg-blue-400 p-2 rounded-lg text-xs transition flex-1"
+                            title="VPN Guide"><i class="fas fa-globe"></i></button>
+                        <button class="bg-blue-500 hover:bg-blue-400 p-2 rounded-lg text-xs transition flex-1"
+                            title="PWD Reset"><i class="fas fa-lock"></i></button>
+                        <div class="relative flex-1 group">
+                            <button class="bg-blue-500 hover:bg-blue-400 p-2 rounded-lg text-xs transition w-full"><i
+                                    class="fas fa-download"></i></button>
+                            <div
+                                class="absolute bottom-full left-0 mb-2 w-32 bg-white text-gray-800 rounded-lg shadow-xl hidden group-hover:block border border-gray-200 py-1">
+                                <a href="#" class="block px-3 py-2 hover:bg-gray-100 text-[10px] font-bold">WAF
+                                    Client</a>
+                                <a href="#" class="block px-3 py-2 hover:bg-gray-100 text-[10px] font-bold">NAC
+                                    Agent</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 text-[10px] text-blue-300/60 border-t border-blue-800">
+                &copy; 2026 Tway Information Security
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-grow flex flex-col overflow-hidden relative">
+            <!-- Top Header -->
+            <header class="h-16 flex items-center justify-between px-8 flex-shrink-0 shadow-sm z-30 transition-colors">
+                <div class="flex items-center gap-4 flex-grow max-w-2xl">
+                    <button id="toggle-sidebar"
+                        class="text-gray-500 hover:text-[#1e3a8a] transition-colors p-2 rounded-lg">
+                        <i class="fas fa-bars-staggered text-xl"></i>
+                    </button>
+                    <!-- Global Search -->
+                    <div class="relative flex-grow ml-4 group">
+                        <i
+                            class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 transition-colors group-focus-within:text-[#1e3a8a]"></i>
+                        <input type="text" id="global-search" placeholder="섹션, 정책, 문서 통합 검색..."
+                            class="w-full pl-12 pr-10 py-2.5 bg-gray-100 dark:bg-gray-800 rounded-2xl border-none focus:ring-2 focus:ring-[#1e3a8a] transition-all text-sm outline-none">
+                        <div id="search-history"
+                            class="absolute top-full left-0 w-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 hidden py-2 overflow-hidden">
+                            <!-- Recent search words will be injected here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-6">
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle"
+                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-yellow-400 hover:shadow-inner transition-all">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+
+                    <!-- User Profile Dropdown -->
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-3 p-1.5 pr-3 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                            data-section="profile">
+                            <div
+                                class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-[#1e3a8a] dark:text-blue-400 font-black overflow-hidden shadow-sm">
+                                <span id="user-initials">TIS</span>
+                            </div>
+                            <div class="text-left hidden sm:block">
+                                <p class="text-xs font-black" id="user-name">관리자</p>
+                                <p class="text-[10px] text-gray-500 font-bold" id="user-dept">정보보안팀</p>
+                            </div>
+                            <i class="fas fa-chevron-down text-[10px] text-gray-400 ml-1"></i>
+                        </button>
+                        <div
+                            class="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-700 hidden group-hover:block overflow-hidden py-1">
+                            <a href="#profile"
+                                class="nav-link block px-4 py-2.5 text-xs font-bold hover:bg-gray-50 dark:hover:bg-gray-700"
+                                data-section="profile"><i class="fas fa-user-circle mr-2"></i>내 프로필</a>
+                            <a href="#settings"
+                                class="block px-4 py-2.5 text-xs font-bold hover:bg-gray-50 dark:hover:bg-gray-700"><i
+                                    class="fas fa-cog mr-2"></i>환경 설정</a>
+                            <hr class="border-gray-100 dark:border-gray-700 my-1">
+                            <a href="#"
+                                class="block px-4 py-2.5 text-xs font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10"><i
+                                    class="fas fa-sign-out-alt mr-2"></i>로그아웃</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Breadcrumbs -->
+            <div
+                class="px-8 py-3 bg-gray-50/50 dark:bg-gray-900/20 border-b border-gray-100 dark:border-gray-800 flex items-center gap-2 text-[10px] font-bold text-gray-400">
+                <i class="fas fa-house-chimney"></i> <i class="fas fa-chevron-right text-[8px]"></i>
+                <span id="breadcrumb-active" class="text-gray-600 dark:text-gray-300">대시보드</span>
+            </div>
+
+            <!-- Scrollable Content Section -->
+            <div id="content-area" class="flex-grow overflow-y-auto p-8 custom-scrollbar">
+                <!-- Skeleton Loader (shows during routing) -->
+                <div id="skeleton-loader" class="hidden">
+                    <div class="flex flex-col gap-6 animate-pulse">
+                        <div class="h-10 w-48 bg-gray-200 dark:bg-gray-800 rounded-lg mb-6"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="h-48 bg-gray-200 dark:bg-gray-800 rounded-2xl"></div>
+                            <div class="h-48 bg-gray-200 dark:bg-gray-800 rounded-2xl"></div>
+                            <div class="h-48 bg-gray-200 dark:bg-gray-800 rounded-2xl"></div>
+                        </div>
+                        <div class="h-96 bg-gray-200 dark:bg-gray-800 rounded-2xl w-full"></div>
+                    </div>
+                </div>
+                <!-- Dynamic Content Container -->
+                <div id="dynamic-content"></div>
+            </div>
+
+            <h2 id="section-title" class="hidden"></h2> <!-- For app.js logic compatibility -->
+        </main>
+    </div>
+
+    <!-- UI/Logic Scripts -->
+    <script src="utils/storage.js"></script>
+    <script src="utils/helpers.js"></script>
+    <script src="components/notifications.js"></script>
+    <script src="components/forms.js"></script>
+    <!-- We will keep app.js at root or move it, but for now referencing original path in user request -->
+    <script src="app.js"></script>
+</body>
+
+</html>

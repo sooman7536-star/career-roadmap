@@ -1,0 +1,225 @@
+{
+  "requests": [],
+  "assets": [
+    {
+      "id": 1,
+      "created_at": "2026-01-28 10:30:11",
+      "name": "Keynote",
+      "type": "Installed",
+      "cat": "문서",
+      "mfg": "Apple Inc.",
+      "os": [
+        "apple"
+      ],
+      "users": 1,
+      "date": "2025-05-15",
+      "status": "미분류",
+      "validity": "일반",
+      "hasStats": true
+    },
+    {
+      "id": 2,
+      "created_at": "2026-01-28 10:30:11",
+      "name": "Word",
+      "type": "SaaS",
+      "cat": "문서",
+      "mfg": "Microsoft",
+      "os": [
+        "windows",
+        "apple"
+      ],
+      "users": 1,
+      "date": "2025-05-12",
+      "status": "미분류",
+      "validity": "상용",
+      "hasStats": true
+    },
+    {
+      "id": 3,
+      "created_at": "2026-01-28 10:30:11",
+      "name": "Jenkins",
+      "type": "SaaS",
+      "cat": "생산성",
+      "mfg": "-",
+      "os": [
+        "windows",
+        "apple"
+      ],
+      "users": 3,
+      "date": "2025-05-09",
+      "status": "미분류",
+      "validity": "배포중",
+      "hasStats": true
+    },
+    {
+      "id": 4,
+      "created_at": "2026-01-28 10:30:11",
+      "name": "ZUZU",
+      "type": "SaaS",
+      "cat": "프로세스",
+      "mfg": "(주)코드박스",
+      "os": [
+        "windows"
+      ],
+      "users": 1,
+      "date": "2025-05-09",
+      "status": "미분류",
+      "validity": "상용",
+      "hasStats": true
+    },
+    {
+      "id": 5,
+      "created_at": "2026-01-28 10:30:11",
+      "name": "shiftee",
+      "type": "SaaS",
+      "cat": "프로세스",
+      "mfg": "주식회사 시프티",
+      "os": [
+        "windows",
+        "apple"
+      ],
+      "users": 1,
+      "date": "2025-04-17",
+      "status": "미분류",
+      "validity": "일반",
+      "hasStats": true
+    },
+    {
+      "id": 6,
+      "created_at": "2026-01-28 10:30:11",
+      "name": "Firefox",
+      "type": "기타",
+      "cat": "브라우저",
+      "mfg": "Mozilla",
+      "os": [
+        "windows",
+        "apple"
+      ],
+      "users": 1,
+      "date": "2025-04-11",
+      "status": "미분류",
+      "validity": "오픈소스",
+      "hasStats": true
+    },
+    {
+      "id": 7,
+      "created_at": "2026-01-28 12:33:20",
+      "main_category": "server",
+      "name": "웹방화벽(A)",
+      "hostname": "Onprem-WAF",
+      "ip": "192.168.111.111",
+      "os": "자체개",
+      "purpose": "웹방화벽",
+      "status": "Online"
+    },
+    {
+      "id": 8,
+      "created_at": "2026-01-28 12:46:43",
+      "name": "Test Asset Server",
+      "type": "Server",
+      "cat": "??",
+      "mfg": "Dell",
+      "os": [
+        "linux"
+      ],
+      "users": 0,
+      "date": "2026-01-28",
+      "status": "??",
+      "validity": "??",
+      "hasStats": false
+    }
+  ],
+  "pledges": [
+    {
+      "id": 1,
+      "created_at": "2026-01-28 10:56:24",
+      "name": "김수민",
+      "dept": "TIS",
+      "emp_id": "T210028",
+      "type": "KO",
+      "submitted_at": "2026-01-28T10:56:24.722Z"
+    },
+    {
+      "id": 2,
+      "created_at": "2026-01-28 12:16:21",
+      "name": "김수만",
+      "dept": "TIS",
+      "emp_id": "T202022",
+      "type": "KO",
+      "email": "sooman7536@gmail.com",
+      "submitted_at": "2026-01-28T12:16:21.381Z"
+    },
+    {
+      "id": 3,
+      "created_at": "2026-01-28 12:31:51",
+      "name": "김수민2",
+      "dept": "TIS",
+      "emp_id": "T210021",
+      "type": "KO",
+      "email": "sooman7536@gmail.com",
+      "submitted_at": "2026-01-28T12:31:51.606Z"
+    },
+    {
+      "id": 4,
+      "created_at": "2026-01-28 12:48:36",
+      "name": "김수민",
+      "dept": "TIS",
+      "emp_id": "T210021",
+      "type": "KO",
+      "email": "sooman7536@gmail.com",
+      "submitted_at": "2026-01-28T12:48:36.242Z"
+    }
+  ],
+  "cve_items": [
+    {
+      "id": 1,
+      "cve_id": "CVE-2023-44487",
+      "published_date": "2023-10-10",
+      "cvss_score": 7.5,
+      "vector": "Network",
+      "description": "HTTP/2 Rapid Reset Attack vulnerability allows attackers to cause Denial of Service (DoS) via rapid stream reset requests.",
+      "impact": "Service availability is compromised due to high CPU usage.",
+      "solution": "Update web server software (Apache, Nginx) to latest patched versions.",
+      "workaround": "Limit the maximum number of concurrent streams in HTTP/2 settings.",
+      "status": "Unpatched",
+      "assets": [
+        "Web Server A",
+        "Load Balancer"
+      ],
+      "created_at": "2024-01-20 09:00:00"
+    },
+    {
+      "id": 2,
+      "cve_id": "CVE-2021-44228",
+      "published_date": "2021-12-10",
+      "cvss_score": 10,
+      "vector": "Network",
+      "description": "Log4j JNDI Remote Code Execution vulnerability.",
+      "impact": "Attackers can execute arbitrary code on the server.",
+      "solution": "Upgrade Log4j to 2.17.1 or higher.",
+      "workaround": "Remove JndiLookup class from classpath.",
+      "status": "Patched",
+      "assets": [
+        "App Server 1",
+        "Search Engine"
+      ],
+      "created_at": "2024-01-22 14:30:00"
+    },
+    {
+      "id": 3,
+      "cve_id": "CVE-2024-0001",
+      "published_date": "2024-01-01",
+      "cvss_score": 5.3,
+      "vector": "Local",
+      "description": "Minor privilege escalation in Linux kernel driver.",
+      "impact": "Local user might gain elevated privileges.",
+      "solution": "Update Linux kernel.",
+      "workaround": "Restrict access to the affected driver module.",
+      "status": "Ignored",
+      "assets": [
+        "Internal DB Server"
+      ],
+      "created_at": "2024-01-28 10:00:00"
+    }
+  ]
+}
