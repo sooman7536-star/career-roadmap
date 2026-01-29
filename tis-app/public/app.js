@@ -21,48 +21,19 @@
 
         // --- App State ---
         const state = {
-            currentSection: '',
+            currentSection: 'home',
             isDark: storage.get('tis_theme') === 'dark',
             isSidebarCollapsed: storage.get('tis_sidebar') === 'collapsed',
-            allPledges: [],
+            currentAssetCategory: 'server',
             assets: [],
-            currentAssetCategory: 'software',
             requests: [],
+            cveData: [],
+            cveFilter: 'all',
+            allPledges: [],
+            currentLogCategory: 'all',
             isEmailVerified: false
         };
 
-        const assetCategoryConfig = {
-            server: {
-                label: '서버',
-                addBtn: '서버 추가',
-                cols: ['자산명', '호스트명', 'IP주소', 'OS', '용도', '상태'],
-                fields: ['name', 'hostname', 'ip', 'os', 'purpose', 'status']
-            },
-            network: {
-                label: '네트워크',
-                addBtn: '네트워크 장비 추가',
-                cols: ['장비명', '모델명', '관리IP', '위치', '제조사', '상태'],
-                fields: ['name', 'model', 'ip', 'location', 'manufacturer', 'status']
-            },
-            security: {
-                label: '정보보호',
-                addBtn: '시스템 추가',
-                cols: ['시스템명', '도입목적', '관리자', '만료일자', '상태'],
-                fields: ['name', 'purpose', 'manager', 'expiry_date', 'status']
-            },
-            pc: {
-                label: 'PC/단말',
-                addBtn: 'PC 추가',
-                cols: ['사용자', '사번', '모델명', '시리얼', '구매일자', '상태'],
-                fields: ['user', 'emp_id', 'model', 'serial', 'purchase_date', 'status']
-            },
-            software: {
-                label: '소프트웨어',
-                addBtn: '소프트웨어 추가',
-                cols: ['이름', '타입', '카테고리', '제조사', '사용자수', '상태'],
-                fields: ['name', 'type', 'cat', 'mfg', 'users', 'status']
-            }
-        };
 
         // --- Section Specific Features ---
 
@@ -634,8 +605,8 @@
                         </div>
 
                         <!-- Table Container -->
-                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-x-auto">
-                            <table class="w-full text-left border-collapse min-w-[1200px]">
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-x-auto custom-scrollbar">
+                            <table class="w-full text-left border-collapse min-w-[2500px] whitespace-nowrap-cells">
                                 <thead id="asset-table-head">
                                     <!-- 동적 헤더 -->
                                 </thead>
@@ -647,12 +618,12 @@
 
                         <!-- Modal -->
                         <div id="asset-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-                            <div class="bg-white dark:bg-gray-800 w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+                            <div class="bg-white dark:bg-gray-800 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
                                 <div class="p-8 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
                                     <h3 id="modal-title" class="text-xl font-black dark:text-gray-100">소프트웨어 추가</h3>
                                     <button onclick="app.closeAssetModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fas fa-times text-xl"></i></button>
                                 </div>
-                                <div id="asset-modal-fields" class="p-8 space-y-4">
+                                <div id="asset-modal-fields" class="p-8 space-y-4 max-h-[60vh] overflow-y-auto custom-scrollbar">
                                     <!-- 동적 필드 영역 -->
                                 </div>
                                 <div class="p-8 pt-0">
@@ -664,49 +635,7 @@
                 `,
                 afterRender: () => app.fetchAssets()
             },
-            access: {
-                title: '권한 관리',
-                render: () => `
-                    <div class="section-animate max-w-5xl mx-auto">
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            <div class="lg:col-span-2 space-y-6">
-                                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
-                                    <div class="p-6 border-b border-gray-100 dark:border-gray-700">
-                                        <h3 class="font-black">보유 시스템 권한</h3>
-                                    </div>
-                                    <div class="divide-y divide-gray-50 dark:divide-gray-700">
-                                        ${[
-                        { sys: 'ERP 시스템', level: 'ReadOnly', expiry: '무기한', status: 'Active' },
-                        { sys: 'WAF 관리 콘솔', level: 'Admin', expiry: '2026.12.31', status: 'Expiring Soon' },
-                        { sys: 'AWS Production', level: 'Developer', expiry: '2026.06.30', status: 'Active' }
-                    ].map(r => `
-                                            <div class="p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/20 transition">
-                                                <div class="flex items-center gap-4">
-                                                    <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600"><i class="fas fa-server"></i></div>
-                                                    <div>
-                                                        <h4 class="font-bold text-sm dark:text-gray-200">${r.sys}</h4>
-                                                        <p class="text-[10px] text-gray-400 font-bold">${r.level} 레벨 | 만료: ${r.expiry}</p>
-                                                    </div>
-                                                </div>
-                                                <span class="px-2 py-1 ${r.status === 'Active' ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600'} text-[10px] font-black rounded">${r.status}</span>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-gray-900 border border-gray-800 rounded-3xl p-8 text-white relative overflow-hidden">
-                                <div class="relative z-10 text-center">
-                                    <i class="fas fa-key text-4xl mb-4 text-blue-400"></i>
-                                    <h3 class="text-xl font-black mb-4">권한 신청 / 연장</h3>
-                                    <p class="text-xs text-gray-400 mb-8 leading-relaxed">업무 수행에 필요한 권한을 신청하거나<br>만료 예정인 권한을 연장하세요.</p>
-                                    <button onclick="notifications.show('권한 신청 폼이 열렸습니다.', 'info')" class="w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-2xl font-black text-sm transition shadow-2xl transform active:scale-95">신규 권한 신청</button>
-                                </div>
-                                <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
+
             policy: {
                 title: '보안 규정',
                 render: () => `
@@ -1027,69 +956,6 @@
                         </div>
                     </div>
                 `
-            },
-            security_request: {
-                title: '보안 요청 관리',
-                render: () => `
-                    <div class="section-animate">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-                            <div class="flex items-center gap-3">
-                                <h3 class="text-2xl font-black dark:text-gray-100">보안 요청 현황</h3>
-                                <span id="request-count-badge" class="px-2.5 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-xs font-black rounded-full">0</span>
-                            </div>
-                            <button onclick="app.openRequestModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-indigo-500/20">
-                                <i class="fas fa-plus"></i> 신규 요청 등록
-                            </button>
-                        </div>
-
-                        <div id="request-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- 로딩 스피너 -->
-                            <div class="col-span-full py-20 text-center text-gray-400">
-                                <i class="fas fa-spinner fa-spin text-3xl mb-4"></i>
-                                <p class="font-bold">목록을 불러오는 중...</p>
-                            </div>
-                        </div>
-
-                        <!-- 보안 요청 모달 -->
-                        <div id="request-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-                            <div class="bg-white dark:bg-gray-800 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-                                <div class="p-8 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
-                                    <h3 id="request-modal-title" class="text-xl font-black dark:text-gray-100">새 보안 요청 등록</h3>
-                                    <button onclick="app.closeRequestModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fas fa-times text-xl"></i></button>
-                                </div>
-                                <form id="security-request-form" class="p-8 space-y-4">
-                                    <input type="hidden" id="req-edit-id" value="">
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div class="space-y-1">
-                                            <label class="text-[10px] font-black text-gray-400 uppercase">제목 (필수)</label>
-                                            <input type="text" id="req-title" required class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:text-gray-200">
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-[10px] font-black text-gray-400 uppercase">시스템 명</label>
-                                            <input type="text" id="req-system" class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:text-gray-200">
-                                        </div>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div class="space-y-1">
-                                            <label class="text-[10px] font-black text-gray-400 uppercase">요청자</label>
-                                            <input type="text" id="req-requester" class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:text-gray-200">
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-[10px] font-black text-gray-400 uppercase">기한</label>
-                                            <input type="date" id="req-date" class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:text-gray-100">
-                                        </div>
-                                    </div>
-                                    <div class="space-y-1">
-                                        <label class="text-[10px] font-black text-gray-400 uppercase">상세 내용 (필수)</label>
-                                        <textarea id="req-content" required class="w-full p-4 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:text-gray-200 h-32"></textarea>
-                                    </div>
-                                    <button type="submit" class="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black text-lg hover:shadow-2xl transition transform active:scale-95 mt-4">요청 저장하기</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-            `,
-                afterRender: () => app.fetchSecurityRequests()
             },
             cve_manager: {
                 title: 'CVE 취약점 관리',
@@ -1460,9 +1326,8 @@
             const input = helpers.qs(`.menu-input[data-menu-id="${id}"]`);
             if (input) {
                 const defaults = {
-                    home: '대시보드', security_center: '교육 센터', incident: '인시던트 신고',
-                    system_status: '시스템 상태', assets: '자산 관리', access: '권한 관리',
-                    policy: '보안 규정', pledge_select: '보안 서약서', checklist: '체크리스트'
+                    home: '대시보드', incident: '인시던트 신고',
+                    assets: '자산 관리', policy: '보안 규정', pledge_select: '보안 서약서', checklist: '체크리스트'
                 };
                 input.value = defaults[id];
             }
@@ -1493,7 +1358,10 @@
                 // 초기 로딩 스피너
                 body.innerHTML = '<tr><td colspan="8" class="py-20 text-center text-gray-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i><p>데이터를 불러오는 중...</p></td></tr>';
 
-                const res = await fetch('/api/assets', { cache: 'no-store' });
+                const res = await fetch('/api/assets', {
+                    cache: 'no-store',
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
                 const allData = await res.json();
                 state.assets = allData;
 
@@ -1534,8 +1402,16 @@
             // Render Header
             head.innerHTML = `
                 <tr class="bg-gray-50/50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-700 text-[11px] font-black text-gray-400 uppercase tracking-tighter">
-                    <th class="px-6 py-4">${config.cols[0]}</th>
-                    ${config.cols.slice(1).map(col => `<th class="px-4 py-4">${col}</th>`).join('')}
+                    <th class="px-6 py-4">
+                        ${config.cols[0]}
+                        <div class="resizer"></div>
+                    </th>
+                    ${config.cols.slice(1).map(col => `
+                        <th class="px-4 py-4">
+                            ${col}
+                            <div class="resizer"></div>
+                        </th>
+                    `).join('')}
                     <th class="px-4 py-4 text-center">관리</th>
                 </tr>
             `;
@@ -1566,6 +1442,43 @@
                     </td>
                 </tr>
             `).join('');
+
+            // Init Resizer Logic
+            initTableResizer(head);
+        }
+
+        function initTableResizer(head) {
+            const resizers = head.querySelectorAll('.resizer');
+            let currentTh = null;
+            let startX = 0;
+            let startWidth = 0;
+
+            resizers.forEach(resizer => {
+                resizer.addEventListener('mousedown', e => {
+                    currentTh = e.target.parentElement;
+                    startX = e.pageX;
+                    startWidth = currentTh.offsetWidth;
+
+                    document.body.classList.add('resizing');
+
+                    const onMouseMove = e => {
+                        if (!currentTh) return;
+                        const diff = e.pageX - startX;
+                        currentTh.style.width = (startWidth + diff) + 'px';
+                        currentTh.style.minWidth = (startWidth + diff) + 'px';
+                    };
+
+                    const onMouseUp = () => {
+                        document.body.classList.remove('resizing');
+                        currentTh = null;
+                        document.removeEventListener('mousemove', onMouseMove);
+                        document.removeEventListener('mouseup', onMouseUp);
+                    };
+
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+            });
         }
 
         function switchAssetCategory(cat) {
@@ -1643,7 +1556,10 @@
         async function deleteAsset(id) {
             if (confirm('정말로 이 항목을 삭제하시겠습니까?')) {
                 try {
-                    const res = await fetch(`/api/assets/${id}`, { method: 'DELETE' });
+                    const res = await fetch(`/api/assets/${id}`, {
+                        method: 'DELETE',
+                        headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                    });
                     if (res.ok) {
                         notifications.show('자산이 삭제되었습니다.', 'success');
                         fetchAssets();
@@ -1681,7 +1597,10 @@
             try {
                 const res = await fetch(url, {
                     method,
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-TIS-KEY': 'TIS_SECURE_2025'
+                    },
                     body: JSON.stringify(body)
                 });
 
@@ -1706,17 +1625,27 @@
 
             try {
                 // 엑셀에 들어갈 데이터 가공
-                const excelData = state.assets.map(item => ({
-                    '이름': item.name,
-                    '타입': item.type,
-                    '카테고리': item.cat,
-                    '제조사': item.mfg,
-                    '사용자수': item.users,
-                    '등록일': item.date,
-                    '상태': item.status,
-                    '유효여부': item.validity,
-                    '생성일시': item.created_at
-                }));
+                const excelData = state.assets.map(item => {
+                    const row = {
+                        '카테고리': assetCategoryConfig[item.main_category]?.label || item.main_category,
+                        '자산명': item.name || '-',
+                        '상태': item.status || '-',
+                        '등록일': item.created_at ? item.created_at.split('T')[0] : '-'
+                    };
+
+                    // 카테고리별 유동적 필드 추가
+                    if (item.main_category && assetCategoryConfig[item.main_category]) {
+                        const fields = assetCategoryConfig[item.main_category].fields;
+                        const labels = assetCategoryConfig[item.main_category].cols;
+                        fields.forEach((f, idx) => {
+                            if (!row[labels[idx]]) {
+                                row[labels[idx]] = item[f] || '-';
+                            }
+                        });
+                    }
+
+                    return row;
+                });
 
                 // 워크북 및 워크시트 생성
                 const worksheet = XLSX.utils.json_to_sheet(excelData);
@@ -1995,11 +1924,11 @@
                     return `
                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition">
                         <td class="p-5 text-gray-400 font-mono text-[10px]">#${log.id}</td>
-                        <td class="p-5 text-gray-500 font-medium">${log.timestamp}</td>
-                        <td class="p-5"><span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-[10px] text-gray-500">${log.menu}</span></td>
-                        <td class="p-5">${log.user}</td>
-                        <td class="p-5 ${isFail ? 'text-red-500 font-bold' : ''}">${log.action}</td>
-                        <td class="p-5 text-gray-500 font-normal truncate max-w-xs text-[10px]" title='${detailStr}'>${detailStr.substring(0, 50)}${detailStr.length > 50 ? '...' : ''}</td>
+                        <td class="p-5 text-gray-500 font-medium">${escapeHtml(log.timestamp)}</td>
+                        <td class="p-5"><span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-[10px] text-gray-500">${escapeHtml(log.menu)}</span></td>
+                        <td class="p-5">${escapeHtml(log.user)}</td>
+                        <td class="p-5 ${isFail ? 'text-red-500 font-bold' : ''}">${escapeHtml(log.action)}</td>
+                        <td class="p-5 text-gray-500 font-normal truncate max-w-xs text-[10px]" title='${escapeHtml(detailStr)}'>${escapeHtml(detailStr.substring(0, 50))}${detailStr.length > 50 ? '...' : ''}</td>
                         <td class="p-5">${statusBadge}</td>
                     </tr>
                     `;
@@ -2021,7 +1950,9 @@
 
         async function fetchCveList() {
             try {
-                const res = await fetch('/api/cves');
+                const res = await fetch('/api/cves', {
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
                 state.cveData = await res.json();
                 renderCveTable();
                 updateCveStats();
@@ -2102,7 +2033,7 @@
 
                 return `
                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition cursor-pointer" onclick="app.openCveModal(${c.id})">
-                    <td class="px-6 py-4 font-mono text-blue-600 dark:text-blue-400 hover:underline">${c.cve_id}</td>
+                    <td class="px-6 py-4 font-mono text-blue-600 dark:text-blue-400 hover:underline">${escapeHtml(c.cve_id)}</td>
                     <td class="px-4 py-4">
                         <div class="flex items-center gap-3">
                             <span class="font-black ${textClass} w-8 text-right">${c.cvss_score}</span>
@@ -2112,7 +2043,7 @@
                         </div>
                     </td>
                     <td class="px-4 py-4 text-gray-500 truncate max-w-xs" title="${escapeHtml(c.description)}">${escapeHtml(c.description)}</td>
-                    <td class="px-4 py-4 dark:text-gray-400">${c.vector}</td>
+                    <td class="px-4 py-4 dark:text-gray-400">${escapeHtml(c.vector)}</td>
                     <td class="px-4 py-4">${statusBadge}</td>
                     <td class="px-4 py-4 text-center text-gray-400"><i class="fas fa-chevron-right text-xs"></i></td>
                 </tr>
@@ -2187,7 +2118,10 @@
             try {
                 const res = await fetch(url, {
                     method,
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-TIS-KEY': 'TIS_SECURE_2025'
+                    },
                     body: JSON.stringify(body)
                 });
 

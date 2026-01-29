@@ -33,6 +33,19 @@ app.use(cors());
 app.use(express.json({ limit: '5mb' }));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+// --- Security Middleware ---
+// 팀원 외 접근을 차단하기 위한 간단한 인증 미들웨어 (테스트용: 특정 헤더 확인)
+const authMiddleware = (req, res, next) => {
+    // 실제 운영 환경에서는 세션 또는 JWT 기반 인증을 사용해야 합니다.
+    // 현재는 'X-TIS-KEY: TIS_SECURE_2025' 헤더가 있는 경우만 허용하도록 구현합니다.
+    const apiKey = req.headers['x-tis-key'];
+    if (apiKey === 'TIS_SECURE_2025') {
+        next();
+    } else {
+        res.status(401).json({ message: '인증되지 않은 접근입니다. 팀원만 접근 가능합니다.' });
+    }
+};
+
 // --- Memory Store for Auth Codes ---
 const authCodes = new Map(); // { email: { code, expires } }
 
@@ -153,7 +166,7 @@ app.delete('/api/requests/:id', (req, res) => {
  * --- Assets API ---
  */
 
-app.get('/api/assets', (req, res) => {
+app.get('/api/assets', authMiddleware, (req, res) => {
     try {
         const list = assetsRepo.findAll();
         res.json(list);
@@ -162,7 +175,7 @@ app.get('/api/assets', (req, res) => {
     }
 });
 
-app.post('/api/assets', (req, res) => {
+app.post('/api/assets', authMiddleware, (req, res) => {
     try {
         const id = assetsRepo.create(req.body);
         writeLog('관리자', '자산관리', '신규 자산 등록', { name: req.body.name, type: req.body.type }, 'Success');
@@ -172,7 +185,7 @@ app.post('/api/assets', (req, res) => {
     }
 });
 
-app.put('/api/assets/:id', (req, res) => {
+app.put('/api/assets/:id', authMiddleware, (req, res) => {
     try {
         const success = assetsRepo.update(req.params.id, req.body);
         if (!success) return res.status(404).json({ message: '수정할 자산을 찾을 수 없습니다.' });
@@ -182,7 +195,7 @@ app.put('/api/assets/:id', (req, res) => {
     }
 });
 
-app.delete('/api/assets/:id', (req, res) => {
+app.delete('/api/assets/:id', authMiddleware, (req, res) => {
     try {
         const success = assetsRepo.delete(req.params.id);
         if (!success) {
@@ -264,7 +277,7 @@ app.get('/api/logs', (req, res) => {
 
 // --- CVE API ---
 
-app.get('/api/cves', (req, res) => {
+app.get('/api/cves', authMiddleware, (req, res) => {
     try {
         const cves = cveRepo.findAll();
         res.json(cves);
@@ -273,7 +286,7 @@ app.get('/api/cves', (req, res) => {
     }
 });
 
-app.post('/api/cves', (req, res) => {
+app.post('/api/cves', authMiddleware, (req, res) => {
     try {
         const id = cveRepo.create(req.body);
         writeLog('관리자', '취약점관리', '신규 CVE 등록', `CVE-ID: ${req.body.cve_id}, Risk: ${req.body.cvss_score}`, 'Success');
@@ -284,7 +297,7 @@ app.post('/api/cves', (req, res) => {
     }
 });
 
-app.put('/api/cves/:id', (req, res) => {
+app.put('/api/cves/:id', authMiddleware, (req, res) => {
     try {
         const success = cveRepo.update(req.params.id, req.body);
         if (!success) return res.status(404).json({ message: '수정할 항목을 찾을 수 없습니다.' });
