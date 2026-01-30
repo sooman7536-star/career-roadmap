@@ -1,8 +1,6 @@
-const path = require('path');
-const { JsonDB } = require('../json-db');
+const db = require('../json-db');
 
-const dbPath = process.env.DATABASE_FILE || path.join(__dirname, '../../data.json');
-const db = new JsonDB(dbPath);
+// cve_items 컬렉션 초기화
 const cveCollection = db.getCollection('cve_items');
 
 const findAll = () => {

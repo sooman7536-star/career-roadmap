@@ -177,3 +177,42 @@ header {
 #quick-actions-btn {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
+
+/* Custom Scrollbar for TIS Design */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(30, 58, 138, 0.2);
+    border-radius: 10px;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.2);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(30, 58, 138, 0.4);
+}
+
+/* Modal Input Focus & TIS Aesthetics */
+.asset-input {
+    transition: all 0.2s ease;
+    border: 1px solid transparent !important;
+}
+
+.asset-input:focus {
+    background: white;
+    border-color: var(--secondary) !important;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.dark .asset-input:focus {
+    background: #0f172a;
+}

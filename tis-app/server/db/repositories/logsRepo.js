@@ -1,10 +1,7 @@
-const path = require('path');
-const { JsonDB } = require('../json-db');
+const db = require('../json-db');
 
-// logs.json 전용 DB 인스턴스 생성
-const logsPath = path.resolve(__dirname, '..', '..', 'logs.json');
-const logsDb = new JsonDB(logsPath, { logs: [] });
-const logsCollection = logsDb.getCollection('logs');
+// logs 컬렉션 초기화
+const logsCollection = db.getCollection('logs');
 
 /**
  * 민감 정보 마스킹 헬퍼 함수
@@ -61,10 +58,13 @@ const logsRepo = {
      * @param {Object} data - { user, menu, action, details, status }
      */
     create: (data) => {
-        // 최신 1000개 유지 로직
+        // 최신 1000개 유지 로직 (가정: 컬렉션 데이터에 직접 접근)
         const allLogs = logsCollection.findAll();
         if (allLogs.length >= 1000) {
-            logsDb.data.logs = allLogs.slice(-999);
+            // json-db 클래스의 내부 데이터 구조에 맞게 수정 (필요 시)
+            // 현재 JsonDB 클래스는 개별 파일이므로 컬렉션 자체가 이 인스턴스임
+            // 하지만 insert 시점에만 저장하므로 메모리 상에서 필터링
+            logsCollection.data = allLogs.slice(-999);
         }
 
         const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19);

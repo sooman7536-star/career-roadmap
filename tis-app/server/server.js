@@ -321,37 +321,16 @@ app.post('/api/auth/send-email', async (req, res) => {
 
     authCodes.set(email, { code, expires, verified: false });
 
-    // 디버그용 콘솔 로그 (항상 출력)
-    console.log(`[AUTH] Verification Code for ${email}: ${code}`);
+    // 이메일 발송 생략 (사용자 요청: "메일은 생략하고")
+    console.log(`\x1b[36m[AUTH] Verification Code Generated for ${email}: ${code}\x1b[0m`);
 
-    try {
-        await transporter.sendMail({
-            from: '"TIS Portal Security" <security@tis-portal.com>',
-            to: email,
-            subject: "[TIS Portal] 본인확인 인증번호 안내",
-            html: `
-                <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-                    <h2 style="color: #1e3a8a;">이메일 2차 인증</h2>
-                    <p>안녕하세요. TIS Portal 보안 서약 시스템입니다.</p>
-                    <p>아래의 인증번호를 화면에 입력하여 인증을 완료해 주세요.</p>
-                    <div style="background: #f4f4f4; padding: 15px; font-size: 24px; font-weight: bold; text-align: center; letter-spacing: 5px; color: #1e3a8a; margin: 20px 0;">
-                        ${code}
-                    </div>
-                    <p style="font-size: 12px; color: #888;">* 본 인증번호는 3분간 유효합니다.</p>
-                </div>
-            `
-        });
-        writeLog('시스템', '보안서약', '인증 이메일 발송', { email }, 'Success');
-        res.json({ message: '인증번호가 발송되었습니다.' });
-    } catch (err) {
-        console.error('Email Send Error:', err);
-        writeLog('시스템', '보안서약', '인증 이메일 발송 실패', { email, error: err.message }, 'Fail');
-        // 이메일 발송 실패 시에도 테스트를 위해 debugCode를 응답에 포함
-        res.status(500).json({
-            message: '이메일 발송에 실패했습니다. (테스트 환경에서는 아래 인증번호를 사용하세요)',
-            debugCode: code
-        });
-    }
+    writeLog('시스템', '보안서약', '인증번호 생성 (메일 생략)', { email }, 'Success');
+
+    res.json({
+        message: '인증번호가 생성되었습니다. 화면의 안내를 확인하세요.',
+        debugCode: code,
+        isTestMode: true
+    });
 });
 
 app.post('/api/auth/verify', (req, res) => {

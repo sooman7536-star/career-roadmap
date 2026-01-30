@@ -421,31 +421,78 @@
                 `
             },
             pledge_ko: {
-                title: '보안 서약서 (국문)',
+                title: '보안 서약서 (외부자용)',
                 render: () => `
                     <div class="section-animate max-w-4xl mx-auto">
                         <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 p-10">
                             <div class="text-center mb-12">
-                                <h3 class="text-3xl font-black text-[#1e3a8a] dark:text-blue-400 mb-2">정보보안 서약서</h3>
-                                <p class="text-gray-400 text-sm font-bold uppercase tracking-widest italic">Confidentiality Agreement (KR)</p>
+                                <h3 class="text-3xl font-black text-[#1e3a8a] dark:text-blue-400 mb-2">정보보안 서약서(외부자용)</h3>
+                                <p class="text-gray-400 text-sm font-bold uppercase tracking-widest italic">Information Security Pledge (External)</p>
                             </div>
+
+                            <p class="text-sm font-bold text-gray-600 dark:text-gray-400 mb-8 border-l-4 border-blue-600 pl-4 py-2 bg-blue-50 dark:bg-blue-900/20">
+                                본인 <span class="text-[#1e3a8a] dark:text-blue-300 font-black">___________</span>(은)는 ㈜티웨이항공의 업무를 수행함에 있어 다음 사항을 준수할 것을 서약합니다.
+                            </p>
                             
+                            <div class="space-y-4 mb-10">
+                                ${[
+                        '본인은 업무수행 상 알게 되는 각종 정보와 고객 금융거래 정보를 포함한 개인정보 등 비밀에 속하는 사항을 외부로 누설시키는 일이 없도록 하겠습니다.',
+                        '본인은 ㈜티웨이항공의 전산기기 및 시설물을 ㈜티웨이항공의 승인 없이 외부로 유출하는 일이 없도록 하겠습니다.',
+                        '본인은 본인에게 출입이 허용되지 않은 지역에 대한 접근 제한 규칙을 철저하게 준수하겠습니다.',
+                        '본인은 본인에게 할당된 모든 접근통제 코드(User-ID등)에 대한 기밀을 엄격히 준수하겠습니다.',
+                        '본인은 귀사의 정보보호 정책, 지침, 절차를 준수하겠습니다.'
+                    ].map((text, i) => `
+                                    <div class="flex gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-blue-200 transition">
+                                        <span class="text-blue-500 font-black text-lg">0${i + 1}</span>
+                                        <p class="text-sm font-bold text-gray-700 dark:text-gray-300 leading-relaxed">${text}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <div class="mb-10 p-6 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-700">
+                                <h4 class="text-sm font-black text-gray-700 dark:text-gray-300 mb-4 flex items-center gap-2">
+                                    <i class="fas fa-user-shield text-blue-500"></i> &lt; 개인정보 수집·이용에 대한 동의 &gt;
+                                </h4>
+                                <div class="text-[11px] font-bold text-gray-500 dark:text-gray-400 space-y-2 leading-loose">
+                                    <p><span class="text-gray-700 dark:text-gray-300">■ 개인정보 수집·이용의 목적:</span> 회사의 보안정책 서약 및 사후처리를 위한 본인확인 목적</p>
+                                    <p><span class="text-gray-700 dark:text-gray-300">■ 수집항목 및 방법</span></p>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>수집항목: 소속 업체명, 성명, 휴대폰번호</li>
+                                        <li>수집방법: 본 포털을 통한 디지털 기록</li>
+                                    </ul>
+                                    <p><span class="text-gray-700 dark:text-gray-300">■ 개인정보 보유·이용기간:</span> 수집·이용일로부터 업무 종료일 이후 1년간</p>
+                                    <p><span class="text-gray-700 dark:text-gray-300">■ 파기절차 및 방법:</span> 수집·이용 목적을 달성한 후 전자문서 파기 및 데이터 삭제</p>
+                                </div>
+                            </div>
+
                             <div class="info-grid mt-8 mb-10">
+                                <div class="info-field md:col-span-2">
+                                    <label>사업명</label>
+                                    <input type="text" id="pledge-project" placeholder="참여 중인 사업명을 입력하세요">
+                                </div>
+                                <div class="info-field">
+                                    <label>소속 업체명</label>
+                                    <input type="text" id="pledge-dept" placeholder="소속 업체명을 입력하세요">
+                                </div>
+                                <div class="info-field">
+                                    <label>업무 기간</label>
+                                    <input type="text" id="pledge-period" placeholder="예: 2026.01.01 ~ 2026.12.31">
+                                </div>
+                                <div class="info-field">
+                                    <label>휴대폰 번호</label>
+                                    <input type="text" id="pledge-phone" placeholder="010-0000-0000">
+                                </div>
                                 <div class="info-field">
                                     <label>성명</label>
                                     <input type="text" id="pledge-name" placeholder="성명을 입력하세요">
                                 </div>
                                 <div class="info-field">
-                                    <label>부서</label>
-                                    <input type="text" id="pledge-dept" placeholder="부서를 입력하세요">
+                                    <label>사번(필요시)</label>
+                                    <input type="text" id="pledge-empid" placeholder="사번 또는 ID를 입력하세요">
                                 </div>
                                 <div class="info-field">
-                                    <label>일자</label>
+                                    <label>서약 일자</label>
                                     <input type="date" id="pledge-date" value="${helpers.formatDate(new Date())}">
-                                </div>
-                                <div class="info-field">
-                                    <label>사번</label>
-                                    <input type="text" id="pledge-empid" placeholder="사번을 입력하세요">
                                 </div>
                                 <div class="info-field md:col-span-2">
                                     <label>이메일 주소 (2차 인증용)</label>
@@ -463,32 +510,20 @@
                                         </div>
                                         <button onclick="app.verifyCode('KO')" id="btn-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">확인</button>
                                     </div>
-                                    <p class="text-[9px] text-gray-400 mt-1">* 이메일로 발송된 6자리 숫자를 입력해 주세요.</p>
+                                    <p class="text-[9px] text-gray-400 mt-1">* 화면에 표시된 6자리 숫자를 입력해 주세요.</p>
                                 </div>
                             </div>
 
-                            <div class="space-y-4 mb-10">
-                                ${[
-                        '회사의 정보보안 정책, 지침 및 절차를 엄격히 준수하겠습니다.',
-                        '재직 중 알게 된 모든 기밀 정보나 영업 비밀을 부정이용하거나 정당한 권한 없이 제3자에게 누설하지 않겠습니다.',
-                        '회사의 정보 자산은 승인된 업무 목적으로만 사용하며, 비인가 접근이나 손상으로부터 보호하겠습니다.',
-                        '보안 사고, 취약점 또는 의심스러운 활동을 인지하는 즉시 정보보안팀(TIS)에 신고하겠습니다.',
-                        '본 서약의 위반 시 회사 규정 및 관련 법령에 따라 징계 또는 법적 조치를 받을 수 있음을 확인합니다.'
-                    ].map((text, i) => `
-                                    <div class="flex gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                        <span class="text-blue-500 font-black text-lg">0${i + 1}</span>
-                                        <p class="text-sm font-bold text-gray-700 dark:text-gray-300">${text}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
-
-
                             <label class="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl cursor-pointer mb-10 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                                 <input type="checkbox" id="agree-check" class="w-6 h-6 rounded-lg text-blue-600 focus:ring-blue-500 border-gray-300 cursor-pointer">
-                                <span class="text-sm font-black text-gray-700 dark:text-gray-300">위의 모든 조항을 읽었으며 이에 동의합니다.</span>
+                                <span class="text-sm font-black text-gray-700 dark:text-gray-300">위의 모든 조항 및 개인정보 처리에 동의합니다.</span>
                             </label>
 
                             <button id="final-submit-btn" onclick="app.submitPledge('KO')" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">제출하기 (인증 필요)</button>
+                            
+                            <div class="mt-16 text-center border-t border-gray-100 dark:border-gray-700 pt-8">
+                                <p class="text-2xl font-black text-gray-800 dark:text-gray-200 tracking-[0.5em]">(주)티웨이항공</p>
+                            </div>
                         </div>
                     </div>
                 `,
@@ -617,17 +652,24 @@
                         </div>
 
                         <!-- Modal -->
-                        <div id="asset-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-                            <div class="bg-white dark:bg-gray-800 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-                                <div class="p-8 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
-                                    <h3 id="modal-title" class="text-xl font-black dark:text-gray-100">소프트웨어 추가</h3>
-                                    <button onclick="app.closeAssetModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fas fa-times text-xl"></i></button>
+                        <div id="asset-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 md:p-6 bg-black/60 backdrop-blur-sm">
+                            <div class="bg-white dark:bg-gray-800 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 flex flex-col max-h-[95vh]">
+                                <div class="p-6 md:p-8 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/20">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+                                            <i class="fas fa-shield-halved text-lg"></i>
+                                        </div>
+                                        <h3 id="modal-title" class="text-xl font-black dark:text-gray-100">소프트웨어 추가</h3>
+                                    </div>
+                                    <button onclick="app.closeAssetModal()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-times"></i></button>
                                 </div>
-                                <div id="asset-modal-fields" class="p-8 space-y-4 max-h-[60vh] overflow-y-auto custom-scrollbar">
+                                <div id="asset-modal-fields" class="p-6 md:p-8 space-y-5 overflow-y-auto custom-scrollbar flex-grow">
                                     <!-- 동적 필드 영역 -->
                                 </div>
-                                <div class="p-8 pt-0">
-                                    <button onclick="app.handleAssetSubmit(event)" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-95">저장하기</button>
+                                <div class="p-6 md:p-8 pt-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-900/10">
+                                    <button onclick="app.handleAssetSubmit(event)" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-[0.98]">
+                                        <i class="fas fa-save mr-2"></i> 자산 정보 저장하기
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1521,9 +1563,9 @@
             // 동적으로 필드 생성
             let fieldsHtml = `<input type="hidden" id="asset-edit-id" value="${id}">`;
 
-            // 2학 그리드 구성을 위해 chunking
+            // 2단 그리드 구성을 위해 chunking
             for (let i = 0; i < config.fields.length; i += 2) {
-                fieldsHtml += '<div class="grid grid-cols-2 gap-4">';
+                fieldsHtml += '<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">';
                 for (let j = 0; j < 2; j++) {
                     const idx = i + j;
                     if (idx < config.fields.length) {
@@ -1532,9 +1574,13 @@
                         const val = assetData ? (assetData[fieldKey] || '') : '';
 
                         fieldsHtml += `
-                            <div class="space-y-1">
-                                <label class="text-[10px] font-black text-gray-400 uppercase">${label}</label>
-                                <input type="text" data-field="${fieldKey}" value="${escapeHtml(val.toString())}" class="asset-input w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-200">
+                            <div class="space-y-1.5 focus-within:translate-x-1 transition-transform">
+                                <label class="text-[10px] font-black text-gray-400 uppercase flex items-center gap-1.5">
+                                    <span class="w-1 h-1 bg-blue-500 rounded-full"></span> ${label}
+                                </label>
+                                <input type="text" data-field="${fieldKey}" value="${escapeHtml(val.toString())}" 
+                                       placeholder="${label} 입력..."
+                                       class="asset-input w-full p-3.5 bg-gray-50/50 dark:bg-gray-900/50 border-2 border-transparent rounded-2xl text-[13px] font-bold outline-none focus:ring-4 focus:ring-blue-500/10 dark:text-gray-200 transition-all">
                             </div>
                         `;
                     }
@@ -1618,32 +1664,32 @@
         }
 
         async function downloadAssetsExcel() {
-            if (state.assets.length === 0) {
+            // 현재 화면에 적용된 필터링 로직과 동일하게 데이터 가공
+            const searchTerm = helpers.qs('#asset-search')?.value.toLowerCase() || '';
+            const filtered = state.assets.filter(a => {
+                const matchesCategory = a.main_category === state.currentAssetCategory;
+                const matchesSearch = !searchTerm ||
+                    (a.name && a.name.toLowerCase().includes(searchTerm)) ||
+                    (a.hostname && a.hostname.toLowerCase().includes(searchTerm)) ||
+                    (a.ip && a.ip.includes(searchTerm)) ||
+                    (a.user && a.user.toLowerCase().includes(searchTerm));
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
                 notifications.show('다운로드할 데이터가 없습니다.', 'info');
                 return;
             }
 
             try {
                 // 엑셀에 들어갈 데이터 가공
-                const excelData = state.assets.map(item => {
-                    const row = {
-                        '카테고리': assetCategoryConfig[item.main_category]?.label || item.main_category,
-                        '자산명': item.name || '-',
-                        '상태': item.status || '-',
-                        '등록일': item.created_at ? item.created_at.split('T')[0] : '-'
-                    };
-
-                    // 카테고리별 유동적 필드 추가
-                    if (item.main_category && assetCategoryConfig[item.main_category]) {
-                        const fields = assetCategoryConfig[item.main_category].fields;
-                        const labels = assetCategoryConfig[item.main_category].cols;
-                        fields.forEach((f, idx) => {
-                            if (!row[labels[idx]]) {
-                                row[labels[idx]] = item[f] || '-';
-                            }
-                        });
-                    }
-
+                const config = assetCategoryConfig[state.currentAssetCategory];
+                const excelData = filtered.map(item => {
+                    const row = {};
+                    // 카테고리별 설정된 컬럼(cols)과 필드(fields)를 매핑
+                    config.fields.forEach((field, idx) => {
+                        row[config.cols[idx]] = item[field] || '-';
+                    });
                     return row;
                 });
 
@@ -1739,15 +1785,20 @@
             const empIdEl = helpers.qs(prefix + 'empid');
             const agreeEl = helpers.qs('#agree-check');
 
-            if (!nameEl || !deptEl || !empIdEl || !agreeEl) return;
+            // 신규 필드 (국문 전용)
+            const projectEl = helpers.qs(prefix + 'project');
+            const periodEl = helpers.qs(prefix + 'period');
+            const phoneEl = helpers.qs(prefix + 'phone');
+
+            if (!nameEl || !deptEl || !agreeEl) return;
 
             const name = nameEl.value.trim();
             const dept = deptEl.value.trim();
-            const emp_id = empIdEl.value.trim();
+            const emp_id = empIdEl ? empIdEl.value.trim() : '';
             const agree = agreeEl.checked;
 
-            if (!name || !dept || !emp_id) {
-                notifications.show('성명, 부서, 사번을 모두 입력해 주세요.', 'error');
+            if (!name || !dept) {
+                notifications.show('성명과 소속 업체명(부서)을 입력해 주세요.', 'error');
                 return;
             }
             if (!agree) {
@@ -1755,12 +1806,23 @@
                 return;
             }
 
+            const extraData = {};
+            if (projectEl) extraData.project = projectEl.value.trim();
+            if (periodEl) extraData.period = periodEl.value.trim();
+            if (phoneEl) extraData.phone = phoneEl.value.trim();
 
             try {
                 const res = await fetch('/api/pledges', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, dept, emp_id, type, email: helpers.qs(prefix + 'email')?.value })
+                    body: JSON.stringify({
+                        name,
+                        dept,
+                        emp_id,
+                        type,
+                        email: helpers.qs(prefix + 'email')?.value,
+                        ...extraData
+                    })
                 });
 
                 if (res.ok) {
@@ -1789,6 +1851,30 @@
                 return;
             }
 
+            // [추가] 재발송 시 인증 상태 및 UI 초기화
+            state.isEmailVerified = false;
+            const submitBtn = helpers.qs(type === 'KO' ? '#final-submit-btn' : '#final-submit-en-btn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.classList.remove('bg-[#1e3a8a]', 'hover:shadow-2xl');
+                submitBtn.classList.add('bg-gray-300', 'dark:bg-gray-700', 'cursor-not-allowed');
+                submitBtn.textContent = type === 'KO' ? '제출하기 (인증 필요)' : 'Submit (Auth Required)';
+            }
+
+            // 만약 인증 완료되어 UI가 체크 표시로 바뀌어 있었다면 다시 입력창으로 복구
+            if (container.querySelector('.fa-check-circle')) {
+                container.innerHTML = `
+                    <label>${type === 'KO' ? '인증번호 (6자리)' : 'Verification Code (6-digits)'}</label>
+                    <div class="flex gap-2 items-center">
+                        <div class="relative flex-grow">
+                            <input type="text" id="${type === 'KO' ? 'pledge-auth-code' : 'pledge-en-auth-code'}" placeholder="000000" maxlength="6" class="w-full pr-12">
+                            <span id="${type === 'KO' ? 'auth-timer' : 'auth-en-timer'}" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
+                        </div>
+                        <button onclick="app.verifyCode('${type}')" id="${type === 'KO' ? 'btn-verify-code' : 'btn-en-verify-code'}" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">${type === 'KO' ? '확인' : 'Verify'}</button>
+                    </div>
+                `;
+            }
+
             try {
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
@@ -1800,21 +1886,24 @@
                 });
 
                 if (res.ok) {
-                    notifications.show('인증번호가 발송되었습니다.', 'info');
+                    const data = await res.json();
+                    // 사용자의 요청대로 10초(10000ms) 동안 인증번호를 보여줌
+                    notifications.show(`인증번호: [ ${data.debugCode} ] (10초간 표시)`, 'info', 10000);
+
                     container.classList.remove('hidden');
+
+                    // [추가] 테스트 편의를 위해 인증번호 자동 입력
+                    const codeInput = helpers.qs(prefix + 'auth-code');
+                    if (codeInput) {
+                        codeInput.value = data.debugCode;
+                        notifications.show('인증번호를 자동으로 입력했습니다.', 'success', 2000);
+                    }
+
                     startAuthTimer(type);
                     btn.textContent = type === 'KO' ? '재발송' : 'Resend';
                 } else {
                     const err = await res.json();
-                    let msg = err.message;
-                    if (err.debugCode) {
-                        msg += ` (인증번호: ${err.debugCode})`;
-                        // 테스트 환경을 위해 입력 필드 노출 및 타이머 시작
-                        container.classList.remove('hidden');
-                        startAuthTimer(type);
-                        btn.textContent = type === 'KO' ? '재발송' : 'Resend';
-                    }
-                    notifications.show(msg, 'error');
+                    notifications.show(err.message || '인증번호 생성 실패', 'error');
                 }
             } catch (err) {
                 notifications.show('통신 오류', 'error');
@@ -1844,7 +1933,7 @@
             const prefix = type === 'KO' ? '#pledge-' : '#pledge-en-';
             const email = helpers.qs(prefix + 'email').value;
             const code = helpers.qs(prefix + 'auth-code').value;
-            const submitBtn = helpers.qs(type === 'KO' ? '#final-submit-btn' : '#final-submit-en-btn');
+            const verifyBtn = helpers.qs(type === 'KO' ? '#btn-verify-code' : '#btn-en-verify-code');
 
             if (code.length !== 6) {
                 notifications.show('6자리 인증번호를 입력해 주세요.', 'error');
@@ -1852,6 +1941,11 @@
             }
 
             try {
+                if (verifyBtn) {
+                    verifyBtn.disabled = true;
+                    verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                }
+
                 const res = await fetch('/api/auth/verify', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1871,16 +1965,25 @@
                     `;
 
                     // 제출 버튼 활성화
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('bg-gray-300', 'dark:bg-gray-700', 'cursor-not-allowed');
-                    submitBtn.classList.add('bg-[#1e3a8a]', 'hover:shadow-2xl');
-                    submitBtn.textContent = type === 'KO' ? '제출하기' : 'Submit';
+                    const submitBtn = helpers.qs(type === 'KO' ? '#final-submit-btn' : '#final-submit-en-btn');
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-gray-300', 'dark:bg-gray-700', 'cursor-not-allowed');
+                        submitBtn.classList.add('bg-[#1e3a8a]', 'hover:shadow-2xl');
+                        submitBtn.textContent = type === 'KO' ? '제출하기' : 'Submit';
+                    }
                 } else {
                     const err = await res.json();
                     notifications.show(err.message, 'error');
                 }
             } catch (err) {
+                console.error('Verify Error:', err);
                 notifications.show('통신 오류', 'error');
+            } finally {
+                if (verifyBtn) {
+                    verifyBtn.disabled = false;
+                    verifyBtn.textContent = type === 'KO' ? '확인' : 'Verify';
+                }
             }
         }
 
@@ -2159,7 +2262,7 @@
             fetchPledges,
             sendEmailCode,
             verifyCode,
-            switchAssetCategory,
+            initQuiz,
             switchAssetCategory,
             renderAssetTable,
             fetchLogs,

@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "created_at": "2026-01-28 10:30:11",
+    "name": "Keynote",
+    "type": "Installed",
+    "cat": "문서",
+    "mfg": "Apple Inc.",
+    "os": [
+      "apple"
+    ],
+    "users": 1,
+    "date": "2025-05-15",
+    "status": "미분류",
+    "validity": "일반",
+    "hasStats": true
+  },
+  {
+    "id": 2,
+    "created_at": "2026-01-28 10:30:11",
+    "name": "Word",
+    "type": "SaaS",
+    "cat": "문서",
+    "mfg": "Microsoft",
+    "os": [
+      "windows",
+      "apple"
+    ],
+    "users": 1,
+    "date": "2025-05-12",
+    "status": "미분류",
+    "validity": "상용",
+    "hasStats": true
+  },
+  {
+    "id": 3,
+    "created_at": "2026-01-28 10:30:11",
+    "name": "Jenkins",
+    "type": "SaaS",
+    "cat": "생산성",
+    "mfg": "-",
+    "os": [
+      "windows",
+      "apple"
+    ],
+    "users": 3,
+    "date": "2025-05-09",
+    "status": "미분류",
+    "validity": "배포중",
+    "hasStats": true
+  },
+  {
+    "id": 4,
+    "created_at": "2026-01-28 10:30:11",
+    "name": "ZUZU",
+    "type": "SaaS",
+    "cat": "프로세스",
+    "mfg": "(주)코드박스",
+    "os": [
+      "windows"
+    ],
+    "users": 1,
+    "date": "2025-05-09",
+    "status": "미분류",
+    "validity": "상용",
+    "hasStats": true
+  },
+  {
+    "id": 5,
+    "created_at": "2026-01-28 10:30:11",
+    "name": "shiftee",
+    "type": "SaaS",
+    "cat": "프로세스",
+    "mfg": "주식회사 시프티",
+    "os": [
+      "windows",
+      "apple"
+    ],
+    "users": 1,
+    "date": "2025-04-17",
+    "status": "미분류",
+    "validity": "일반",
+    "hasStats": true
+  },
+  {
+    "id": 6,
+    "created_at": "2026-01-28 10:30:11",
+    "name": "Firefox",
+    "type": "기타",
+    "cat": "브라우저",
+    "mfg": "Mozilla",
+    "os": [
+      "windows",
+      "apple"
+    ],
+    "users": 1,
+    "date": "2025-04-11",
+    "status": "미분류",
+    "validity": "오픈소스",
+    "hasStats": true
+  },
+  {
+    "id": 8,
+    "created_at": "2026-01-28 12:46:43",
+    "name": "Test Asset Server",
+    "type": "Server",
+    "cat": "??",
+    "mfg": "Dell",
+    "os": [
+      "linux"
+    ],
+    "users": 0,
+    "date": "2026-01-28",
+    "status": "??",
+    "validity": "??",
+    "hasStats": false
+  },
+  {
+    "id": 100,
+    "main_category": "server",
+    "uid": "SV-LI",
+    "asset_no": "SV-LI-007",
+    "dept_check": "O",
+    "name": "Zenius",
+    "purpose": "Docker, WEB, WAS",
+    "service": "정보보호시스템",
+    "ip": "192.168.111.148",
+    "hostname": "Tway-zenius-mgmt",
+    "os_ver": "Rocky Linux 9.2",
+    "location": "목동 IDC 1 센터",
+    "operator": "인포섹",
+    "manager": "보안7",
+    "dept": "IT인프라파트",
+    "imp_c": "2",
+    "imp_i": "3",
+    "imp_a": "3",
+    "imp_score": "8",
+    "grade": "1",
+    "hw_spec": "Dell R150",
+    "cert_isms": "O",
+    "cert_iso": "O",
+    "cert_internal": "O",
+    "notes": "시스템 모니터링 현황",
+    "created_at": "2026-01-29 09:43:00"
+  }
+]
