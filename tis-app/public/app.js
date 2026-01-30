@@ -436,7 +436,7 @@
                     <div class="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                         <i class="fas fa-camera text-2xl"></i>
                     </div>
-                    <span class="text-xl font-black mb-2 dark:text-gray-100">국문 초상권 동의서</span>
+                    <span class="text-xl font-black mb-2 dark:text-gray-100">국문 동의서</span>
                     <span class="text-sm text-gray-400 font-bold uppercase tracking-widest">Korean Version</span>
                     <div class="mt-8 px-6 py-2 bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">작성하기</div>
                 </button>
@@ -445,7 +445,7 @@
                     <div class="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                         <i class="fas fa-globe text-2xl"></i>
                     </div>
-                    <span class="text-xl font-black mb-2 dark:text-gray-100">영문 초상권 동의서</span>
+                    <span class="text-xl font-black mb-2 dark:text-gray-100">영문 동의서</span>
                     <span class="text-sm text-gray-400 font-bold uppercase tracking-widest">English Version</span>
                     <div class="mt-8 px-6 py-2 bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">Create Consent</div>
                 </button>
@@ -731,7 +731,7 @@
                     <div class="section-animate max-w-5xl mx-auto">
                         <div class="flex items-center justify-between mb-8">
                             <div>
-                                <h3 class="text-2xl font-black dark:text-gray-100">전사 보안 규정 및 가이드</h3>
+                                <h3 class="text-2xl font-black dark:text-gray-100">사내 보안 규정 및 가이드</h3>
                                 <p class="text-xs text-gray-400 mt-1 font-bold">총 <span id="policy-count-badge" class="text-blue-500">0</span>개의 규정이 등록되어 있습니다.</p>
                             </div>
                             <div class="flex gap-2">
@@ -776,12 +776,12 @@
                                     </div>
                                     <div class="md:col-span-3 p-6 bg-white dark:bg-gray-800 space-y-5">
                                         <div class="space-y-2">
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600">■ 제공처 :</span> (주)티웨이항공 사내 매체 (그룹웨어, 공유 폴더 등), 교육 자료, 홍보 자료 및 촬영자</p>
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600">■ 목 적 :</span> 비영리 목적의 온라인 및 오프라인 콘텐츠 제작</p>
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600">■ 항 목 :</span> 초상권이 인정되는 사진 또는 영상물</p>
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600">■ 기 간 :</span> 사진 또는 영상이 게시되어 활용되는 기간, 활용 종료 및 동의 철회 시 지체 없이 파기</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ 제공처 : (주)티웨이항공 사내 매체 (그룹웨어, 공유 폴더 등), 교육 자료, 홍보 자료 및 촬영자</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ 목 적 : 비영리 목적의 온라인 및 오프라인 콘텐츠 제작</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ 항 목 : 초상권이 인정되는 사진 또는 영상물</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ 기 간 : 사진 또는 영상이 게시되어 활용되는 기간, 활용 종료 및 동의 철회 시 지체 없이 파기</p>
                                             <p class="text-[10px] text-gray-400 font-bold italic ml-4">※ 단, 추후 개별적으로 요청 시 사진 또는 영상물의 배포 정지를 협의할 수 있음</p>
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-red-500 font-black">■ 미 동의시 :</span> 개인정보, 초상권 수집 이용에 대한 동의를 거부할 권리가 있으며, 동의 거부 시 관련 자료 제작에서 제외됩니다.</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ 미 동의시 : 개인정보, 초상권 수집 이용에 대한 동의를 거부할 권리가 있으며, 동의 거부 시 관련 자료 제작에서 제외됩니다.</p>
                                         </div>
 
                                         <!-- Consent Buttons -->
@@ -891,12 +891,12 @@
                                     </div>
                                     <div class="md:col-span-3 p-6 bg-white dark:bg-gray-800 space-y-5">
                                         <div class="space-y-2">
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600 font-black">■ Recipient :</span> (T'way Air Co., Ltd.) in-house media (Groupware, shared folders), educational/promotional materials, and the photographer</p>
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600 font-black">■ Purpose :</span> Creation of online/offline content for non-profit purposes</p>
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600 font-black">■ Items :</span> Photos or videos where portrait rights are recognized</p>
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600 font-black">■ Period :</span> During the period of use; destroyed without delay upon termination of use or withdrawal of consent</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ Recipient : (T'way Air Co., Ltd.) in-house media (Groupware, shared folders), educational/promotional materials, and the photographer</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ Purpose : Creation of online/offline content for non-profit purposes</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ Items : Photos or videos where portrait rights are recognized</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ Period : During the period of use; destroyed without delay upon termination of use or withdrawal of consent</p>
                                             <p class="text-[10px] text-gray-400 font-bold italic ml-4">※ Note: Suspension of distribution can be negotiated upon individual request in the future.</p>
-                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-red-500 font-black">■ Non-agreement :</span> You have the right to refuse consent. If refused, you will be excluded from the production of relevant materials.</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400">■ Non-agreement : You have the right to refuse consent. If refused, you will be excluded from the production of relevant materials.</p>
                                         </div>
 
                                         <!-- Consent Buttons -->
@@ -1629,11 +1629,18 @@
                 return matchesCategory && matchesSearch;
             });
 
+            // 자산번호(asset_no) 기준 오름차순 정렬 (SV-LI-001, 002...)
+            filtered.sort((a, b) => {
+                const valA = a.asset_no || '';
+                const valB = b.asset_no || '';
+                return valA.localeCompare(valB, undefined, { numeric: true, sensitivity: 'base' });
+            });
+
             if (badge) badge.textContent = filtered.length;
 
-            // Render Header
             head.innerHTML = `
                 <tr class="bg-gray-50/50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-700 text-[11px] font-black text-gray-400 uppercase tracking-tighter">
+                    <th class="px-4 py-4 w-12 text-center">No</th>
                     <th class="px-6 py-4">
                         ${config.cols[0]}
                         <div class="resizer"></div>
@@ -1649,27 +1656,30 @@
             `;
 
             if (filtered.length === 0) {
-                body.innerHTML = `<tr><td colspan="${config.cols.length + 1}" class="py-10 text-center text-gray-400">등록된 자산이 없습니다.</td></tr>`;
+                body.innerHTML = `<tr><td colspan="${config.cols.length + 2}" class="py-10 text-center text-gray-400">등록된 자산이 없습니다.</td></tr>`;
                 return;
             }
 
-            body.innerHTML = filtered.map(s => `
-                <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-700/30 transition-colors">
-                    <td class="px-6 py-4 dark:text-gray-200 font-bold">${escapeHtml(s[config.fields[0]])}</td>
+            body.innerHTML = filtered.map((s, index) => `
+                <tr onclick="app.editAsset(${s.id})" class="hover:bg-gray-50/80 dark:hover:bg-gray-700/30 transition-colors cursor-pointer group">
+                    <td class="px-4 py-4 text-center text-gray-400 font-mono text-[10px]">${index + 1}</td>
+                    <td class="px-6 py-4 dark:text-gray-200 font-bold group-hover:text-blue-600 transition-colors max-w-[200px] break-words whitespace-normal">${escapeHtml(s[config.fields[0]] || '-')}</td>
                     ${config.fields.slice(1).map(field => {
-                const val = s[field] || '-';
+                const rawVal = s[field];
+                const val = (rawVal !== undefined && rawVal !== null) ? rawVal.toString() : '-';
+                const baseClass = "px-4 py-4 max-w-[200px] break-words whitespace-normal transition-colors";
                 if (field === 'status') {
-                    return `<td class="px-4 py-4 text-orange-400">${escapeHtml(val)}</td>`;
+                    return `<td class="${baseClass} text-orange-400">${escapeHtml(val)}</td>`;
                 }
                 if (field === 'ip') {
-                    return `<td class="px-4 py-4 font-mono text-gray-500">${escapeHtml(val)}</td>`;
+                    return `<td class="${baseClass} font-mono text-gray-500">${escapeHtml(val)}</td>`;
                 }
-                return `<td class="px-4 py-4 text-gray-500">${escapeHtml(val)}</td>`;
+                return `<td class="${baseClass} text-gray-500">${escapeHtml(val)}</td>`;
             }).join('')}
                     <td class="px-4 py-4 text-center">
                         <div class="flex justify-center gap-2">
-                            <button onclick="app.editAsset(${s.id})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition"><i class="fas fa-edit"></i></button>
-                            <button onclick="app.deleteAsset(${s.id})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition"><i class="fas fa-trash-alt"></i></button>
+                            <button onclick="event.stopPropagation(); app.editAsset(${s.id})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition" title="수정"><i class="fas fa-edit"></i></button>
+                            <button onclick="event.stopPropagation(); app.deleteAsset(${s.id})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition" title="삭제"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -1760,12 +1770,21 @@
             if (groupInput) groupInput.value = groupCode;
 
             if (noInput) {
-                // 기존 자산 중 동일 그룹 코드를 가진 자산 수 확인 (새로운 번호 자동 부여)
+                // 중복 방지 로직 강화: 현재 상태의 모든 자산을 검사하여 가장 높은 번호 추출
                 const sameGroupAssets = state.assets.filter(a => a.group_code === groupCode);
-                const nextNum = (sameGroupAssets.length + 1).toString().padStart(3, '0');
-                noInput.value = `${groupCode}-${nextNum}`;
+                let nextIdx = 1;
+                if (sameGroupAssets.length > 0) {
+                    const maxNum = Math.max(...sameGroupAssets.map(a => {
+                        const parts = a.asset_no.split('-');
+                        const num = parseInt(parts[parts.length - 1]);
+                        return isNaN(num) ? 0 : num;
+                    }));
+                    nextIdx = maxNum + 1;
+                }
+                const nextNumStr = nextIdx.toString().padStart(3, '0');
+                noInput.value = `${groupCode}-${nextNumStr}`;
 
-                notifications.show(`코드 기입 완료: ${noInput.value}`, 'info', 1000);
+                notifications.show(`코드 자동 할당: ${noInput.value}`, 'info', 1000);
             }
         }
 
@@ -1813,7 +1832,7 @@
                         const isCodeField = fieldKey === 'group_code' || fieldKey === 'asset_no';
 
                         fieldsHtml += `
-                            <div class="space-y-1.5 focus-within:translate-x-1 transition-transform">
+                            <div class="${isCodeField ? 'hidden' : ''} space-y-1.5 focus-within:translate-x-1 transition-transform">
                                 <label class="text-[10px] font-black text-gray-400 uppercase flex items-center gap-1.5">
                                     <span class="w-1.5 h-1.5 ${isCodeField ? 'bg-blue-500 animate-pulse' : 'bg-gray-300'} rounded-full"></span> ${label}
                                 </label>
@@ -1935,6 +1954,58 @@
 
                 // 워크북 및 워크시트 생성
                 const worksheet = XLSX.utils.json_to_sheet(excelData);
+
+                // 헤더 스타일 적용 (1행) 및 열 너비 계산
+                const range = XLSX.utils.decode_range(worksheet['!ref']);
+                const colWidths = [];
+
+                for (let C = range.s.c; C <= range.e.c; ++C) {
+                    let maxWidth = 10; // 최소 너비
+
+                    for (let R = range.s.r; R <= range.e.r; ++R) {
+                        const address = XLSX.utils.encode_cell({ r: R, c: C });
+                        if (!worksheet[address]) continue;
+
+                        const val = String(worksheet[address].v || '');
+                        // 한글 포함 시 너비를 더 넉넉하게 계산 (글자수 * 1.2 + 알파)
+                        const cellWidth = val.split('').reduce((acc, char) => acc + (char.charCodeAt(0) > 255 ? 2.2 : 1.1), 0);
+                        if (cellWidth > maxWidth) maxWidth = cellWidth;
+
+                        // 스타일 적용
+                        if (!worksheet[address].s) worksheet[address].s = {};
+
+                        if (R === 0) {
+                            // 1행 (헤더) 스타일
+                            worksheet[address].s = {
+                                fill: { fgColor: { rgb: "F2F2F2" } },
+                                font: { bold: true, size: 11 },
+                                alignment: { horizontal: "center", vertical: "center" },
+                                border: {
+                                    top: { style: "thin", color: { rgb: "000000" } },
+                                    bottom: { style: "thin", color: { rgb: "000000" } },
+                                    left: { style: "thin", color: { rgb: "000000" } },
+                                    right: { style: "thin", color: { rgb: "000000" } }
+                                }
+                            };
+                        } else {
+                            // 2행부터 (데이터) 스타일
+                            worksheet[address].s = {
+                                font: { size: 9 }, // 글자 크기 9
+                                alignment: { horizontal: "center", vertical: "center" }, // 가로/세로 가운데 정렬
+                                border: {
+                                    top: { style: "thin", color: { rgb: "E5E7EB" } },
+                                    bottom: { style: "thin", color: { rgb: "E5E7EB" } },
+                                    left: { style: "thin", color: { rgb: "E5E7EB" } },
+                                    right: { style: "thin", color: { rgb: "E5E7EB" } }
+                                }
+                            };
+                        }
+                    }
+                    colWidths.push({ wch: Math.min(maxWidth + 2, 50) }); // 최대 50으로 제한
+                }
+
+                worksheet['!cols'] = colWidths; // 열 너비 적용
+
                 const workbook = XLSX.utils.book_new();
                 XLSX.utils.book_append_sheet(workbook, worksheet, "Assets");
 
@@ -1942,7 +2013,7 @@
                 const fileName = `TIS_Assets_${new Date().toISOString().split('T')[0]}.xlsx`;
                 XLSX.writeFile(workbook, fileName);
 
-                notifications.show('엑셀 다운로드가 시작되었습니다.', 'success');
+                notifications.show('헤더 스타일이 적용된 엑셀 다운로드가 시작되었습니다.', 'success');
             } catch (err) {
                 console.error('Excel Download Error:', err);
                 notifications.show('엑셀 파일 생성 중 오류가 발생했습니다.', 'error');
@@ -1984,6 +2055,36 @@
                             }
                         });
 
+                        // [자동 코드 생성 로직 추가]
+                        // 그룹코드나 자산번호가 비어있는 경우 자동 생성 시도
+                        if (state.currentAssetCategory === 'server' && (!body.group_code || !body.asset_no)) {
+                            let subCode = 'LI'; // 기본값 (Linux)
+                            const os = (body.os_ver || '').toUpperCase();
+                            if (os.includes('AIX')) subCode = 'AI';
+                            else if (os.includes('SOLARIS')) subCode = 'SO';
+                            else if (os.includes('HP-UX')) subCode = 'HP';
+                            else if (os.includes('WINDOWS')) subCode = 'WI';
+
+                            const groupCode = `SV-${subCode}`;
+                            body.group_code = groupCode;
+
+                            // 자산 번호 생성 (현재 state.assets + 방금 성공한 항목들 고려)
+                            const allKnownAssets = [...state.assets];
+                            const sameGroupAssets = allKnownAssets.filter(a => a.group_code === groupCode);
+
+                            let nextIdx = 1;
+                            if (sameGroupAssets.length > 0) {
+                                const maxNum = Math.max(...sameGroupAssets.map(a => {
+                                    if (!a.asset_no) return 0;
+                                    const parts = a.asset_no.split('-');
+                                    const num = parseInt(parts[parts.length - 1]);
+                                    return isNaN(num) ? 0 : num;
+                                }));
+                                nextIdx = maxNum + 1;
+                            }
+                            body.asset_no = `${groupCode}-${nextIdx.toString().padStart(3, '0')}`;
+                        }
+
                         try {
                             const res = await fetch('/api/assets', {
                                 method: 'POST',
@@ -1993,7 +2094,12 @@
                                 },
                                 body: JSON.stringify(body)
                             });
-                            if (res.ok) successCount++;
+                            if (res.ok) {
+                                const newAsset = await res.json();
+                                // state.assets에 즉시 반영하여 다음 루프의 번호 생성에 참고되도록 함
+                                state.assets.push({ ...body, id: newAsset.id });
+                                successCount++;
+                            }
                             else failCount++;
                         } catch (err) {
                             failCount++;
@@ -2769,6 +2875,7 @@
             editAsset: openAssetModal,
             deleteAsset,
             fetchAssets,
+            updateAssetCodes,
             downloadAssetsExcel,
             importAssetsExcel,
             fetchSecurityRequests,

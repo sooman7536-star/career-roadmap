@@ -288,5 +288,3027 @@
     },
     "status": "Success",
     "timestamp": "2026-01-30 04:17:14"
+  },
+  {
+    "id": 25,
+    "created_at": "2026-01-30 04:53:11",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 106",
+    "status": "Success",
+    "timestamp": "2026-01-30 04:53:11"
+  },
+  {
+    "id": 26,
+    "created_at": "2026-01-30 04:53:12",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 105",
+    "status": "Success",
+    "timestamp": "2026-01-30 04:53:12"
+  },
+  {
+    "id": 27,
+    "created_at": "2026-01-30 04:53:13",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 104",
+    "status": "Success",
+    "timestamp": "2026-01-30 04:53:13"
+  },
+  {
+    "id": 28,
+    "created_at": "2026-01-30 04:53:13",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 103",
+    "status": "Success",
+    "timestamp": "2026-01-30 04:53:13"
+  },
+  {
+    "id": 29,
+    "created_at": "2026-01-30 04:53:14",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 102",
+    "status": "Success",
+    "timestamp": "2026-01-30 04:53:14"
+  },
+  {
+    "id": 30,
+    "created_at": "2026-01-30 04:53:15",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 101",
+    "status": "Success",
+    "timestamp": "2026-01-30 04:53:15"
+  },
+  {
+    "id": 31,
+    "created_at": "2026-01-30 04:53:16",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 100",
+    "status": "Success",
+    "timestamp": "2026-01-30 04:53:16"
+  },
+  {
+    "id": 32,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "v3중앙관리서버"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 33,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP#1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 34,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP#2"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 35,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "HIWARE"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 36,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TW-EDR-Proxy SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 37,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TW-EDR INSTALL SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 38,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Zenius"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 39,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "D.AMO SG-KMS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 40,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IDC_WAF1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 41,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IDC_WAF2"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 42,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IPS_SMS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 43,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SSL VPN Active"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 44,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SSL VPN Standby"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 45,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Spam Sniper"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 46,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TPS(IPS1)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 47,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TPS(IPS2)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 48,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_WAF"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 49,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "EXT_OTP_WEB01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 50,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-sec-ing-ec2-ingress-waf-pri-2a"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 51,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-sec-ing-ec2-ingress-waf-pri-2c"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 52,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-sec-eg-ec2-egress-fw-pri-2a"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 53,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-sec-eg-ec2-egress-fw-pri-2c"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 54,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-sec-ing-ec2-ingress-fw-pri-2a"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 55,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-sec-ing-ec2-ingress-fw-pri-2c"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 56,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DATA BACKUP SVR [Veeam]"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 57,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Jennifer APM Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 58,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TMSe DB Server "
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 59,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "NetFunnel"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 60,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "netFunnel_N#01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 61,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "netFunnel_N#02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 62,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TMSe AP Server "
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 63,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "CUS_DEV SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 64,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_TED_prd"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 65,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_Teller_AP01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 66,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_Teller_AP02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 67,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_Teller_DB01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 68,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_Teller_DB02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 69,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-dev-ec2-m2-pri-2a"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 70,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-ec2-m2-01-pri-2a"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 71,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-ec2-m2-01-pri-2c"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 72,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-ops-prd-ec2-cicd-pri-2a"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 73,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-mgmt"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 74,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-loki"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 75,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-cs-api-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 76,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-ota-api-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 77,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-web"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 78,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-official-pc-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 79,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-official-mobile-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 80,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-common-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 81,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-open-api-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 82,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-dev-eks-loki"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 83,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-dev-eks-mgmt"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 84,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-dev-eks-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 85,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-dev-eks-web"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 86,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-ec2-jennifer-pri-2a"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 87,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "eHR_Recruit_WEB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 88,
+    "created_at": "2026-01-30 04:57:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "NewJenkins_SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:53"
+  },
+  {
+    "id": 89,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "자산관리(SAMQ)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 90,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DeepSecurity(TrandMicro)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 91,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "구 SVN(tw-ops-prd-ec2-cicd-pri-2a로 전환됨)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 92,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "PC_OFF_N"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 93,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "출입관리시스템"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 94,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-payment-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 95,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-ums-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 96,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "CREW_REAL_DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 97,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TED DB\r\nTOCS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 98,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "CREW_WAS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 99,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SITA_TEX SRV"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 100,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TOCS_N"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 101,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AFTN Host"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 102,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AFTN Data"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 103,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AFTN Main"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 104,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AFTN Storage"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 105,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "CREW_TEST"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 106,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_SMT_DEV"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 107,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_SMT_DB1_prd"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 108,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_SMT_DB2_prd"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 109,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_SMT_WAS1_prd"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 110,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_SMT_WAS2_prd"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 111,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_SMT_WEB1_prd"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 112,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_SMT_WEB2_prd"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 113,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "PDC_DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 114,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Old_PDC OPS Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 115,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "PDC Optimizer SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 116,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "N_PDC_DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 117,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "PDC OPS Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 118,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "N_PDC Crew AP"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 119,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TAMS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 120,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Tango FTP"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 121,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "PDC_DEV_Workstation(HyperV)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 122,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "PDC_DEV_DB, PDC_DEV_FLIGHT"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 123,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "N_PDC_DEV SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 124,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AP01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 125,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "EXT01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 126,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "nDB01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 127,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AP02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 128,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DEV02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 129,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "nDB02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 130,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Kiosk Web Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 131,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IBM MQ 운영"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 132,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IBM MQ 개발"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 133,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TALK DEV / TOCS DEV"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 134,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TALK AP02 SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 135,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "EAI_Active / IBS_Update"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 136,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "K-SOX(내부회계관리제도)_DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 137,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Kiosk Web Server StandBy"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 138,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TALKDB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 139,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TALK AP01 SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 140,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DNS_Solution_Active 어플라이언스"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 141,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DNS_Solution_Backup 어플라이언스"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 142,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "dev-SSO VM#01 Master"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 143,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "BI-DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 144,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "MQServer#01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 145,
+    "created_at": "2026-01-30 04:57:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "MQServer#02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:54"
+  },
+  {
+    "id": 146,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "PIP DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 147,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SMART PAX DB SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 148,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "twayiam1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 149,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "twayiam2"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 150,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Report Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 151,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Mail Server (TAS)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 152,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tway Messenger"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 153,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Exim Mail Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 154,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DRS_Control"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 155,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Dev_twayiam"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 156,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "EAI_02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 157,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Payment_DEV(EAI_DEV)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 158,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "RFID SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 159,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_TED_DB1_prd"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 160,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_UI_REAL_AP01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 161,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_UI_REAL_AP02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 162,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_UI_REAL_DB01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 163,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_UI_REAL_DB02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 164,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_UI_TEST"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 165,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TRAS_DEV_AP03"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 166,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TRAS_DEV_APP"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 167,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TRAS_DEV_DB01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 168,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TRAS_PRD_AP01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 169,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TRAS_PRD_DB01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 170,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "WMS_DEV_AP01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 171,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "WMS_DEV_DB01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 172,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "WMS_real_AP01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 173,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "WMS_real_AP02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 174,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "WMS_real_DB01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 175,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "WMS_real_DB02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 176,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SSO VM#01 Master"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 177,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SSO VM#02 Master"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 178,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "N_eHR AP SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 179,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "old_eHR AP SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 180,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "그룹웨어 DB (신)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 181,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "eHR_DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 182,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "GW_WEB_N"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 183,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "BI_QlikView"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 184,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "BI_QlikSense"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 185,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Hana Bank Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 186,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Shinhan_Bank"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 187,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Web Server 03"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 188,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DB Hyper Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 189,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Douzone ERP DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 190,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TWAYAIR DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 191,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "t-sox_AP"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 192,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AP Hyper Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 193,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Dev Workstation for SAP & DRS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 194,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SAP문서관리(DMS) Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 195,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SAP Dev Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 196,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "CTI Server Backup"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 197,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "전사 프린터 관리"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 198,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "ACS Server"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 199,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "CTI-Active"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 200,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "EHR TEST"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 201,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IBS TEST SERVER"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 202,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "HR_TEST02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 203,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "FOQA"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 204,
+    "created_at": "2026-01-30 04:57:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_유클릭"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:55"
+  },
+  {
+    "id": 205,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "그룹웨어 DEV"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 206,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "FEP01"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 207,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Backup"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 208,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SAP DB1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 209,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SAP AP"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 210,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "FEP02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 211,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SAP DB2"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 212,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SAP QA"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 213,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-dev-platform-efs"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 214,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-platform-efs"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 215,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TRAS_DEV_AP02"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 216,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "PDC Crew_old"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 217,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Waiting SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 218,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-dev-ec2-log-2a"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 219,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-dev-ec2-security-scan"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 220,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-ec2-log-2a"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 221,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-it-core-common-was(삭제)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 222,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Log_N"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 223,
+    "created_at": "2026-01-30 04:57:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "WEB_DB02_MASTER"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 04:57:56"
+  },
+  {
+    "id": 224,
+    "created_at": "2026-01-30 05:05:50",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "v3중앙관리서버"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:05:50"
+  },
+  {
+    "id": 225,
+    "created_at": "2026-01-30 05:05:50",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP#1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:05:50"
+  },
+  {
+    "id": 226,
+    "created_at": "2026-01-30 05:05:50",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP#2"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:05:50"
+  },
+  {
+    "id": 227,
+    "created_at": "2026-01-30 05:05:50",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "HIWARE"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:05:50"
+  },
+  {
+    "id": 228,
+    "created_at": "2026-01-30 05:05:50",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TW-EDR-Proxy SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:05:50"
+  },
+  {
+    "id": 229,
+    "created_at": "2026-01-30 05:05:50",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TW-EDR INSTALL SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:05:50"
+  },
+  {
+    "id": 230,
+    "created_at": "2026-01-30 05:05:50",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Zenius"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:05:50"
+  },
+  {
+    "id": 231,
+    "created_at": "2026-01-30 05:05:50",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "D.AMO SG-KMS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:05:50"
+  },
+  {
+    "id": 232,
+    "created_at": "2026-01-30 05:05:50",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IDC_WAF1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:05:50"
+  },
+  {
+    "id": 233,
+    "created_at": "2026-01-30 05:09:45",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 9",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:09:45"
+  },
+  {
+    "id": 234,
+    "created_at": "2026-01-30 05:09:47",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 8",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:09:47"
+  },
+  {
+    "id": 235,
+    "created_at": "2026-01-30 05:09:52",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 7",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:09:52"
+  },
+  {
+    "id": 236,
+    "created_at": "2026-01-30 05:09:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 6",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:09:53"
+  },
+  {
+    "id": 237,
+    "created_at": "2026-01-30 05:09:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 5",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:09:54"
+  },
+  {
+    "id": 238,
+    "created_at": "2026-01-30 05:09:55",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 4",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:09:55"
+  },
+  {
+    "id": 239,
+    "created_at": "2026-01-30 05:09:56",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 3",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:09:56"
+  },
+  {
+    "id": 240,
+    "created_at": "2026-01-30 05:09:57",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 2",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:09:57"
+  },
+  {
+    "id": 241,
+    "created_at": "2026-01-30 05:09:58",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 1",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:09:58"
+  },
+  {
+    "id": 242,
+    "created_at": "2026-01-30 05:14:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "v3중앙관리서버"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:14:04"
+  },
+  {
+    "id": 243,
+    "created_at": "2026-01-30 05:14:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP#1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:14:04"
+  },
+  {
+    "id": 244,
+    "created_at": "2026-01-30 05:14:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP#2"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:14:04"
+  },
+  {
+    "id": 245,
+    "created_at": "2026-01-30 05:14:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "HIWARE"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:14:04"
+  },
+  {
+    "id": 246,
+    "created_at": "2026-01-30 05:14:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TW-EDR-Proxy SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:14:04"
+  },
+  {
+    "id": 247,
+    "created_at": "2026-01-30 05:14:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TW-EDR INSTALL SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:14:04"
+  },
+  {
+    "id": 248,
+    "created_at": "2026-01-30 05:14:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Zenius"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:14:04"
+  },
+  {
+    "id": 249,
+    "created_at": "2026-01-30 05:14:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "D.AMO SG-KMS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:14:04"
+  },
+  {
+    "id": 250,
+    "created_at": "2026-01-30 05:14:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IDC_WAF1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:14:04"
+  },
+  {
+    "id": 251,
+    "created_at": "2026-01-30 05:17:34",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 9",
+    "status": "Success",
+    "timestamp": "2026-01-30 05:17:34"
+  },
+  {
+    "id": 252,
+    "created_at": "2026-01-30 05:27:26",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "v3중앙관리서버"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:27:26"
+  },
+  {
+    "id": 253,
+    "created_at": "2026-01-30 05:27:26",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP#1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:27:26"
+  },
+  {
+    "id": 254,
+    "created_at": "2026-01-30 05:27:26",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP#2"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:27:26"
+  },
+  {
+    "id": 255,
+    "created_at": "2026-01-30 05:27:26",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "HIWARE"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:27:26"
+  },
+  {
+    "id": 256,
+    "created_at": "2026-01-30 05:27:27",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TW-EDR-Proxy SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:27:27"
+  },
+  {
+    "id": 257,
+    "created_at": "2026-01-30 05:27:27",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TW-EDR INSTALL SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:27:27"
+  },
+  {
+    "id": 258,
+    "created_at": "2026-01-30 05:27:27",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Zenius"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:27:27"
+  },
+  {
+    "id": 259,
+    "created_at": "2026-01-30 05:27:27",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "D.AMO SG-KMS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:27:27"
+  },
+  {
+    "id": 260,
+    "created_at": "2026-01-30 05:27:27",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IDC_WAF1"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 05:27:27"
+  },
+  {
+    "id": 261,
+    "created_at": "2026-01-30 06:32:24",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "IPS_SMS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 06:32:24"
+  },
+  {
+    "id": 262,
+    "created_at": "2026-01-30 06:32:24",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SSL VPN Active"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 06:32:24"
+  },
+  {
+    "id": 263,
+    "created_at": "2026-01-30 06:32:24",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "SSL VPN Standby"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 06:32:24"
+  },
+  {
+    "id": 264,
+    "created_at": "2026-01-30 06:32:24",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Spam Sniper"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 06:32:24"
+  },
+  {
+    "id": 265,
+    "created_at": "2026-01-30 06:32:24",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TPS(IPS1)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 06:32:24"
+  },
+  {
+    "id": 266,
+    "created_at": "2026-01-30 06:32:24",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TPS(IPS2)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 06:32:24"
+  },
+  {
+    "id": 267,
+    "created_at": "2026-01-30 07:06:59",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 8",
+    "status": "Success",
+    "timestamp": "2026-01-30 07:06:59"
+  },
+  {
+    "id": 268,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "eHR_Recruit_WEB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 269,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "NewJenkins_SVR"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 270,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "자산관리(SAMQ)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 271,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DeepSecurity(TrandMicro)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 272,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "구 SVN(tw-ops-prd-ec2-cicd-pri-2a로 전환됨)"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 273,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "PC_OFF_N"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 274,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "출입관리시스템"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 275,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-payment-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 276,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-ums-was"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 277,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "CREW_REAL_DB"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 278,
+    "created_at": "2026-01-30 07:09:10",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TED DB\r\nTOCS"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 07:09:10"
+  },
+  {
+    "id": 279,
+    "created_at": "2026-01-30 07:31:46",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 수정",
+    "details": "제목: 패스워드 설정 및 운영 정책",
+    "status": "Success",
+    "timestamp": "2026-01-30 07:31:46"
   }
 ]

@@ -1,4 +1,5 @@
 require('dotenv').config();
+// TIS Portal Server - Asset Data Sync Trigger (v2: Force Reload 15 Assets)
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -414,14 +415,6 @@ app.listen(PORT, () => {
     console.log(` URL: http://localhost:${PORT} `);
     console.log(`========================================`);
 
-    // 초기 샘플 데이터 시딩 (자산 관리)
-    const sampleAssets = [
-        { name: 'Keynote', type: 'Installed', cat: '문서', mfg: 'Apple Inc.', os: ['apple'], users: 1, date: '2025-05-15', status: '미분류', validity: '일반', hasStats: true },
-        { name: 'Word', type: 'SaaS', cat: '문서', mfg: 'Microsoft', os: ['windows', 'apple'], users: 1, date: '2025-05-12', status: '미분류', validity: '상용', hasStats: true },
-        { name: 'Jenkins', type: 'SaaS', cat: '생산성', mfg: '-', os: ['windows', 'apple'], users: 3, date: '2025-05-09', status: '미분류', validity: '배포중', hasStats: true },
-        { name: 'ZUZU', type: 'SaaS', cat: '프로세스', mfg: '(주)코드박스', os: ['windows'], users: 1, date: '2025-05-09', status: '미분류', validity: '상용', hasStats: true },
-        { name: 'shiftee', type: 'SaaS', cat: '프로세스', mfg: '주식회사 시프티', os: ['windows', 'apple'], users: 1, date: '2025-04-17', status: '미분류', validity: '일반', hasStats: true },
-        { name: 'Firefox', type: '기타', cat: '브라우저', mfg: 'Mozilla', os: ['windows', 'apple'], users: 1, date: '2025-04-11', status: '미분류', validity: '오픈소스', hasStats: true }
-    ];
-    assetsRepo.seedIfEmpty(sampleAssets);
+    // 초기 샘플 데이터 시딩 제거 (사용자 요청에 의한 데이터 초기화)
+    // assetsRepo.seedIfEmpty(sampleAssets);
 });
