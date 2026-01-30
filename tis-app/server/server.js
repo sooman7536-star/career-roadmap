@@ -8,6 +8,7 @@ const assetsRepo = require('./db/repositories/assetsRepo');
 const pledgesRepo = require('./db/repositories/pledgesRepo');
 const logsRepo = require('./db/repositories/logsRepo');
 const cveRepo = require('./db/repositories/cveRepo');
+const policiesRepo = require('./db/repositories/policiesRepo');
 
 /**
  * 로그 기록 헬퍼
@@ -206,6 +207,61 @@ app.delete('/api/assets/:id', authMiddleware, (req, res) => {
         res.json({ message: '자산이 삭제되었습니다.' });
     } catch (err) {
         res.status(500).json({ message: '자산 삭제 중 오류가 발생했습니다.' });
+    }
+});
+
+/**
+ * --- Security Policies API ---
+ */
+
+app.get('/api/policies', (req, res) => {
+    try {
+        const list = policiesRepo.findAll();
+        res.json(list);
+    } catch (err) {
+        res.status(500).json({ message: '규정 목록을 가져오는 중 오류가 발생했습니다.' });
+    }
+});
+
+app.get('/api/policies/:id', (req, res) => {
+    try {
+        const item = policiesRepo.findById(req.params.id);
+        if (!item) return res.status(404).json({ message: '항목을 찾을 수 없습니다.' });
+        res.json(item);
+    } catch (err) {
+        res.status(500).json({ message: '정보를 읽어오는 중 오류가 발생했습니다.' });
+    }
+});
+
+app.post('/api/policies', authMiddleware, (req, res) => {
+    try {
+        const id = policiesRepo.create(req.body);
+        writeLog('관리자', '보안규정', '보안 규정 등록', `제목: ${req.body.title}`, 'Success');
+        res.status(201).json({ id, message: '규정이 등록되었습니다.' });
+    } catch (err) {
+        res.status(500).json({ message: '규정 저장 중 오류가 발생했습니다.' });
+    }
+});
+
+app.put('/api/policies/:id', authMiddleware, (req, res) => {
+    try {
+        const success = policiesRepo.update(req.params.id, req.body);
+        if (!success) return res.status(404).json({ message: '수정할 항목을 찾을 수 없습니다.' });
+        writeLog('관리자', '보안규정', '보안 규정 수정', `제목: ${req.body.title}`, 'Success');
+        res.json({ message: '규정이 수정되었습니다.' });
+    } catch (err) {
+        res.status(500).json({ message: '규정 수정 중 오류가 발생했습니다.' });
+    }
+});
+
+app.delete('/api/policies/:id', authMiddleware, (req, res) => {
+    try {
+        const success = policiesRepo.delete(req.params.id);
+        if (!success) return res.status(404).json({ message: '삭제할 항목을 찾을 수 없습니다.' });
+        writeLog('관리자', '보안규정', '보안 규정 삭제', `ID: ${req.params.id}`, 'Success');
+        res.json({ message: '규정이 삭제되었습니다.' });
+    } catch (err) {
+        res.status(500).json({ message: '규정 삭제 중 오류가 발생했습니다.' });
     }
 });
 

@@ -31,7 +31,8 @@
             cveFilter: 'all',
             allPledges: [],
             currentLogCategory: 'all',
-            isEmailVerified: false
+            isEmailVerified: false,
+            policies: []
         };
 
 
@@ -388,36 +389,69 @@
                 }
             },
             pledge_select: {
-                title: '보안 서약서 선택',
+                title: '보안 서약서 및 동의서 선택',
                 render: () => `
-                    <div class="section-animate max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[60vh]">
-                        <div class="text-center mb-12">
+                    <div class="section-animate max-w-5xl mx-auto py-10">
+                        <div class="text-center mb-16">
                             <i class="fas fa-file-signature text-6xl text-blue-500 mb-6 transition-transform hover:scale-110"></i>
-                            <h3 class="text-3xl font-black mb-2 dark:text-gray-100">보안 서약서 작성</h3>
-                            <p class="text-gray-500 dark:text-gray-400 font-bold">작성하실 서약서의 언어를 선택해 주세요.</p>
-                            <p class="text-gray-400 text-xs mt-1 italic">Please select the language for the pledge.</p>
+                            <h3 class="text-3xl font-black mb-2 dark:text-gray-100">디지털 서약 및 동의</h3>
+                            <p class="text-gray-500 dark:text-gray-400 font-bold">작성하실 서약서 또는 동의서 양식을 선택해 주세요.</p>
                         </div>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl px-6">
-                            <button onclick="app.loadSection('pledge_ko')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-blue-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
-                                <div class="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                    <i class="fas fa-language text-2xl"></i>
-                                </div>
-                                <span class="text-xl font-black mb-2 dark:text-gray-100">국문 서약서</span>
-                                <span class="text-sm text-gray-400 font-bold uppercase tracking-widest">Korean Version</span>
-                                <div class="mt-8 px-6 py-2 bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">선택하기</div>
-                            </button>
+                        <!-- Main Section: Information Security Pledges -->
+                        <div class="mb-16">
+                            <div class="flex items-center gap-3 mb-8">
+                                <span class="w-1.5 h-6 bg-blue-600 rounded-full"></span>
+                                <h4 class="text-xl font-black dark:text-gray-100">정보 보안 서약서 <span class="text-gray-400 text-xs font-bold ml-2 uppercase tracking-tighter">Information Security Pledges</span></h4>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto">
+                                <button onclick="app.loadSection('pledge_ko')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-blue-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
+                                    <div class="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                        <i class="fas fa-language text-2xl"></i>
+                                    </div>
+                                    <span class="text-xl font-black mb-2 dark:text-gray-100">국문 보안 서약서</span>
+                                    <span class="text-sm text-gray-400 font-bold uppercase tracking-widest">Korean Version</span>
+                                    <div class="mt-8 px-6 py-2 bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">작성하기</div>
+                                </button>
 
-                            <button onclick="app.loadSection('pledge_en')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-[#1e3a8a] shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
-                                <div class="w-16 h-16 bg-gray-50 dark:bg-gray-900 rounded-2xl flex items-center justify-center text-[#1e3a8a] mb-6 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors">
-                                    <i class="fas fa-globe text-2xl"></i>
-                                </div>
-                                <span class="text-xl font-black mb-2 dark:text-gray-100">영문 서약서</span>
-                                <span class="text-sm text-gray-400 font-bold uppercase tracking-widest">English Version</span>
-                                <div class="mt-8 px-6 py-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">Select English</div>
-                            </button>
+                                <button onclick="app.loadSection('pledge_en')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-[#1e3a8a] shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
+                                    <div class="w-16 h-16 bg-gray-50 dark:bg-gray-900 rounded-2xl flex items-center justify-center text-[#1e3a8a] mb-6 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors">
+                                        <i class="fas fa-globe text-2xl"></i>
+                                    </div>
+                                    <span class="text-xl font-black mb-2 dark:text-gray-100">영문 보안 서약서</span>
+                                    <span class="text-sm text-gray-400 font-bold uppercase tracking-widest">English Version</span>
+                                    <div class="mt-8 px-6 py-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">Create Pledge</div>
+                                </button>
+                            </div>
                         </div>
+
+        <!-- Secondary Section: Portrait Rights Consent Forms -->
+        <div>
+            <div class="flex items-center gap-3 mb-8">
+                <span class="w-1.5 h-6 bg-emerald-500 rounded-full"></span>
+                <h4 class="text-xl font-black dark:text-gray-100">초상권 및 개인정보 수집 이용 동의서 <span class="text-gray-400 text-xs font-bold ml-2 uppercase tracking-tighter">Portrait Rights and Personal Information Consent</span></h4>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto">
+                <button onclick="app.loadSection('pledge_portrait_ko')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-emerald-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
+                    <div class="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-camera text-2xl"></i>
                     </div>
+                    <span class="text-xl font-black mb-2 dark:text-gray-100">국문 초상권 동의서</span>
+                    <span class="text-sm text-gray-400 font-bold uppercase tracking-widest">Korean Version</span>
+                    <div class="mt-8 px-6 py-2 bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">작성하기</div>
+                </button>
+
+                <button onclick="app.loadSection('pledge_portrait_en')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-emerald-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
+                    <div class="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-globe text-2xl"></i>
+                    </div>
+                    <span class="text-xl font-black mb-2 dark:text-gray-100">영문 초상권 동의서</span>
+                    <span class="text-sm text-gray-400 font-bold uppercase tracking-widest">English Version</span>
+                    <div class="mt-8 px-6 py-2 bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">Create Consent</div>
+                </button>
+            </div>
+        </div>
+    </div>
                 `
             },
             pledge_ko: {
@@ -482,13 +516,9 @@
                                     <label>휴대폰 번호</label>
                                     <input type="text" id="pledge-phone" placeholder="010-0000-0000">
                                 </div>
-                                <div class="info-field">
+                                 <div class="info-field">
                                     <label>성명</label>
                                     <input type="text" id="pledge-name" placeholder="성명을 입력하세요">
-                                </div>
-                                <div class="info-field">
-                                    <label>사번(필요시)</label>
-                                    <input type="text" id="pledge-empid" placeholder="사번 또는 ID를 입력하세요">
                                 </div>
                                 <div class="info-field">
                                     <label>서약 일자</label>
@@ -500,6 +530,7 @@
                                         <input type="email" id="pledge-email" placeholder="example@company.com" class="flex-grow">
                                         <button onclick="app.sendEmailCode('KO')" id="btn-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">인증번호 발송</button>
                                     </div>
+                                    <p class="text-[10px] text-blue-500 font-bold mt-2">※ 계정은 2차 인증이 완료된 위 이메일 주소로 발급 및 안내됩니다.</p>
                                 </div>
                                 <div id="auth-code-container" class="info-field md:col-span-2 hidden">
                                     <label>인증번호 (6자리)</label>
@@ -536,32 +567,76 @@
                         <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 p-10">
                             <div class="text-center mb-12">
                                 <h3 class="text-3xl font-black text-[#1e3a8a] dark:text-blue-400 mb-2">Information Security Pledge</h3>
-                                <p class="text-gray-400 text-sm font-bold uppercase tracking-widest italic">Confidentiality Agreement (EN)</p>
+                                <p class="text-gray-400 text-sm font-bold uppercase tracking-widest italic tracking-widest">T'WAY AIR Co.,Ltd.</p>
                             </div>
+
+                            <p class="text-sm font-bold text-gray-600 dark:text-gray-400 mb-8 border-l-4 border-blue-600 pl-4 py-2 bg-blue-50 dark:bg-blue-900/20">
+                                I understand and agree with the below statements.
+                            </p>
                             
+                            <div class="space-y-4 mb-10">
+                                ${[
+                        'I will not disclose to any external party any confidential information obtained in the course of performing my duties, including personal data such as customer financial transaction details.',
+                        'I will not remove or release outside the company any IT equipment or facilities of T\'way Air Co., Ltd. without prior approval.',
+                        'I will strictly comply with the access restriction rules for areas where I am not authorized to enter.',
+                        'I will strictly maintain the confidentiality of all access control codes (such as User IDs) assigned to me.',
+                        'I will comply with your company\'s information protection policies, guidelines, and procedures.'
+                    ].map((text, i) => `
+                                    <div class="flex gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-blue-200 transition">
+                                        <span class="text-blue-500 font-black text-lg">0${i + 1}</span>
+                                        <p class="text-sm font-bold text-gray-700 dark:text-gray-300 leading-relaxed">${text}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <div class="mb-10 p-6 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-700">
+                                <h4 class="text-sm font-black text-gray-700 dark:text-gray-300 mb-4 flex items-center gap-2">
+                                    <i class="fas fa-user-shield text-blue-500"></i> &lt; Consent to Collection and Use of Personal Information &gt;
+                                </h4>
+                                <div class="text-[11px] font-bold text-gray-500 dark:text-gray-400 space-y-2 leading-loose">
+                                    <p><span class="text-gray-700 dark:text-gray-300">■ Purpose of Collection and Use of Personal Information:</span> For the purpose of identity verification related to the company's security policy pledge and subsequent management</p>
+                                    <p><span class="text-gray-700 dark:text-gray-300">■ Items Collected and Method of Collection</span></p>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>Items collected: Affiliated company name, full name, mobile phone number</li>
+                                        <li>Method of collection: Digital record via this portal</li>
+                                    </ul>
+                                    <p><span class="text-gray-700 dark:text-gray-300">■ Retention and Use Period of Personal Information:</span> For 1 year after the completion of the work, starting from the date of collection and use</p>
+                                    <p><span class="text-gray-700 dark:text-gray-300">■ Destruction Procedure and Method:</span> After the purpose of collection and use has been achieved, electronic documents will be permanently deleted</p>
+                                </div>
+                            </div>
+
                             <div class="info-grid mt-8 mb-10">
-                                <div class="info-field">
-                                    <label>Full Name</label>
-                                    <input type="text" id="pledge-en-name" placeholder="Enter your name">
+                                <div class="info-field md:col-span-2">
+                                    <label>Project / Assignment</label>
+                                    <input type="text" id="pledge-en-project" placeholder="Enter project name">
                                 </div>
                                 <div class="info-field">
-                                    <label>Department</label>
-                                    <input type="text" id="pledge-en-dept" placeholder="Enter department">
+                                    <label>Company</label>
+                                    <input type="text" id="pledge-en-dept" placeholder="Enter company name">
+                                </div>
+                                <div class="info-field">
+                                    <label>Period of Work</label>
+                                    <input type="text" id="pledge-en-period" placeholder="e.g., 2026.01.01 ~ 2026.12.31">
+                                </div>
+                                <div class="info-field">
+                                    <label>Mobile Phone</label>
+                                    <input type="text" id="pledge-en-phone" placeholder="010-0000-0000">
+                                </div>
+                                <div class="info-field">
+                                    <label>Full Name</label>
+                                    <input type="text" id="pledge-en-name" placeholder="Enter your full name">
                                 </div>
                                 <div class="info-field">
                                     <label>Date</label>
                                     <input type="date" id="pledge-en-date" value="${helpers.formatDate(new Date())}">
                                 </div>
-                                <div class="info-field">
-                                    <label>Employee ID</label>
-                                    <input type="text" id="pledge-en-empid" placeholder="Enter employee ID">
-                                </div>
                                 <div class="info-field md:col-span-2">
                                     <label>Email Address (2FA)</label>
                                     <div class="flex gap-2">
                                         <input type="email" id="pledge-en-email" placeholder="example@company.com" class="flex-grow">
-                                        <button onclick="app.sendEmailCode('EN')" id="btn-en-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap">Send Code</button>
+                                        <button onclick="app.sendEmailCode('EN')" id="btn-en-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">Send Code</button>
                                     </div>
+                                    <p class="text-[10px] text-blue-500 font-bold mt-2">※ The account will be issued and notified to the 2FA verified email address above.</p>
                                 </div>
                                 <div id="auth-en-code-container" class="info-field md:col-span-2 hidden">
                                     <label>Verification Code (6-digits)</label>
@@ -570,33 +645,22 @@
                                             <input type="text" id="pledge-en-auth-code" placeholder="000000" maxlength="6" class="w-full pr-12">
                                             <span id="auth-en-timer" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
                                         </div>
-                                        <button onclick="app.verifyCode('EN')" id="btn-en-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold">Verify</button>
+                                        <button onclick="app.verifyCode('EN')" id="btn-en-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">Verify</button>
                                     </div>
+                                    <p class="text-[9px] text-gray-400 mt-1">* Please enter the 6-digit number shown on the screen.</p>
                                 </div>
                             </div>
 
-                            <div class="space-y-4 mb-10">
-                                ${[
-                        'I will strictly adhere to the company\'s information security policies, guidelines, and procedures.',
-                        'I will not disclose any confidential information or trade secrets acquired during my employment to any third party without prior authorization.',
-                        'I will use the company\'s information assets only for authorized business purposes and will protect them from unauthorized access or damage.',
-                        'I will immediately report any security incidents, vulnerabilities, or suspicious activities to the Information Security Department (TIS).',
-                        'I recognize that any violation of this pledge may result in disciplinary action or legal consequences in accordance with company regulations and relevant laws.'
-                    ].map((text, i) => `
-                                    <div class="flex gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                        <span class="text-blue-500 font-black text-lg">0${i + 1}</span>
-                                        <p class="text-sm font-bold text-gray-700 dark:text-gray-300">${text}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
-
-
                             <label class="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl cursor-pointer mb-10 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                                 <input type="checkbox" id="agree-check" class="w-6 h-6 rounded-lg text-blue-600 focus:ring-blue-500 border-gray-300 cursor-pointer">
-                                <span class="text-sm font-black text-gray-700 dark:text-gray-300">I have read and agree to all terms of this pledge.</span>
+                                <span class="text-sm font-black text-gray-700 dark:text-gray-300">I agree to all terms of this pledge and personal information processing.</span>
                             </label>
 
                             <button id="final-submit-en-btn" onclick="app.submitPledge('EN')" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">Submit (Auth Required)</button>
+                            
+                            <div class="mt-16 text-center border-t border-gray-100 dark:border-gray-700 pt-8">
+                                <p class="text-2xl font-black text-gray-800 dark:text-gray-200 tracking-[0.5em]">T'WAY AIR Co.,Ltd.</p>
+                            </div>
                         </div>
                     </div>
                 `,
@@ -627,11 +691,15 @@
                                 <div class="flex flex-wrap items-center gap-4">
                                     <div class="relative">
                                         <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                                        <input type="text" id="asset-search" placeholder="검색 또는 수동 입력..." class="pl-11 pr-4 py-2.5 bg-white dark:bg-gray-800 rounded-xl border-none shadow-sm focus:ring-2 focus:ring-blue-500 w-64 text-sm outline-none">
+                                        <input type="text" id="asset-search" placeholder="검색 또는 수동 입력" class="pl-11 pr-4 py-2.5 bg-white dark:bg-gray-800 rounded-xl border-none shadow-sm focus:ring-2 focus:ring-blue-500 w-64 text-sm outline-none">
                                     </div>
                                     <button onclick="app.downloadAssetsExcel()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
                                         <i class="fas fa-file-excel"></i> 엑셀 다운로드
                                     </button>
+                                    <button onclick="document.getElementById('asset-import-input').click()" class="bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
+                                        <i class="fas fa-file-import"></i> 엑셀 업로드
+                                    </button>
+                                    <input type="file" id="asset-import-input" class="hidden" accept=".xlsx, .xls" onchange="app.importAssetsExcel(event)">
                                     <button id="asset-add-btn" onclick="app.openAssetModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
                                         <i class="fas fa-plus"></i> ${assetCategoryConfig[state.currentAssetCategory].addBtn}
                                     </button>
@@ -651,27 +719,6 @@
                             </table>
                         </div>
 
-                        <!-- Modal -->
-                        <div id="asset-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 md:p-6 bg-black/60 backdrop-blur-sm">
-                            <div class="bg-white dark:bg-gray-800 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 flex flex-col max-h-[95vh]">
-                                <div class="p-6 md:p-8 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/20">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
-                                            <i class="fas fa-shield-halved text-lg"></i>
-                                        </div>
-                                        <h3 id="modal-title" class="text-xl font-black dark:text-gray-100">소프트웨어 추가</h3>
-                                    </div>
-                                    <button onclick="app.closeAssetModal()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-times"></i></button>
-                                </div>
-                                <div id="asset-modal-fields" class="p-6 md:p-8 space-y-5 overflow-y-auto custom-scrollbar flex-grow">
-                                    <!-- 동적 필드 영역 -->
-                                </div>
-                                <div class="p-6 md:p-8 pt-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-900/10">
-                                    <button onclick="app.handleAssetSubmit(event)" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-[0.98]">
-                                        <i class="fas fa-save mr-2"></i> 자산 정보 저장하기
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 `,
@@ -683,37 +730,254 @@
                 render: () => `
                     <div class="section-animate max-w-5xl mx-auto">
                         <div class="flex items-center justify-between mb-8">
-                            <h3 class="text-2xl font-black dark:text-gray-100">전사 보안 규정 및 가이드</h3>
+                            <div>
+                                <h3 class="text-2xl font-black dark:text-gray-100">전사 보안 규정 및 가이드</h3>
+                                <p class="text-xs text-gray-400 mt-1 font-bold">총 <span id="policy-count-badge" class="text-blue-500">0</span>개의 규정이 등록되어 있습니다.</p>
+                            </div>
                             <div class="flex gap-2">
-                                <button class="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-bold shadow-sm">최근 개정순</button>
-                                <button class="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-bold shadow-sm text-blue-500">중요도순</button>
+                                <button onclick="app.openPolicyEditModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
+                                    <i class="fas fa-plus"></i> 신규 규정 등록
+                                </button>
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            ${[
-                        { title: '정보자산 관리 지침', version: 'v2.4', date: '2025.12.01', tag: '필독' },
-                        { title: '패스워드 설정 및 운영 정책', version: 'v3.1', date: '2026.01.10', tag: '업데이트' },
-                        { title: '재택근무 보안 가이드라인', version: 'v1.8', date: '2025.05.20', tag: '권고' },
-                        { title: '클라우드 서비스 이용 정책', version: 'v2.0', date: '2025.11.15', tag: '필독' },
-                        { title: '개인정보 보호 내부 관리 계획', version: 'v4.2', date: '2026.01.01', tag: '중요' },
-                        { title: '물리 보안 및 출입 통제 규정', version: 'v1.5', date: '2024.08.30', tag: '정지' }
-                    ].map(p => `
-                                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all group cursor-pointer">
-                                    <div class="flex justify-between items-start mb-4">
-                                        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white"><i class="fas fa-file-invoice"></i></div>
-                                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-[9px] font-black rounded uppercase dark:text-gray-400">${p.tag}</span>
+                        <div id="policy-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- 규정 카드들이 여기에 렌더링됩니다 -->
+                            <div class="col-span-full py-20 text-center text-gray-400">규정을 불러오는 중...</div>
+                        </div>
+
+                    </div>
+                `,
+                afterRender: () => app.fetchPolicies()
+            },
+            pledge_portrait_ko: {
+                title: '초상권 및 개인정보 수집 동의서 (국문)',
+                render: () => `
+                    <div class="section-animate max-w-4xl mx-auto">
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 p-10">
+                            <div class="text-center mb-12">
+                                <h3 class="text-3xl font-black text-[#1e3a8a] dark:text-blue-400 mb-2">초상권 및 개인정보 수집 · 이용 동의서</h3>
+                                <p class="text-gray-400 text-xs font-bold uppercase tracking-widest italic tracking-tighter">(사진, 영상 촬영 및 배포와 판권 소유에 관한 동의서)</p>
+                            </div>
+
+                            <div class="mb-10 overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-700">
+                                <div class="grid grid-cols-1 md:grid-cols-4 border-b border-gray-100 dark:border-gray-700">
+                                    <div class="md:col-span-1 bg-gray-50 dark:bg-gray-900/50 p-6 flex items-center justify-center text-center">
+                                        <span class="text-xs font-black text-gray-700 dark:text-gray-200">수집 · 이용 및<br>제공의 목적</span>
                                     </div>
-                                    <h4 class="font-bold text-sm mb-1 dark:text-gray-100">${p.title}</h4>
-                                    <p class="text-[10px] text-gray-400 font-bold">버전: ${p.version} | 개정일: ${p.date}</p>
-                                    <div class="mt-6 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <button class="flex-1 py-2 bg-gray-50 dark:bg-gray-700 rounded-lg text-[9px] font-black uppercase"><i class="fas fa-eye mr-1"></i> View</button>
-                                        <button class="flex-1 py-2 bg-gray-50 dark:bg-gray-700 rounded-lg text-[9px] font-black uppercase"><i class="fas fa-download mr-1"></i> Down</button>
+                                    <div class="md:col-span-3 p-6 bg-white dark:bg-gray-800 space-y-3">
+                                        <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400 leading-relaxed">• 교육 활동영상 및 사진 자료에 대한 초상권 및 활용 동의서를 수집 · 이용하고자 합니다.</p>
+                                        <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400 leading-relaxed">• 해당영상물은 ‘개인정보보호법’에서 규정하고 있는 책임과 의무를 준수하고 있으며 제공자가 동의한 내용 외 다른 목적으로는 활용되지 않음을 알려드립니다.</p>
+                                        <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400 leading-relaxed">• 촬영된 본인의 사진 또는 영상물은 (교육명)의 현장 기록 보관 및 전사 공유, (주)티웨이항공이 제작하고 배포하는 콘텐츠(온 · 오프라인 등)로서 비영리와 홍보 목적으로 이용됩니다.</p>
                                     </div>
                                 </div>
-                            `).join('')}
+                                <div class="grid grid-cols-1 md:grid-cols-4">
+                                    <div class="md:col-span-1 bg-gray-50 dark:bg-gray-900/50 p-6 flex flex-col items-center justify-center text-center space-y-4">
+                                        <span class="text-xs font-black text-gray-700 dark:text-gray-200">초상권 · 개인정보의<br>수집 · 이용</span>
+                                    </div>
+                                    <div class="md:col-span-3 p-6 bg-white dark:bg-gray-800 space-y-5">
+                                        <div class="space-y-2">
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600">■ 제공처 :</span> (주)티웨이항공 사내 매체 (그룹웨어, 공유 폴더 등), 교육 자료, 홍보 자료 및 촬영자</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600">■ 목 적 :</span> 비영리 목적의 온라인 및 오프라인 콘텐츠 제작</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600">■ 항 목 :</span> 초상권이 인정되는 사진 또는 영상물</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600">■ 기 간 :</span> 사진 또는 영상이 게시되어 활용되는 기간, 활용 종료 및 동의 철회 시 지체 없이 파기</p>
+                                            <p class="text-[10px] text-gray-400 font-bold italic ml-4">※ 단, 추후 개별적으로 요청 시 사진 또는 영상물의 배포 정지를 협의할 수 있음</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-red-500 font-black">■ 미 동의시 :</span> 개인정보, 초상권 수집 이용에 대한 동의를 거부할 권리가 있으며, 동의 거부 시 관련 자료 제작에서 제외됩니다.</p>
+                                        </div>
+
+                                        <!-- Consent Buttons -->
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl flex items-center justify-between">
+                                                <span class="text-[11px] font-black dark:text-gray-300">(초상권 사용 동의)</span>
+                                                <div class="flex gap-2">
+                                                    <label class="flex items-center gap-1.5 cursor-pointer">
+                                                        <input type="radio" name="portrait-ko-consent-1" value="동의" checked class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                                        <span class="text-[10px] font-bold">동의</span>
+                                                    </label>
+                                                    <label class="flex items-center gap-1.5 cursor-pointer">
+                                                        <input type="radio" name="portrait-ko-consent-1" value="미동의" class="w-4 h-4 text-gray-400 border-gray-300 focus:ring-gray-500">
+                                                        <span class="text-[10px] font-bold">미동의</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl flex items-center justify-between">
+                                                <span class="text-[11px] font-black dark:text-gray-300">(개인정보 수집 · 이용 동의)</span>
+                                                <div class="flex gap-2">
+                                                    <label class="flex items-center gap-1.5 cursor-pointer">
+                                                        <input type="radio" name="portrait-ko-consent-2" value="동의" checked class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                                        <span class="text-[10px] font-bold">동의</span>
+                                                    </label>
+                                                    <label class="flex items-center gap-1.5 cursor-pointer">
+                                                        <input type="radio" name="portrait-ko-consent-2" value="미동의" class="w-4 h-4 text-gray-400 border-gray-300 focus:ring-gray-500">
+                                                        <span class="text-[10px] font-bold">미동의</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="pt-4 space-y-3">
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• 동의자(이하 본인이라고 함)는 개인정보보호법에 따라 본인의 개인정보를 수집 · 이용하는 것을 동의합니다.</p>
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• 본인은 (주)티웨이항공에 의하여 촬영된 저작물(사진 또는 동영상)에 대하여 (주)티웨이항공이 비영리 목적으로 사용할 권리를 허가합니다.</p>
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• 본인은 촬영된 저작물(사진 또는 동영상)의 판권(저작권) 및 소유권이 (주)티웨이항공에 있음을 인정합니다.</p>
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• 위의 내용에 따라 본인의 초상권을 (주)티웨이항공에서 사용하는 것에 대해 동의합니다.</p>
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• 인쇄된 상태의 사진 또는 저장매체 등에 대해서도 촬영자 또는 (주)티웨이항공 등에 귀속될 수 있는 점에 동의하며, 인격을 침해하지 않는 범위 내에서 저작물에 대한 편집 및 후보정을 할 수 있음을 동의합니다.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-grid mt-12 mb-10">
+                                <div class="info-field">
+                                    <label>성명</label>
+                                    <input type="text" id="portrait-ko-name" placeholder="성명을 입력하세요">
+                                </div>
+                                <div class="info-field">
+                                    <label>제출 일자</label>
+                                    <input type="date" id="portrait-ko-date" value="${helpers.formatDate(new Date())}">
+                                </div>
+                                <div class="info-field md:col-span-2">
+                                    <label>이메일 주소 (2차 인증용)</label>
+                                    <div class="flex gap-2">
+                                        <input type="email" id="portrait-ko-email" placeholder="example@company.com" class="flex-grow">
+                                        <button onclick="app.sendEmailCode('PORTRAIT_KO')" id="btn-portrait-ko-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">인증번호 발송</button>
+                                    </div>
+                                </div>
+                                <div id="auth-portrait-ko-code-container" class="info-field md:col-span-2 hidden">
+                                    <label>인증번호 (6자리)</label>
+                                    <div class="flex gap-2 items-center">
+                                        <div class="relative flex-grow">
+                                            <input type="text" id="portrait-ko-auth-code" placeholder="000000" maxlength="6" class="w-full pr-12">
+                                            <span id="auth-portrait-ko-timer" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
+                                        </div>
+                                        <button onclick="app.verifyCode('PORTRAIT_KO')" id="btn-portrait-ko-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">확인</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="final-submit-portrait-ko-btn" onclick="app.submitPledge('PORTRAIT_KO')" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">동의 및 제출하기 (인증 필요)</button>
+                            
+                            <div class="mt-16 text-center pt-8 border-t border-gray-100 dark:border-gray-700">
+                                <img src="/logo-red.png" alt="t'way" class="h-8 mx-auto mb-4 opacity-80" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/41/Tway_Air_logo.png'">
+                                <p class="text-2xl font-black text-red-600 tracking-[0.3em] uppercase">(주)티웨이항공</p>
+                            </div>
                         </div>
                     </div>
-                `
+                `,
+                afterRender: () => { }
+            },
+            pledge_portrait_en: {
+                title: 'Portrait Rights Consent Form (EN)',
+                render: () => `
+                    <div class="section-animate max-w-4xl mx-auto">
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 p-10">
+                            <div class="text-center mb-12">
+                                <h3 class="text-3xl font-black text-[#1e3a8a] dark:text-blue-400 mb-2">Portrait Rights and Personal Information Consent Form</h3>
+                                <p class="text-gray-400 text-xs font-bold uppercase tracking-widest italic tracking-tighter">(Consent for Photo/Video Recording, Distribution, and Copyright Ownership)</p>
+                            </div>
+
+                            <div class="mb-10 overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-700">
+                                <div class="grid grid-cols-1 md:grid-cols-4 border-b border-gray-100 dark:border-gray-700">
+                                    <div class="md:col-span-1 bg-gray-50 dark:bg-gray-900/50 p-6 flex items-center justify-center text-center">
+                                        <span class="text-xs font-black text-gray-700 dark:text-gray-200">Purpose of Collection,<br>Use, and Provision</span>
+                                    </div>
+                                    <div class="md:col-span-3 p-6 bg-white dark:bg-gray-800 space-y-3">
+                                        <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400 leading-relaxed">• We collect and use portrait rights and usage consent for educational activity videos and photo materials.</p>
+                                        <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400 leading-relaxed">• These videos comply with the responsibilities and obligations prescribed by the 'Personal Information Protection Act' and will not be used for any purpose other than those agreed upon.</p>
+                                        <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400 leading-relaxed">• Photos or videos taken will be used for on-site records of (Education Name), enterprise-wide sharing, and content produced and distributed by (T'way Air Co., Ltd.) for non-profit and promotional purposes.</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-4">
+                                    <div class="md:col-span-1 bg-gray-50 dark:bg-gray-900/50 p-6 flex flex-col items-center justify-center text-center space-y-4">
+                                        <span class="text-xs font-black text-gray-700 dark:text-gray-200">Collection · Use of<br>Portrait Rights / PI</span>
+                                    </div>
+                                    <div class="md:col-span-3 p-6 bg-white dark:bg-gray-800 space-y-5">
+                                        <div class="space-y-2">
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600 font-black">■ Recipient :</span> (T'way Air Co., Ltd.) in-house media (Groupware, shared folders), educational/promotional materials, and the photographer</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600 font-black">■ Purpose :</span> Creation of online/offline content for non-profit purposes</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600 font-black">■ Items :</span> Photos or videos where portrait rights are recognized</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-blue-600 font-black">■ Period :</span> During the period of use; destroyed without delay upon termination of use or withdrawal of consent</p>
+                                            <p class="text-[10px] text-gray-400 font-bold italic ml-4">※ Note: Suspension of distribution can be negotiated upon individual request in the future.</p>
+                                            <p class="text-[11px] font-bold text-gray-600 dark:text-gray-400"><span class="text-red-500 font-black">■ Non-agreement :</span> You have the right to refuse consent. If refused, you will be excluded from the production of relevant materials.</p>
+                                        </div>
+
+                                        <!-- Consent Buttons -->
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl flex items-center justify-between">
+                                                <span class="text-[11px] font-black dark:text-gray-300">(Consent for Portrait Rights Use)</span>
+                                                <div class="flex gap-2">
+                                                    <label class="flex items-center gap-1.5 cursor-pointer">
+                                                        <input type="radio" name="portrait-en-consent-1" value="Agree" checked class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                                        <span class="text-[10px] font-bold">Agree</span>
+                                                    </label>
+                                                    <label class="flex items-center gap-1.5 cursor-pointer">
+                                                        <input type="radio" name="portrait-en-consent-1" value="Disagree" class="w-4 h-4 text-gray-400 border-gray-300 focus:ring-gray-500">
+                                                        <span class="text-[10px] font-bold">Disagree</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl flex items-center justify-between">
+                                                <span class="text-[11px] font-black dark:text-gray-300">(Consent for Personal Info Use)</span>
+                                                <div class="flex gap-2">
+                                                    <label class="flex items-center gap-1.5 cursor-pointer">
+                                                        <input type="radio" name="portrait-en-consent-2" value="Agree" checked class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                                        <span class="text-[10px] font-bold">Agree</span>
+                                                    </label>
+                                                    <label class="flex items-center gap-1.5 cursor-pointer">
+                                                        <input type="radio" name="portrait-en-consent-2" value="Disagree" class="w-4 h-4 text-gray-400 border-gray-300 focus:ring-gray-500">
+                                                        <span class="text-[10px] font-bold">Disagree</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="pt-4 space-y-3">
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• I agree to the collection and use of my personal information in accordance with the Personal Information Protection Act.</p>
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• I grant (T'way Air Co., Ltd.) the right to use the works (photos or videos) taken by the company for non-profit purposes.</p>
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• I acknowledge that the copyright and ownership of the captured works belong to (T'way Air Co., Ltd.).</p>
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• I agree to the use of my portrait rights by (T'way Air Co., Ltd.) as described above.</p>
+                                             <p class="text-[11px] font-bold text-gray-600 dark:text-gray-300 leading-relaxed">• I agree that printed photos or storage media belong to the company, and the work may be edited as long as it does not infringe on my rights.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-grid mt-12 mb-10">
+                                <div class="info-field">
+                                    <label>Full Name</label>
+                                    <input type="text" id="portrait-en-name" placeholder="Enter your full name">
+                                </div>
+                                <div class="info-field">
+                                    <label>Date</label>
+                                    <input type="date" id="portrait-en-date" value="${helpers.formatDate(new Date())}">
+                                </div>
+                                <div class="info-field md:col-span-2">
+                                    <label>Email Address (2FA Verification)</label>
+                                    <div class="flex gap-2">
+                                        <input type="email" id="portrait-en-email" placeholder="example@company.com" class="flex-grow">
+                                        <button onclick="app.sendEmailCode('PORTRAIT_EN')" id="btn-portrait-en-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">Send Code</button>
+                                    </div>
+                                </div>
+                                <div id="auth-portrait-en-code-container" class="info-field md:col-span-2 hidden">
+                                    <label>Verification Code (6-digits)</label>
+                                    <div class="flex gap-2 items-center">
+                                        <div class="relative flex-grow">
+                                            <input type="text" id="portrait-en-auth-code" placeholder="000000" maxlength="6" class="w-full pr-12">
+                                            <span id="auth-portrait-en-timer" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
+                                        </div>
+                                        <button onclick="app.verifyCode('PORTRAIT_EN')" id="btn-portrait-en-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">Verify</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="final-submit-portrait-en-btn" onclick="app.submitPledge('PORTRAIT_EN')" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">Consent and Submit (Auth Required)</button>
+                            
+                            <div class="mt-16 text-center pt-8 border-t border-gray-100 dark:border-gray-700">
+                                <img src="/logo-red.png" alt="t'way" class="h-8 mx-auto mb-4 opacity-80" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/41/Tway_Air_logo.png'">
+                                <p class="text-2xl font-black text-red-600 tracking-[0.3em] uppercase">T'way Air Co.,Ltd.</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                afterRender: () => { }
             },
             checklist: {
                 title: '보안 체크리스트',
@@ -1057,80 +1321,6 @@
                             </table>
                         </div>
 
-                        <!-- CVE Modal -->
-                        <div id="cve-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
-                            <div class="bg-white dark:bg-gray-800 w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 max-h-[90vh] flex flex-col">
-                                <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-900">
-                                    <h3 id="cve-modal-title" class="text-xl font-black dark:text-gray-100 flex items-center gap-2"><i class="fas fa-bug text-red-500"></i> <span>CVE 상세 정보</span></h3>
-                                    <button onclick="app.closeCveModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fas fa-times text-xl"></i></button>
-                                </div>
-                                <div class="p-8 overflow-y-auto custom-scrollbar">
-                                    <form id="cve-form" class="space-y-6">
-                                        <input type="hidden" id="cve-id" value="">
-                                        
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div class="space-y-1">
-                                                <label class="text-[10px] font-black text-gray-400 uppercase">CVE ID</label>
-                                                <input type="text" id="cve-name" required placeholder="Example: CVE-2024-1234" class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm font-mono outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-[10px] font-black text-gray-400 uppercase">CVSS Score (0.0 - 10.0)</label>
-                                                <div class="flex items-center gap-2">
-                                                    <input type="number" id="cve-score" required step="0.1" min="0" max="10" class="w-24 p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200">
-                                                    <input type="range" id="cve-score-range" min="0" max="10" step="0.1" class="flex-grow accent-red-500">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                             <div class="space-y-1">
-                                                <label class="text-[10px] font-black text-gray-400 uppercase">Vector</label>
-                                                <select id="cve-vector" class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200">
-                                                    <option value="Network">Network</option>
-                                                    <option value="Adjacent">Adjacent</option>
-                                                    <option value="Local">Local</option>
-                                                    <option value="Physical">Physical</option>
-                                                </select>
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-[10px] font-black text-gray-400 uppercase">Status</label>
-                                                <select id="cve-status" class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200">
-                                                    <option value="Unpatched">Unpatched (미조치)</option>
-                                                    <option value="Patched">Patched (조치완료)</option>
-                                                    <option value="Ignored">Ignored (예외처리)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="space-y-1">
-                                            <label class="text-[10px] font-black text-gray-400 uppercase">Description (취약점 요약)</label>
-                                            <textarea id="cve-desc" required rows="2" class="w-full p-4 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl text-sm outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200"></textarea>
-                                        </div>
-
-                                        <div class="p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl border border-red-100 dark:border-red-900/30 space-y-4">
-                                            <h4 class="font-black text-red-600 dark:text-red-400 flex items-center gap-2 text-sm"><i class="fas fa-briefcase-medical"></i> 조치 가이드</h4>
-                                            
-                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                <div class="space-y-1">
-                                                    <label class="text-[10px] font-black text-gray-400 uppercase">Impact (영향도)</label>
-                                                    <textarea id="cve-impact" rows="2" class="w-full p-3 bg-white dark:bg-gray-800 border-none rounded-xl text-xs outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200"></textarea>
-                                                </div>
-                                                <div class="space-y-1">
-                                                    <label class="text-[10px] font-black text-gray-400 uppercase">Solution (권고 패치)</label>
-                                                    <textarea id="cve-solution" rows="2" class="w-full p-3 bg-white dark:bg-gray-800 border-none rounded-xl text-xs outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200"></textarea>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="space-y-1">
-                                                <label class="text-[10px] font-black text-orange-500 uppercase flex items-center gap-1"><i class="fas fa-bolt"></i> Workaround (임시 완화 조치)</label>
-                                                <input type="text" id="cve-workaround" class="w-full p-3 bg-orange-50 dark:bg-orange-900/20 text-orange-800 dark:text-orange-200 border-none rounded-xl text-xs font-bold outline-none focus:ring-2 focus:ring-orange-500" placeholder="예: 포트 차단, 설정 파일 수정...">
-                                            </div>
-                                        </div>
-
-                                        <button type="submit" class="w-full py-4 bg-red-600 text-white rounded-2xl font-black text-lg hover:shadow-2xl transition transform active:scale-95">저장하기</button>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 `,
@@ -1526,9 +1716,11 @@
         function switchAssetCategory(cat) {
             state.currentAssetCategory = cat;
 
-            // UI Update
+            // UI Update: 모든 탭 중 현재 선택된 것만 활성화
             helpers.qsa('.asset-tab').forEach(btn => {
-                const isSelected = btn.textContent.trim() === assetCategoryConfig[cat].label;
+                const label = btn.textContent.trim();
+                const isSelected = label === assetCategoryConfig[cat].label;
+
                 btn.classList.toggle('bg-white', isSelected);
                 btn.classList.toggle('dark:bg-gray-800', isSelected);
                 btn.classList.toggle('text-blue-600', isSelected);
@@ -1548,6 +1740,35 @@
             renderAssetTable();
         }
 
+        /**
+         * 소분류 선택 시 그룹 코드 및 자산 번호를 자동 생성하는 함수
+         */
+        function updateAssetCodes() {
+            const subSelect = helpers.qs('#asset-subcategory-select');
+            if (!subSelect) return;
+
+            const subCode = subSelect.value;
+            if (!subCode) return;
+
+            const config = assetCategoryConfig[state.currentAssetCategory];
+            const mainCode = config.code;
+            const groupCode = `${mainCode}-${subCode}`;
+
+            const groupInput = helpers.qs('.asset-input[data-field="group_code"]');
+            const noInput = helpers.qs('.asset-input[data-field="asset_no"]');
+
+            if (groupInput) groupInput.value = groupCode;
+
+            if (noInput) {
+                // 기존 자산 중 동일 그룹 코드를 가진 자산 수 확인 (새로운 번호 자동 부여)
+                const sameGroupAssets = state.assets.filter(a => a.group_code === groupCode);
+                const nextNum = (sameGroupAssets.length + 1).toString().padStart(3, '0');
+                noInput.value = `${groupCode}-${nextNum}`;
+
+                notifications.show(`코드 기입 완료: ${noInput.value}`, 'info', 1000);
+            }
+        }
+
         async function openAssetModal(id = -1) {
             const modal = helpers.qs('#asset-modal');
             const fieldsContainer = helpers.qs('#asset-modal-fields');
@@ -1560,27 +1781,46 @@
 
             title.textContent = isEdit ? `${config.label} 수정` : `${config.label} 추가`;
 
-            // 동적으로 필드 생성
+            // 상단 소분류 선택 영역 (코드 자동 생성을 위함)
             let fieldsHtml = `<input type="hidden" id="asset-edit-id" value="${id}">`;
 
-            // 2단 그리드 구성을 위해 chunking
+            if (config.subCategories && !isEdit) {
+                fieldsHtml += `
+                    <div class="mb-8 p-6 bg-blue-50/30 dark:bg-blue-900/10 rounded-3xl border-2 border-dashed border-blue-100 dark:border-blue-800/50">
+                        <label class="text-[11px] font-black text-blue-600 dark:text-blue-400 uppercase mb-3 block flex items-center gap-2">
+                             <i class="fas fa-magic"></i> 자산 소분류 선택 (자동 코드 생성)
+                        </label>
+                        <select id="asset-subcategory-select" onchange="app.updateAssetCodes()" 
+                                class="w-full p-4 bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 rounded-2xl text-sm font-bold outline-none focus:border-blue-500 transition-all shadow-sm">
+                            <option value="">소분류를 선택하시면 코드가 자동 생성됩니다</option>
+                            ${Object.keys(config.subCategories).map(sub => `
+                                <option value="${config.subCategories[sub]}">${sub} (${config.subCategories[sub]})</option>
+                            `).join('')}
+                        </select>
+                    </div>
+                `;
+            }
+
+            // 동적으로 필드 생성
             for (let i = 0; i < config.fields.length; i += 2) {
-                fieldsHtml += '<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">';
+                fieldsHtml += '<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4">';
                 for (let j = 0; j < 2; j++) {
                     const idx = i + j;
                     if (idx < config.fields.length) {
                         const fieldKey = config.fields[idx];
                         const label = config.cols[idx];
                         const val = assetData ? (assetData[fieldKey] || '') : '';
+                        const isCodeField = fieldKey === 'group_code' || fieldKey === 'asset_no';
 
                         fieldsHtml += `
                             <div class="space-y-1.5 focus-within:translate-x-1 transition-transform">
                                 <label class="text-[10px] font-black text-gray-400 uppercase flex items-center gap-1.5">
-                                    <span class="w-1 h-1 bg-blue-500 rounded-full"></span> ${label}
+                                    <span class="w-1.5 h-1.5 ${isCodeField ? 'bg-blue-500 animate-pulse' : 'bg-gray-300'} rounded-full"></span> ${label}
                                 </label>
                                 <input type="text" data-field="${fieldKey}" value="${escapeHtml(val.toString())}" 
-                                       placeholder="${label} 입력..."
-                                       class="asset-input w-full p-3.5 bg-gray-50/50 dark:bg-gray-900/50 border-2 border-transparent rounded-2xl text-[13px] font-bold outline-none focus:ring-4 focus:ring-blue-500/10 dark:text-gray-200 transition-all">
+                                       placeholder="${label} 입력"
+                                       ${isCodeField ? 'readonly class="asset-input w-full p-3.5 bg-gray-100 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-2xl text-[13px] font-black text-blue-600 dark:text-blue-400 outline-none cursor-not-allowed"' : 'class="asset-input w-full p-3.5 bg-gray-50/50 dark:bg-gray-900/50 border-2 border-transparent rounded-2xl text-[13px] font-bold outline-none focus:ring-4 focus:ring-blue-500/10 dark:text-gray-200 transition-all"'}
+                                >
                             </div>
                         `;
                     }
@@ -1709,6 +1949,221 @@
             }
         }
 
+        async function importAssetsExcel(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+                    if (jsonData.length === 0) {
+                        notifications.show('엑셀 파일에 데이터가 없습니다.', 'error');
+                        return;
+                    }
+
+                    const config = assetCategoryConfig[state.currentAssetCategory];
+                    let successCount = 0;
+                    let failCount = 0;
+
+                    notifications.show(`${jsonData.length}개의 데이터를 처리 중입니다...`, 'info');
+
+                    for (const row of jsonData) {
+                        const body = { main_category: state.currentAssetCategory };
+
+                        // 엑셀의 한글 헤더를 필드명으로 매핑
+                        config.cols.forEach((colName, idx) => {
+                            const fieldKey = config.fields[idx];
+                            if (row[colName] !== undefined) {
+                                body[fieldKey] = row[colName];
+                            }
+                        });
+
+                        try {
+                            const res = await fetch('/api/assets', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-TIS-KEY': 'TIS_SECURE_2025'
+                                },
+                                body: JSON.stringify(body)
+                            });
+                            if (res.ok) successCount++;
+                            else failCount++;
+                        } catch (err) {
+                            failCount++;
+                        }
+                    }
+
+                    notifications.show(`업로드 완료! (성공: ${successCount}, 실패: ${failCount})`, successCount > 0 ? 'success' : 'error');
+                    fetchAssets();
+                    event.target.value = ''; // input 초기화
+                } catch (err) {
+                    console.error('Excel Import Error:', err);
+                    notifications.show('엑셀 파일을 읽는 중 오류가 발생했습니다.', 'error');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        async function fetchPolicies() {
+            const grid = helpers.qs('#policy-grid');
+            const badge = helpers.qs('#policy-count-badge');
+            if (!grid) return;
+
+            try {
+                const res = await fetch('/api/policies');
+                if (res.ok) {
+                    state.policies = await res.json();
+                    if (badge) badge.textContent = state.policies.length;
+
+                    if (state.policies.length === 0) {
+                        grid.innerHTML = '<div class="col-span-full py-20 text-center text-gray-400 font-bold">등록된 보안 규정이 없습니다.</div>';
+                        return;
+                    }
+
+                    grid.innerHTML = state.policies.map(p => `
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all group cursor-pointer relative">
+                             <div class="flex justify-between items-start mb-4">
+                                <div onclick="app.viewPolicy(${p.id})" class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white"><i class="fas fa-file-invoice"></i></div>
+                                <div class="flex flex-col items-end gap-2">
+                                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-[9px] font-black rounded uppercase dark:text-gray-400">${escapeHtml(p.tag)}</span>
+                                    <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button onclick="app.openPolicyEditModal(${p.id})" class="p-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition" title="수정"><i class="fas fa-edit text-[10px]"></i></button>
+                                        <button onclick="app.deletePolicy(${p.id})" class="p-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition" title="삭제"><i class="fas fa-trash-alt text-[10px]"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div onclick="app.viewPolicy(${p.id})">
+                                <h4 class="font-bold text-sm mb-1 dark:text-gray-100 group-hover:text-blue-600 transition-colors">${escapeHtml(p.title)}</h4>
+                                <p class="text-[10px] text-gray-400 font-bold">버전: ${escapeHtml(p.version)} | 개정일: ${escapeHtml(p.date)}</p>
+                                <div class="mt-6 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="flex-1 py-2 bg-gray-50 dark:bg-gray-700 rounded-lg text-[9px] font-black uppercase"><i class="fas fa-eye mr-1"></i> View</button>
+                                    <button onclick="event.stopPropagation(); notifications.show('파일 다운로드를 준비합니다.', 'info')" class="flex-1 py-2 bg-gray-50 dark:bg-gray-700 rounded-lg text-[9px] font-black uppercase"><i class="fas fa-download mr-1"></i> Down</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (err) {
+                grid.innerHTML = '<div class="col-span-full py-20 text-center text-red-500 font-bold">데이터 로딩 오류</div>';
+            }
+        }
+
+        function viewPolicy(id) {
+            const policy = state.policies.find(p => p.id == id);
+            if (!policy) return;
+
+            helpers.qs('#view-policy-title').textContent = policy.title;
+            helpers.qs('#view-policy-tag').textContent = policy.tag;
+            helpers.qs('#view-policy-version').textContent = policy.version;
+            helpers.qs('#view-policy-date').textContent = policy.date;
+            helpers.qs('#view-policy-content').textContent = policy.content;
+
+            helpers.qs('#policy-view-modal').classList.remove('hidden');
+            helpers.qs('#policy-view-modal').classList.add('flex');
+        }
+
+        function closePolicyView() {
+            helpers.qs('#policy-view-modal').classList.add('hidden');
+            helpers.qs('#policy-view-modal').classList.remove('flex');
+        }
+
+        function openPolicyEditModal(id = null) {
+            const modal = helpers.qs('#policy-modal');
+            const titleEl = helpers.qs('#policy-modal-title');
+            const idInput = helpers.qs('#policy-edit-id');
+            const titleInput = helpers.qs('#policy-edit-title');
+            const tagInput = helpers.qs('#policy-edit-tag');
+            const verInput = helpers.qs('#policy-edit-version');
+            const dateInput = helpers.qs('#policy-edit-date');
+            const contentInput = helpers.qs('#policy-edit-content');
+
+            if (id) {
+                const p = state.policies.find(item => item.id == id);
+                titleEl.textContent = '보안 규정 수정';
+                idInput.value = p.id;
+                titleInput.value = p.title;
+                tagInput.value = p.tag;
+                verInput.value = p.version;
+                dateInput.value = p.date;
+                contentInput.value = p.content;
+            } else {
+                titleEl.textContent = '신규 규정 등록';
+                idInput.value = '';
+                titleInput.value = '';
+                tagInput.value = '필독';
+                verInput.value = 'v1.0';
+                dateInput.value = helpers.formatDate(new Date()).replace(/-/g, '.');
+                contentInput.value = '';
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePolicyModal() {
+            helpers.qs('#policy-modal').classList.add('hidden');
+            helpers.qs('#policy-modal').classList.remove('flex');
+        }
+
+        async function handlePolicySubmit(e) {
+            const id = helpers.qs('#policy-edit-id').value;
+            const body = {
+                title: helpers.qs('#policy-edit-title').value.trim(),
+                tag: helpers.qs('#policy-edit-tag').value,
+                version: helpers.qs('#policy-edit-version').value.trim(),
+                date: helpers.qs('#policy-edit-date').value.trim(),
+                content: helpers.qs('#policy-edit-content').value.trim()
+            };
+
+            if (!body.title || !body.content) {
+                notifications.show('제목과 내용은 필수입니다.', 'error');
+                return;
+            }
+
+            try {
+                const url = id ? `/api/policies/${id}` : '/api/policies';
+                const method = id ? 'PUT' : 'POST';
+                const res = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json', 'X-TIS-KEY': 'TIS_SECURE_2025' },
+                    body: JSON.stringify(body)
+                });
+
+                if (res.ok) {
+                    notifications.show(id ? '규정이 수정되었습니다.' : '신규 규정이 등록되었습니다.', 'success');
+                    closePolicyModal();
+                    fetchPolicies();
+                } else {
+                    notifications.show('저장에 실패했습니다.', 'error');
+                }
+            } catch (err) {
+                notifications.show('서버 통신 오류', 'error');
+            }
+        }
+
+        async function deletePolicy(id) {
+            if (!confirm('정말로 이 규정을 삭제하시겠습니까?')) return;
+            try {
+                const res = await fetch(`/api/policies/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
+                if (res.ok) {
+                    notifications.show('규정이 삭제되었습니다.', 'success');
+                    fetchPolicies();
+                }
+            } catch (err) {
+                notifications.show('삭제 실패', 'error');
+            }
+        }
+
         async function fetchPledges() {
             const body = helpers.qs('#pledge-list-body');
             const totalBadge = helpers.qs('#pledge-count-total');
@@ -1779,37 +2234,43 @@
         }
 
         async function submitPledge(type) {
-            const prefix = type === 'KO' ? '#pledge-' : '#pledge-en-';
-            const nameEl = helpers.qs(prefix + 'name');
-            const deptEl = helpers.qs(prefix + 'dept');
-            const empIdEl = helpers.qs(prefix + 'empid');
-            const agreeEl = helpers.qs('#agree-check');
+            let prefix = '';
+            if (type === 'KO') prefix = '#pledge-';
+            else if (type === 'EN') prefix = '#pledge-en-';
+            else if (type === 'PORTRAIT_KO') prefix = '#portrait-ko-';
+            else if (type === 'PORTRAIT_EN') prefix = '#portrait-en-';
 
-            // 신규 필드 (국문 전용)
-            const projectEl = helpers.qs(prefix + 'project');
-            const periodEl = helpers.qs(prefix + 'period');
-            const phoneEl = helpers.qs(prefix + 'phone');
+            const nameEl = helpers.qs(prefix + 'name');
+            const isPortrait = type.startsWith('PORTRAIT');
+            const deptEl = isPortrait ? { value: type === 'PORTRAIT_KO' ? '초상권 동의 (국문)' : 'Portrait Consent (EN)' } : helpers.qs(prefix + 'dept');
+            const agreeEl = isPortrait ? { checked: true } : helpers.qs('#agree-check');
 
             if (!nameEl || !deptEl || !agreeEl) return;
 
             const name = nameEl.value.trim();
-            const dept = deptEl.value.trim();
-            const emp_id = empIdEl ? empIdEl.value.trim() : '';
+            const dept = typeof deptEl === 'string' ? deptEl : deptEl.value.trim();
+            const emp_id = 'N/A';
             const agree = agreeEl.checked;
 
             if (!name || !dept) {
-                notifications.show('성명과 소속 업체명(부서)을 입력해 주세요.', 'error');
-                return;
-            }
-            if (!agree) {
-                notifications.show('동의 체크박스에 체크해 주세요.', 'error');
+                notifications.show(type.includes('EN') ? 'Please fill in all required fields.' : '필수 정보를 모두 입력해 주세요.', 'error');
                 return;
             }
 
             const extraData = {};
-            if (projectEl) extraData.project = projectEl.value.trim();
-            if (periodEl) extraData.period = periodEl.value.trim();
-            if (phoneEl) extraData.phone = phoneEl.value.trim();
+            if (isPortrait) {
+                const langSuffix = type.split('_')[1].toLowerCase();
+                extraData.type_detail = type === 'PORTRAIT_KO' ? '초상권 및 개인정보 수집 동의서 (국문)' : 'Portrait Rights and PI Consent Form (EN)';
+                extraData.consent1 = document.querySelector(`input[name="portrait-${langSuffix}-consent-1"]:checked`)?.value;
+                extraData.consent2 = document.querySelector(`input[name="portrait-${langSuffix}-consent-2"]:checked`)?.value;
+            } else {
+                const projectEl = helpers.qs(prefix + 'project');
+                const periodEl = helpers.qs(prefix + 'period');
+                const phoneEl = helpers.qs(prefix + 'phone');
+                if (projectEl) extraData.project = projectEl.value.trim();
+                if (periodEl) extraData.period = periodEl.value.trim();
+                if (phoneEl) extraData.phone = phoneEl.value.trim();
+            }
 
             try {
                 const res = await fetch('/api/pledges', {
@@ -1826,51 +2287,78 @@
                 });
 
                 if (res.ok) {
-                    notifications.show('서약서가 정상적으로 제출되었습니다.', 'success');
-                    // 인증 상태 초기화
+                    notifications.show(type.includes('EN') ? 'Submitted successfully.' : '제출이 정상적으로 완료되었습니다.', 'success');
                     state.isEmailVerified = false;
                     setTimeout(() => app.loadSection('home'), 1500);
                 } else {
                     const err = await res.json();
-                    notifications.show(err.message || '제출 오류', 'error');
+                    notifications.show(err.message || 'Error', 'error');
                 }
             } catch (err) {
-                notifications.show('서버 연결 실패', 'error');
+                notifications.show('Connection Failed', 'error');
             }
         }
 
         let authTimer;
         async function sendEmailCode(type) {
-            const prefix = type === 'KO' ? '#pledge-' : '#pledge-en-';
+            let prefix = '';
+            if (type === 'KO') prefix = '#pledge-';
+            else if (type === 'EN') prefix = '#pledge-en-';
+            else if (type === 'PORTRAIT_KO') prefix = '#portrait-ko-';
+            else if (type === 'PORTRAIT_EN') prefix = '#portrait-en-';
+
             const emailEl = helpers.qs(prefix + 'email');
-            const container = helpers.qs(type === 'KO' ? '#auth-code-container' : '#auth-en-code-container');
-            const btn = helpers.qs(type === 'KO' ? '#btn-send-code' : '#btn-en-send-code');
+            let containerId = '';
+            if (type === 'KO') containerId = '#auth-code-container';
+            else if (type === 'EN') containerId = '#auth-en-code-container';
+            else if (type === 'PORTRAIT_KO') containerId = '#auth-portrait-ko-code-container';
+            else if (type === 'PORTRAIT_EN') containerId = '#auth-portrait-en-code-container';
+
+            const container = helpers.qs(containerId);
+
+            let btnId = '';
+            if (type === 'KO') btnId = '#btn-send-code';
+            else if (type === 'EN') btnId = '#btn-en-send-code';
+            else if (type === 'PORTRAIT_KO') btnId = '#btn-portrait-ko-send-code';
+            else if (type === 'PORTRAIT_EN') btnId = '#btn-portrait-en-send-code';
+
+            const btn = helpers.qs(btnId);
 
             if (!emailEl || !emailEl.value.includes('@')) {
-                notifications.show('올바른 이메일 주소를 입력해 주세요.', 'error');
+                notifications.show(type.includes('EN') ? 'Please enter a valid email address.' : '올바른 이메일 주소를 입력해 주세요.', 'error');
                 return;
             }
 
-            // [추가] 재발송 시 인증 상태 및 UI 초기화
             state.isEmailVerified = false;
-            const submitBtn = helpers.qs(type === 'KO' ? '#final-submit-btn' : '#final-submit-en-btn');
+            let submitBtnId = '';
+            if (type === 'KO') submitBtnId = '#final-submit-btn';
+            else if (type === 'EN') submitBtnId = '#final-submit-en-btn';
+            else if (type === 'PORTRAIT_KO') submitBtnId = '#final-submit-portrait-ko-btn';
+            else if (type === 'PORTRAIT_EN') submitBtnId = '#final-submit-portrait-en-btn';
+
+            const submitBtn = helpers.qs(submitBtnId);
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.classList.remove('bg-[#1e3a8a]', 'hover:shadow-2xl');
                 submitBtn.classList.add('bg-gray-300', 'dark:bg-gray-700', 'cursor-not-allowed');
-                submitBtn.textContent = type === 'KO' ? '제출하기 (인증 필요)' : 'Submit (Auth Required)';
+                submitBtn.textContent = type.includes('EN') ? 'Submit (Auth Required)' : '제출하기 (인증 필요)';
             }
 
-            // 만약 인증 완료되어 UI가 체크 표시로 바뀌어 있었다면 다시 입력창으로 복구
             if (container.querySelector('.fa-check-circle')) {
+                const labelTxt = type === 'EN' ? 'Verification Code (6-digits)' : '인증번호 (6자리)';
+                const btnTxt = type === 'EN' ? 'Verify' : '확인';
+                const inputId = prefix.replace('#', '') + 'auth-code';
+                const timerId = prefix.replace('#', '') + 'auth-timer';
+                if (type === 'KO') { /* specific ids used in original code */ }
+
                 container.innerHTML = `
-                    <label>${type === 'KO' ? '인증번호 (6자리)' : 'Verification Code (6-digits)'}</label>
+                    <label>${labelTxt}</label>
                     <div class="flex gap-2 items-center">
                         <div class="relative flex-grow">
-                            <input type="text" id="${type === 'KO' ? 'pledge-auth-code' : 'pledge-en-auth-code'}" placeholder="000000" maxlength="6" class="w-full pr-12">
-                            <span id="${type === 'KO' ? 'auth-timer' : 'auth-en-timer'}" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
+                            <input type="text" id="${inputId}" placeholder="000000" maxlength="6" class="w-full pr-12">
+                            <span id="${timerId}" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
                         </div>
-                        <button onclick="app.verifyCode('${type}')" id="${type === 'KO' ? 'btn-verify-code' : 'btn-en-verify-code'}" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">${type === 'KO' ? '확인' : 'Verify'}</button>
+                        <button onclick="app.verifyCode('${type}')" id="btn-verify-temp" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">${btnTxt}</button>
                     </div>
                 `;
             }
@@ -1915,9 +2403,16 @@
         function startAuthTimer(type) {
             if (authTimer) clearInterval(authTimer);
             let timeLeft = 180;
-            const timerEl = helpers.qs(type === 'KO' ? '#auth-timer' : '#auth-en-timer');
+            let timerId = '';
+            if (type === 'KO') timerId = '#auth-timer';
+            else if (type === 'EN') timerId = '#auth-en-timer';
+            else if (type === 'PORTRAIT_KO') timerId = '#auth-portrait-ko-timer';
+            else if (type === 'PORTRAIT_EN') timerId = '#auth-portrait-en-timer';
+
+            const timerEl = helpers.qs(timerId);
 
             authTimer = setInterval(() => {
+                if (!timerEl) return;
                 const min = Math.floor(timeLeft / 60);
                 const sec = timeLeft % 60;
                 timerEl.textContent = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
@@ -1930,13 +2425,25 @@
         }
 
         async function verifyCode(type) {
-            const prefix = type === 'KO' ? '#pledge-' : '#pledge-en-';
+            let prefix = '';
+            if (type === 'KO') prefix = '#pledge-';
+            else if (type === 'EN') prefix = '#pledge-en-';
+            else if (type === 'PORTRAIT_KO') prefix = '#portrait-ko-';
+            else if (type === 'PORTRAIT_EN') prefix = '#portrait-en-';
+
             const email = helpers.qs(prefix + 'email').value;
             const code = helpers.qs(prefix + 'auth-code').value;
-            const verifyBtn = helpers.qs(type === 'KO' ? '#btn-verify-code' : '#btn-en-verify-code');
+
+            let verifyBtnId = '';
+            if (type === 'KO') verifyBtnId = '#btn-verify-code';
+            else if (type === 'EN') verifyBtnId = '#btn-en-verify-code';
+            else if (type === 'PORTRAIT_KO') verifyBtnId = '#btn-portrait-ko-verify-code';
+            else if (type === 'PORTRAIT_EN') verifyBtnId = '#btn-portrait-en-verify-code';
+
+            const verifyBtn = helpers.qs(verifyBtnId) || helpers.qs('#btn-verify-temp');
 
             if (code.length !== 6) {
-                notifications.show('6자리 인증번호를 입력해 주세요.', 'error');
+                notifications.show(type.includes('EN') ? 'Please enter a 6-digit code.' : '6자리 인증번호를 입력해 주세요.', 'error');
                 return;
             }
 
@@ -1953,24 +2460,36 @@
                 });
 
                 if (res.ok) {
-                    notifications.show('인증에 성공하였습니다.', 'success');
+                    notifications.show(type.includes('EN') ? 'Verification successful.' : '인증에 성공하였습니다.', 'success');
                     clearInterval(authTimer);
                     state.isEmailVerified = true;
 
-                    // UI 업데이트
-                    helpers.qs(type === 'KO' ? '#auth-code-container' : '#auth-en-code-container').innerHTML = `
+                    let containerId = '';
+                    if (type === 'KO') containerId = '#auth-code-container';
+                    else if (type === 'EN') containerId = '#auth-en-code-container';
+                    else if (type === 'PORTRAIT_KO') containerId = '#auth-portrait-ko-code-container';
+                    else if (type === 'PORTRAIT_EN') containerId = '#auth-portrait-en-code-container';
+
+                    const verifiedTxt = type.includes('EN') ? 'Email Verified' : '이메일 인증 완료';
+
+                    helpers.qs(containerId).innerHTML = `
                         <div class="flex items-center gap-2 text-emerald-600 font-black text-sm p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl w-full">
-                            <i class="fas fa-check-circle"></i> ${type === 'KO' ? '이메일 인증 완료' : 'Email Verified'}
+                            <i class="fas fa-check-circle"></i> ${verifiedTxt}
                         </div>
                     `;
 
-                    // 제출 버튼 활성화
-                    const submitBtn = helpers.qs(type === 'KO' ? '#final-submit-btn' : '#final-submit-en-btn');
+                    let submitBtnId = '';
+                    if (type === 'KO') submitBtnId = '#final-submit-btn';
+                    else if (type === 'EN') submitBtnId = '#final-submit-en-btn';
+                    else if (type === 'PORTRAIT_KO') submitBtnId = '#final-submit-portrait-ko-btn';
+                    else if (type === 'PORTRAIT_EN') submitBtnId = '#final-submit-portrait-en-btn';
+
+                    const submitBtn = helpers.qs(submitBtnId);
                     if (submitBtn) {
                         submitBtn.disabled = false;
                         submitBtn.classList.remove('bg-gray-300', 'dark:bg-gray-700', 'cursor-not-allowed');
                         submitBtn.classList.add('bg-[#1e3a8a]', 'hover:shadow-2xl');
-                        submitBtn.textContent = type === 'KO' ? '제출하기' : 'Submit';
+                        submitBtn.textContent = type.includes('EN') ? 'Submit' : '제출하기';
                     }
                 } else {
                     const err = await res.json();
@@ -1978,11 +2497,11 @@
                 }
             } catch (err) {
                 console.error('Verify Error:', err);
-                notifications.show('통신 오류', 'error');
+                notifications.show('Error', 'error');
             } finally {
                 if (verifyBtn) {
                     verifyBtn.disabled = false;
-                    verifyBtn.textContent = type === 'KO' ? '확인' : 'Verify';
+                    verifyBtn.textContent = type.includes('EN') ? 'Verify' : '확인';
                 }
             }
         }
@@ -2251,6 +2770,7 @@
             deleteAsset,
             fetchAssets,
             downloadAssetsExcel,
+            importAssetsExcel,
             fetchSecurityRequests,
             openRequestModal,
             closeRequestModal,
@@ -2259,6 +2779,13 @@
             handleRequestSubmit,
             handleAssetSubmit,
             submitPledge,
+            fetchPolicies,
+            viewPolicy,
+            closePolicyView,
+            openPolicyEditModal,
+            closePolicyModal,
+            handlePolicySubmit,
+            deletePolicy,
             fetchPledges,
             sendEmailCode,
             verifyCode,
@@ -2427,5 +2954,184 @@
         document.addEventListener('submit', (e) => {
             if (e.target.id === 'security-request-form') handleRequestSubmit(e);
         });
+
+        // --- Initialize Modal HTML (Inject to body to avoid transform clipping) ---
+        const modalContainer = document.createElement('div');
+        modalContainer.id = 'tis-global-modal-container';
+        modalContainer.innerHTML = `
+            <!-- Asset Modal (Moved here to avoid transform clipping) -->
+            <div id="asset-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6 bg-black/60 backdrop-blur-sm">
+                <div class="bg-white dark:bg-gray-800 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 flex flex-col max-h-[95vh]">
+                    <div class="p-6 md:p-8 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/20">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-shield-halved text-lg"></i>
+                            </div>
+                            <h3 id="modal-title" class="text-xl font-black dark:text-gray-100">소프트웨어 추가</h3>
+                        </div>
+                        <button onclick="app.closeAssetModal()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div id="asset-modal-fields" class="p-6 md:p-8 space-y-5 overflow-y-auto custom-scrollbar flex-grow">
+                        <!-- 동적 필드 영역 -->
+                    </div>
+                    <div class="p-6 md:p-8 pt-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-900/10">
+                        <button onclick="app.handleAssetSubmit(event)" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-[0.98]">
+                            <i class="fas fa-save mr-2"></i> 자산 정보 저장하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CVE Modal (Moved here to avoid transform clipping) -->
+            <div id="cve-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
+                <div class="bg-white dark:bg-gray-800 w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 max-h-[90vh] flex flex-col">
+                    <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-900">
+                        <h3 id="cve-modal-title" class="text-xl font-black dark:text-gray-100 flex items-center gap-2"><i class="fas fa-bug text-red-500"></i> <span>CVE 상세 정보</span></h3>
+                        <button onclick="app.closeCveModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fas fa-times text-xl"></i></button>
+                    </div>
+                    <div class="p-8 overflow-y-auto custom-scrollbar">
+                        <form id="cve-form" class="space-y-6">
+                            <input type="hidden" id="cve-id" value="">
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-black text-gray-400 uppercase">CVE ID</label>
+                                    <input type="text" id="cve-name" required placeholder="Example: CVE-2024-1234" class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm font-mono outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-black text-gray-400 uppercase">CVSS Score (0.0 - 10.0)</label>
+                                    <div class="flex items-center gap-2">
+                                        <input type="number" id="cve-score" required step="0.1" min="0" max="10" class="w-24 p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200">
+                                        <input type="range" id="cve-score-range" min="0" max="10" step="0.1" class="flex-grow accent-red-500">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                 <div class="space-y-1">
+                                    <label class="text-[10px] font-black text-gray-400 uppercase">Vector</label>
+                                    <select id="cve-vector" class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200">
+                                        <option value="Network">Network</option>
+                                        <option value="Adjacent">Adjacent</option>
+                                        <option value="Local">Local</option>
+                                        <option value="Physical">Physical</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-black text-gray-400 uppercase">Status</label>
+                                    <select id="cve-status" class="w-full p-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl text-sm outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200">
+                                        <option value="Unpatched">Unpatched (미조치)</option>
+                                        <option value="Patched">Patched (조치완료)</option>
+                                        <option value="Ignored">Ignored (예외처리)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="text-[10px] font-black text-gray-400 uppercase">Description (취약점 요약)</label>
+                                <textarea id="cve-desc" required rows="2" class="w-full p-4 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl text-sm outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200"></textarea>
+                            </div>
+
+                            <div class="p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl border border-red-100 dark:border-red-900/30 space-y-4">
+                                <h4 class="font-black text-red-600 dark:text-red-400 flex items-center gap-2 text-sm"><i class="fas fa-briefcase-medical"></i> 조치 가이드</h4>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-1">
+                                        <label class="text-[10px] font-black text-gray-400 uppercase">Impact (영향도)</label>
+                                        <textarea id="cve-impact" rows="2" class="w-full p-3 bg-white dark:bg-gray-800 border-none rounded-xl text-xs outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200"></textarea>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <label class="text-[10px] font-black text-gray-400 uppercase">Solution (권고 패치)</label>
+                                        <textarea id="cve-solution" rows="2" class="w-full p-3 bg-white dark:bg-gray-800 border-none rounded-xl text-xs outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-200"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-1">
+                                    <label class="text-[10px] font-black text-orange-500 uppercase flex items-center gap-1"><i class="fas fa-bolt"></i> Workaround (임시 완화 조치)</label>
+                                    <input type="text" id="cve-workaround" class="w-full p-3 bg-orange-50 dark:bg-orange-900/20 text-orange-800 dark:text-orange-200 border-none rounded-xl text-xs font-bold outline-none focus:ring-2 focus:ring-orange-500" placeholder="예: 포트 차단, 설정 파일 수정...">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 bg-red-600 text-white rounded-2xl font-black text-lg hover:shadow-2xl transition transform active:scale-95">저장하기</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policy Edit Modal -->
+            <div id="policy-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6 bg-black/60 backdrop-blur-sm">
+                <div class="bg-white dark:bg-gray-800 w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 flex flex-col max-h-[85vh] my-8">
+                    <div class="p-6 md:p-8 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/20">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-file-shield text-lg"></i>
+                            </div>
+                            <h3 id="policy-modal-title" class="text-xl font-black dark:text-gray-100">보안 규정 편집</h3>
+                        </div>
+                        <button onclick="app.closePolicyModal()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="p-6 md:p-8 space-y-5 overflow-y-auto custom-scrollbar flex-grow">
+                        <input type="hidden" id="policy-edit-id">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-black text-gray-400 uppercase ml-1">규정 명칭</label>
+                                <input type="text" id="policy-edit-title" class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 rounded-xl border-none text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none" placeholder="예: 정보자산 관리 지침">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-black text-gray-400 uppercase ml-1">태그 (상태)</label>
+                                <select id="policy-edit-tag" class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 rounded-xl border-none text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none">
+                                    <option value="필독">필독</option>
+                                    <option value="업데이트">업데이트</option>
+                                    <option value="권고">권고</option>
+                                    <option value="중요">중요</option>
+                                    <option value="정지">정지</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-black text-gray-400 uppercase ml-1">버전</label>
+                                <input type="text" id="policy-edit-version" class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 rounded-xl border-none text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none" placeholder="예: v1.0">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-black text-gray-400 uppercase ml-1">개정 일자</label>
+                                <input type="text" id="policy-edit-date" class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 rounded-xl border-none text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none" placeholder="예: 2026.01.30">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-gray-400 uppercase ml-1">규정 상세 내용</label>
+                            <textarea id="policy-edit-content" class="w-full p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border-none text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none h-64 h-80 resize-none" placeholder="규정의 상세 내용을 입력하세요..."></textarea>
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 pt-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-900/10">
+                        <button onclick="app.handlePolicySubmit(event)" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-[0.98]">
+                            <i class="fas fa-save mr-2"></i> 규정 저장하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policy View Modal -->
+            <div id="policy-view-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6 bg-black/60 backdrop-blur-sm">
+                 <div class="bg-white dark:bg-gray-800 w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-500 flex flex-col max-h-[85vh] my-8">
+                    <div class="p-8 border-b border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/20 flex justify-between items-start">
+                        <div>
+                            <span id="view-policy-tag" class="px-2.5 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-600 text-[9px] font-black rounded uppercase mb-3 inline-block">필독</span>
+                            <h3 id="view-policy-title" class="text-2xl font-black dark:text-gray-100">정책 제목</h3>
+                            <p class="text-xs text-gray-400 font-bold mt-1">버전: <span id="view-policy-version">-</span> | 개정일: <span id="view-policy-date">-</span></p>
+                        </div>
+                        <button onclick="app.closePolicyView()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 transition-colors"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="p-8 overflow-y-auto custom-scrollbar flex-grow bg-white dark:bg-gray-800">
+                        <div id="view-policy-content" class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed font-bold text-sm whitespace-pre-wrap">
+                            내용이 여기에 렌더링 됩니다.
+                        </div>
+                    </div>
+                    <div class="p-6 bg-gray-50 dark:bg-gray-900/50 flex justify-end gap-3 border-t border-gray-100 dark:border-gray-700">
+                        <button onclick="app.closePolicyView()" class="px-6 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-black transition">닫기</button>
+                        <button onclick="notifications.show('개정 이력이 기록된 PDF를 생성합니다.', 'info')" class="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-xs font-black shadow-lg shadow-blue-500/20"><i class="fas fa-download mr-2"></i>PDF 다운로드</button>
+                    </div>
+                 </div>
+            </div>
+        `;
+        document.body.appendChild(modalContainer);
     });
 })();
