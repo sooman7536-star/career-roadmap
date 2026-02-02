@@ -3310,5 +3310,15 @@
     "details": "제목: 패스워드 설정 및 운영 정책",
     "status": "Success",
     "timestamp": "2026-01-30 07:31:46"
+  },
+  {
+    "id": 280,
+    "created_at": "2026-02-02 01:25:29",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 등록",
+    "details": "제목: 계약 관리 규정",
+    "status": "Success",
+    "timestamp": "2026-02-02 01:25:29"
   }
 ]
