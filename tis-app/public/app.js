@@ -1621,12 +1621,14 @@
             const config = assetCategoryConfig[state.currentAssetCategory];
             const filtered = state.assets.filter(a => {
                 const matchesCategory = a.main_category === state.currentAssetCategory;
-                const matchesSearch = !searchTerm ||
-                    (a.name && a.name.toLowerCase().includes(searchTerm)) ||
-                    (a.hostname && a.hostname.toLowerCase().includes(searchTerm)) ||
-                    (a.ip && a.ip.includes(searchTerm)) ||
-                    (a.user && a.user.toLowerCase().includes(searchTerm));
-                return matchesCategory && matchesSearch;
+                if (!matchesCategory) return false;
+                if (!searchTerm) return true;
+
+                // 모든 필드에 대해 검색어 포함 여부 확인
+                return config.fields.some(field => {
+                    const val = a[field];
+                    return val && val.toString().toLowerCase().includes(searchTerm);
+                });
             });
 
             // 자산번호(asset_no) 기준 오름차순 정렬 (SV-LI-001, 002...)
@@ -1890,9 +1892,10 @@
                 body[key] = input.value;
             });
 
-            // 필수값 체크 (이름)
-            if (!body.name && !body.user) {
-                notifications.show('필수 정보를 입력해 주세요.', 'error');
+            // 필수값 체크 (이름 또는 사용자 등 최소 하나는 있어야 함)
+            const hasRequired = body.name || body.user || body.doc_no || body.asset_no;
+            if (!hasRequired) {
+                notifications.show('자산명 또는 관련 정보를 입력해 주세요.', 'error');
                 return;
             }
 

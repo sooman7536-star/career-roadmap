@@ -11,7 +11,7 @@ const assetCategoryConfig = {
             'Windows': 'WI'
         },
         cols: [
-            '그룹코드', '자산번호', '자산명', '용도',
+            '그룹코드', '자산코드', '자산명', '용도',
             '관련서비스', 'IP', 'Host', 'OS 버전', '자산위치',
             '운영자', '관리자', '관리부서', '기밀성', '무결성',
             '가용성', '중요도점수', '등급', '하드웨어 제조업체/모델',
@@ -34,8 +34,20 @@ const assetCategoryConfig = {
             'MS-SQL': 'MS',
             'MY-SQL': 'MY'
         },
-        cols: ['그룹코드', '자산번호', 'DB명', 'DBMS', 'IP주소', '포트', '용도', '상태'],
-        fields: ['group_code', 'asset_no', 'name', 'dbms', 'ip', 'port', 'purpose', 'status']
+        cols: [
+            '그룹코드', '자산코드', '자산명', 'Hostname', '분류(개발/운영)',
+            '용도', '관련서비스', 'IP', 'DBMS 모델/버전', '설치서버',
+            '자산위치', '운영자', '관리자', '관리부서', '기밀성',
+            '무결성', '가용성', '중요도점수', '등급', 'ISMS',
+            'IOSA', '내부', '비고'
+        ],
+        fields: [
+            'group_code', 'asset_no', 'name', 'hostname', 'category',
+            'purpose', 'service', 'ip', 'model_ver', 'installed_on',
+            'location', 'operator', 'manager', 'dept', 'imp_c',
+            'imp_i', 'imp_a', 'imp_score', 'grade', 'cert_isms',
+            'cert_iso', 'cert_internal', 'notes'
+        ]
     },
     webserver: {
         label: '웹서버',
@@ -49,8 +61,18 @@ const assetCategoryConfig = {
             'IIS': 'IS',
             'ETC': 'ET'
         },
-        cols: ['그룹코드', '자산번호', '서비스명', '도메인', 'IP주소', '웹서버종류', '상태'],
-        fields: ['group_code', 'asset_no', 'name', 'domain', 'ip', 'webserver_type', 'status']
+        cols: [
+            '그룹코드', '자산코드', '자산명', 'Hostname', '관련서비스',
+            'IP', '웹서버 모델/버전', '설치서버', '자산위치', '운영자',
+            '관리자', '관리부서', '기밀성', '무결성', '가용성',
+            '중요도점수', '등급', 'ISMS', 'IOSA', '내부', '비고'
+        ],
+        fields: [
+            'group_code', 'asset_no', 'name', 'hostname', 'service',
+            'ip', 'model_ver', 'installed_on', 'location', 'operator',
+            'manager', 'dept', 'imp_c', 'imp_i', 'imp_a',
+            'imp_score', 'grade', 'cert_isms', 'cert_iso', 'cert_internal', 'notes'
+        ]
     },
     network: {
         label: '네트워크',
@@ -62,8 +84,18 @@ const assetCategoryConfig = {
             'Wireless': 'WA',
             'ETC': 'ET'
         },
-        cols: ['그룹코드', '자산번호', '장비명', '모델명', '관리IP', '위치', '제조사', '상태'],
-        fields: ['group_code', 'asset_no', 'name', 'model', 'ip', 'location', 'manufacturer', 'status']
+        cols: [
+            '그룹코드', '자산코드', '자산명', 'IP', '제품명(모델명)/버전',
+            '자산위치', '운영자', '관리자', '관리부서', '기밀성',
+            '무결성', '가용성', '중요도점수', '등급', 'ISMS',
+            'IOSA', '내부', '비고'
+        ],
+        fields: [
+            'group_code', 'asset_no', 'name', 'ip', 'model_ver',
+            'location', 'operator', 'manager', 'dept', 'imp_c',
+            'imp_i', 'imp_a', 'imp_score', 'grade', 'cert_isms',
+            'cert_iso', 'cert_internal', 'notes'
+        ]
     },
     cloud: {
         label: '클라우드',
@@ -73,8 +105,18 @@ const assetCategoryConfig = {
             'AWS': 'AW',
             'GCP': 'GC'
         },
-        cols: ['그룹코드', '자산번호', '리소스명', '서비스종류', '리전', '계정ID', '상태'],
-        fields: ['group_code', 'asset_no', 'name', 'service_type', 'region', 'account_id', 'status']
+        cols: [
+            '그룹코드', '자산코드', 'Account ID', '자산명', '용도',
+            '관련 서비스', 'CIDR', '자산위치', '운영자', '관리자',
+            '관리부서', '기밀성', '무결성', '가용성', '중요도점수',
+            '등급', 'ISMS', 'IOSA', '내부', '비고'
+        ],
+        fields: [
+            'group_code', 'asset_no', 'account_id', 'name', 'purpose',
+            'service', 'cidr', 'location', 'operator', 'manager',
+            'dept', 'imp_c', 'imp_i', 'imp_a', 'imp_score',
+            'grade', 'cert_isms', 'cert_iso', 'cert_internal', 'notes'
+        ]
     },
     security: {
         label: '정보보호시스템',
@@ -88,8 +130,18 @@ const assetCategoryConfig = {
             'DLP': 'DL',
             'Others': 'OT'
         },
-        cols: ['그룹코드', '자산번호', '시스템명', '도입목적', '관리자', '만료일자', '상태'],
-        fields: ['group_code', 'asset_no', 'name', 'purpose', 'manager', 'expiry_date', 'status']
+        cols: [
+            '그룹코드', '자산코드', '자산명', '구분', 'IP',
+            '제품명(모델명)/버전', '자산위치', '운영자', '관리자', '관리부서',
+            '기밀성', '무결성', '가용성', '중요도점수', '등급',
+            'ISMS', 'IOSA', '내부', '제조업체', '서비스범위', '사용 OS'
+        ],
+        fields: [
+            'group_code', 'asset_no', 'name', 'type', 'ip',
+            'model_ver', 'location', 'operator', 'manager', 'dept',
+            'imp_c', 'imp_i', 'imp_a', 'imp_score', 'grade',
+            'cert_isms', 'cert_iso', 'cert_internal', 'manufacturer', 'service_scope', 'os_ver'
+        ]
     },
     application: {
         label: '응용프로그램',
@@ -101,8 +153,18 @@ const assetCategoryConfig = {
             'Development': 'DE',
             'ETC': 'ET'
         },
-        cols: ['그룹코드', '자산번호', '프로그램명', '버전', '용도', '개발사', '상태'],
-        fields: ['group_code', 'asset_no', 'name', 'version', 'purpose', 'developer', 'status']
+        cols: [
+            '그룹코드', '자산코드', '자산명', '용도', 'URL',
+            '서비스 범위', 'IP', '자산위치', '운영자', '관리자',
+            '관리부서', '소유부서', '기밀성', '무결성', '가용성',
+            '중요도점수', '등급', 'ISMS', 'IOSA', '내부', '사용자 범위'
+        ],
+        fields: [
+            'group_code', 'asset_no', 'name', 'purpose', 'url',
+            'service_scope', 'ip', 'location', 'operator', 'manager',
+            'dept', 'owner_dept', 'imp_c', 'imp_i', 'imp_a',
+            'imp_score', 'grade', 'cert_isms', 'cert_iso', 'cert_internal', 'user_scope'
+        ]
     },
     pc: {
         label: '단말기',
@@ -114,8 +176,18 @@ const assetCategoryConfig = {
             'Monitor': 'MA',
             'ETC': 'ET'
         },
-        cols: ['그룹코드', '자산번호', '사용자', '기기명', '시리얼', '위치', '상태'],
-        fields: ['group_code', 'asset_no', 'user', 'name', 'serial', 'location', 'status']
+        cols: [
+            '그룹코드', '자산코드', '자산명', '용도', 'IP',
+            'OS', '사용자', '주요직무', '자산위치', '운영자',
+            '관리자', '관리부서', '기밀성', '무결성', '가용성',
+            '중요도점수', '등급', '제조업체', '제품명', 'MAC'
+        ],
+        fields: [
+            'group_code', 'asset_no', 'name', 'purpose', 'ip',
+            'os_ver', 'user', 'job_role', 'location', 'operator',
+            'manager', 'dept', 'imp_c', 'imp_i', 'imp_a',
+            'imp_score', 'grade', 'manufacturer', 'product_name', 'mac_address'
+        ]
     },
     document: {
         label: '문서',
@@ -126,8 +198,16 @@ const assetCategoryConfig = {
             'Standard': 'IS',
             'Manual': 'MN'
         },
-        cols: ['그룹코드', '자산번호', '문서명', '관리번호', '작성일', '보관위치', '상태'],
-        fields: ['group_code', 'asset_no', 'name', 'doc_no', 'write_date', 'location', 'status']
+        cols: [
+            '그룹코드', '자산코드', '문서명', '관리번호', '문서 내용',
+            '보관위치', '관리자', '관리부서', '최근 제·개정 일자', '기밀성',
+            '무결성', '가용성', '중요도점수', '등급', '비고'
+        ],
+        fields: [
+            'group_code', 'asset_no', 'name', 'doc_no', 'content',
+            'location', 'manager', 'dept', 'update_date', 'imp_c',
+            'imp_i', 'imp_a', 'imp_score', 'grade', 'notes'
+        ]
     },
     facilities: {
         label: '물리적자산',
@@ -138,8 +218,16 @@ const assetCategoryConfig = {
             'Power': 'PW',
             'ETC': 'ET'
         },
-        cols: ['그룹코드', '자산번호', '자산명', '모델', '위치', '관리자', '상태'],
-        fields: ['group_code', 'asset_no', 'name', 'model', 'location', 'manager', 'status']
+        cols: [
+            '그룹코드', '자산코드', '자산명', '용도', '자산위치',
+            '운영자', '관리자', '관리부서', '기밀성', '무결성',
+            '가용성', '중요도점수', '제품명', '제조업체', '수량'
+        ],
+        fields: [
+            'group_code', 'asset_no', 'name', 'purpose', 'location',
+            'operator', 'manager', 'dept', 'imp_c', 'imp_i',
+            'imp_a', 'imp_score', 'product_name', 'manufacturer', 'quantity'
+        ]
     }
 };
 
