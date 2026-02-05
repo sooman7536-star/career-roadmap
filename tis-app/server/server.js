@@ -10,6 +10,7 @@ const pledgesRepo = require('./db/repositories/pledgesRepo');
 const logsRepo = require('./db/repositories/logsRepo');
 const cveRepo = require('./db/repositories/cveRepo');
 const policiesRepo = require('./db/repositories/policiesRepo');
+const inspectionsRepo = require('./db/repositories/inspectionsRepo');
 
 /**
  * 로그 기록 헬퍼
@@ -406,6 +407,62 @@ app.post('/api/auth/verify', (req, res) => {
     entry.verified = true;
     writeLog('시스템', '보안서약', '이메일 인증 성공', { email }, 'Success');
     res.json({ message: '인증되었습니다.' });
+});
+
+/**
+ * --- Inspections (점검 관리) API ---
+ */
+
+// 대시보드 요약
+app.get('/api/inspections/dashboard', (req, res) => {
+    try {
+        const summary = inspectionsRepo.getDashboardSummary();
+        res.json(summary);
+    } catch (err) {
+        res.status(500).json({ message: '대시보드 데이터를 가져오는 중 오류가 발생했습니다.' });
+    }
+});
+
+// 솔루션 목록
+app.get('/api/inspections/solutions', (req, res) => {
+    try {
+        const list = inspectionsRepo.findAllSolutions();
+        res.json(list);
+    } catch (err) {
+        res.status(500).json({ message: '솔루션 목록을 가져오는 중 오류가 발생했습니다.' });
+    }
+});
+
+// 솔루션 등록
+app.post('/api/inspections/solutions', authMiddleware, (req, res) => {
+    try {
+        const id = inspectionsRepo.createSolution(req.body);
+        writeLog('관리자', '점검관리', '신규 솔루션 등록', { name: req.body.name }, 'Success');
+        res.status(201).json({ id, message: '솔루션이 등록되었습니다.' });
+    } catch (err) {
+        res.status(500).json({ message: '솔루션 저장 중 오류가 발생했습니다.' });
+    }
+});
+
+// 점검 이력 목록
+app.get('/api/inspections', (req, res) => {
+    try {
+        const list = inspectionsRepo.findAllInspections();
+        res.json(list);
+    } catch (err) {
+        res.status(500).json({ message: '점검 목록을 가져오는 중 오류가 발생했습니다.' });
+    }
+});
+
+// 점검 등록
+app.post('/api/inspections', authMiddleware, (req, res) => {
+    try {
+        const id = inspectionsRepo.createInspection(req.body);
+        writeLog('관리자', '점검관리', '점검 결과 등록', { solution_id: req.body.solution_id }, 'Success');
+        res.status(201).json({ id, message: '점검 결과가 등록되었습니다.' });
+    } catch (err) {
+        res.status(500).json({ message: '점검 결과 저장 중 오류가 발생했습니다.' });
+    }
 });
 
 // Start Server

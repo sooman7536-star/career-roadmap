@@ -1127,6 +1127,119 @@
                     });
                 }
             },
+            inspection_mgmt: {
+                title: '정보보호시스템 점검 관리',
+                render: () => `
+                    <div class="section-animate max-w-7xl mx-auto">
+                        <!-- Key Status Panels (주요 현황 패널) -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            <!-- Panel 1: 점검 현황 -->
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden group hover:border-blue-500/30 transition-all">
+                                <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                                    <i class="fas fa-clipboard-check text-8xl text-blue-500"></i>
+                                </div>
+                                <h4 class="text-sm font-black text-gray-400 uppercase mb-4 flex items-center gap-2"><i class="fas fa-calendar-check text-blue-500"></i> 이번 달 점검 현황</h4>
+                                <div class="flex items-center justify-between">
+                                    <div class="text-center">
+                                        <p class="text-[10px] text-gray-400 font-bold uppercase mb-1">전체 예정</p>
+                                        <h3 id="stat-planned" class="text-3xl font-black dark:text-gray-100">-</h3>
+                                    </div>
+                                    <div class="w-px h-10 bg-gray-100 dark:bg-gray-700"></div>
+                                    <div class="text-center">
+                                        <p class="text-[10px] text-green-500 font-bold uppercase mb-1">완료</p>
+                                        <h3 id="stat-completed" class="text-3xl font-black text-green-500">-</h3>
+                                    </div>
+                                    <div class="w-px h-10 bg-gray-100 dark:bg-gray-700"></div>
+                                    <div class="text-center">
+                                        <p class="text-[10px] text-red-500 font-bold uppercase mb-1">미완료</p>
+                                        <h3 id="stat-pending" class="text-3xl font-black text-red-500">-</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Panel 2: 긴급 조치 -->
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden group hover:border-red-500/30 transition-all">
+                                <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                                    <i class="fas fa-siren-on text-8xl text-red-500"></i>
+                                </div>
+                                <h4 class="text-sm font-black text-gray-400 uppercase mb-4 flex items-center gap-2"><i class="fas fa-triangle-exclamation text-red-500"></i> 긴급 조치 필요</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center text-xs font-bold">
+                                        <span class="text-gray-500 dark:text-gray-400">기한 임박 (7일 이내)</span>
+                                        <span id="stat-imminent" class="px-2 py-0.5 bg-red-100 text-red-600 rounded-md font-black">0</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-xs font-bold">
+                                        <span class="text-gray-500 dark:text-gray-400">조치 미완료 (High)</span>
+                                        <span id="stat-high-risk" class="px-2 py-0.5 bg-orange-100 text-orange-600 rounded-md font-black">0</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-xs font-bold">
+                                        <span class="text-gray-500 dark:text-gray-400">SSL 인증서 만료</span>
+                                        <span id="stat-ssl" class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-md font-black">0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Panel 3: 행정 이슈 -->
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden group hover:border-indigo-500/30 transition-all">
+                                <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                                    <i class="fas fa-file-invoice-dollar text-8xl text-indigo-500"></i>
+                                </div>
+                                <h4 class="text-sm font-black text-gray-400 uppercase mb-4 flex items-center gap-2"><i class="fas fa-file-signature text-indigo-500"></i> 행정 / 계약 관리</h4>
+                                <div class="grid grid-cols-2 gap-4">
+                                     <div class="bg-gray-50 dark:bg-gray-900/50 rounded-2xl p-3 text-center">
+                                        <p class="text-[9px] text-indigo-500 font-black uppercase mb-1">계약 만료 임박</p>
+                                        <h3 id="stat-contract" class="text-2xl font-black dark:text-gray-200">0</h3>
+                                     </div>
+                                     <div class="bg-gray-50 dark:bg-gray-900/50 rounded-2xl p-3 text-center">
+                                        <p class="text-[9px] text-indigo-500 font-black uppercase mb-1">세금계산서 미수취</p>
+                                        <h3 id="stat-invoice" class="text-2xl font-black dark:text-gray-200">0</h3>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8">
+                            <!-- Solutions Table (Full Width) -->
+                            <div>
+                                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                    <h3 class="text-xl font-black dark:text-gray-100"><i class="fas fa-server text-blue-500 mr-2"></i>통합 관리 목록</h3>
+                                    <div class="flex items-center gap-2">
+                                        <div class="relative">
+                                            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                                            <input type="text" id="sol-search" placeholder="검색..." class="pl-9 pr-3 py-2 bg-white dark:bg-gray-800 rounded-lg border-none shadow-sm text-xs outline-none w-48">
+                                        </div>
+                                        <button onclick="app.openSolutionAddModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden overflow-x-auto">
+                                    <table class="w-full text-left border-collapse min-w-[900px]">
+                                        <thead>
+                                            <tr class="bg-gray-50/50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-700 text-[10px] font-black text-gray-400 uppercase tracking-tighter">
+                                                <th class="px-4 py-3">솔루션 / 벤더</th>
+                                                <th class="px-4 py-3">상태</th>
+                                                <th class="px-4 py-3 text-center">점검 주기</th>
+                                                <th class="px-4 py-3 text-center flex flex-col"><span class="text-blue-500">다음 점검</span><span>마지막 점검</span></th>
+                                                <th class="px-4 py-3">계약 만료 / SLA</th>
+                                                <th class="px-4 py-3 text-center">작업</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sol-list-body" class="divide-y divide-gray-50 dark:divide-gray-700 text-xs font-bold">
+                                            <tr><td colspan="6" class="p-10 text-center text-gray-400"><i class="fas fa-spinner fa-spin mr-2"></i>로딩 중...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                afterRender: () => {
+                    fetchInspectionsDashboard();
+                    fetchSolutions();
+                }
+            },
             profile: {
                 title: '내 프로필',
                 render: () => `
@@ -1576,6 +1689,217 @@
                     if (span) span.textContent = customNames[id];
                 }
             });
+        }
+
+        // --- Inspection Management Functions ---
+
+        async function fetchInspectionsDashboard() {
+            try {
+                const res = await fetch('/api/inspections/dashboard');
+                const data = await res.json();
+
+                // 1. 점검 현황
+                if (data.inspection_status) {
+                    const planned = helpers.qs('#stat-planned');
+                    const completed = helpers.qs('#stat-completed');
+                    const pending = helpers.qs('#stat-pending');
+                    if (planned) planned.textContent = data.inspection_status.total_planned;
+                    if (completed) completed.textContent = data.inspection_status.completed;
+                    if (pending) pending.textContent = data.inspection_status.pending;
+                }
+
+                // 2. 긴급 조치
+                if (data.urgent_action) {
+                    const imminent = helpers.qs('#stat-imminent');
+                    const highRisk = helpers.qs('#stat-high-risk');
+                    const ssl = helpers.qs('#stat-ssl');
+                    if (imminent) imminent.textContent = data.urgent_action.imminent_7days;
+                    if (highRisk) highRisk.textContent = data.urgent_action.high_risk_issues;
+                    if (ssl) ssl.textContent = data.urgent_action.ssl_expiring;
+                }
+
+                // 3. 행정 이슈
+                if (data.admin_issue) {
+                    const contract = helpers.qs('#stat-contract');
+                    const invoice = helpers.qs('#stat-invoice');
+                    if (contract) contract.textContent = data.admin_issue.contract_expiring;
+                    if (invoice) invoice.textContent = data.admin_issue.missing_invoice;
+                }
+
+                // 리스트 위젯 렌더링
+                renderListWidget('upcoming', data.upcoming_list || []);
+            } catch (err) {
+                console.error('Fetch Dashboard Error:', err);
+            }
+        }
+
+        async function fetchSolutions() {
+            const body = helpers.qs('#sol-list-body');
+            if (!body) return;
+
+            try {
+                const res = await fetch('/api/inspections/solutions');
+                const list = await res.json();
+                state.solutions = list;
+                renderSolutionsTable();
+
+                const search = helpers.qs('#sol-search');
+                if (search) {
+                    search.oninput = (e) => renderSolutionsTable(e.target.value.toLowerCase());
+                }
+            } catch (err) {
+                console.error('Fetch Solutions Error:', err);
+                body.innerHTML = '<tr><td colspan="8" class="p-10 text-center text-red-500">데이터 로딩 오류</td></tr>';
+            }
+        }
+
+        function renderSolutionsTable(term = '') {
+            const body = helpers.qs('#sol-list-body');
+            if (!body) return;
+
+            const filtered = (state.solutions || []).filter(s =>
+                s.name.toLowerCase().includes(term) ||
+                s.category.toLowerCase().includes(term) ||
+                (s.vendor && s.vendor.toLowerCase().includes(term)) ||
+                (s.owner_user_id && s.owner_user_id.toLowerCase().includes(term))
+            );
+
+            if (filtered.length === 0) {
+                body.innerHTML = `<tr><td colspan="6" class="p-20 text-center text-gray-400">데이터가 없거나 검색 결과가 없습니다.</td></tr>`;
+                return;
+            }
+
+            body.innerHTML = filtered.map(s => `
+                <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors group">
+                    <td class="px-4 py-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center text-[10px]">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <p class="font-black dark:text-gray-200 text-xs">${s.name}</p>
+                                <p class="text-[9px] text-gray-400 uppercase font-bold tracking-wider">${s.vendor || 'Unknown Vendor'} <span class="mx-1">•</span> ${s.category}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-4 py-3">
+                        <span class="flex items-center gap-1.5 ${s.status === 'Issue' ? 'text-red-500' : 'text-emerald-500'}">
+                            <span class="w-1.5 h-1.5 rounded-full ${s.status === 'Issue' ? 'bg-red-500 animate-pulse' : 'bg-emerald-500'}"></span>
+                            ${s.status === 'Issue' ? '이슈 발생' : '정상 운영'}
+                        </span>
+                        <div class="text-[9px] text-gray-400 mt-0.5">담당: ${s.owner_user_id}</div>
+                    </td>
+                    <td class="px-4 py-3 text-center text-gray-500 font-bold">${s.cycle_type || 'Monthly'}</td>
+                    <td class="px-4 py-3 text-center">
+                        <div class="flex flex-col">
+                            <span class="text-blue-600 dark:text-blue-400 font-black">${s.next_due_date || '-'}</span>
+                            <span class="text-[9px] text-gray-400">${s.last_done_date || '-'}</span>
+                        </div>
+                    </td>
+                    <td class="px-4 py-3">
+                        <div class="text-[10px] font-bold">
+                            <p class="${helpers.getDaysDiff(s.contract_end_date) < 30 ? 'text-red-500' : 'text-gray-500'}">
+                                만료: ${s.contract_end_date || '-'}
+                            </p>
+                            <p class="text-gray-400">SLA: ${s.sla || 'N/A'}</p>
+                        </div>
+                    </td>
+                    <td class="px-4 py-3 text-center">
+                         <div class="flex items-center justify-center gap-1">
+                            <button class="p-1.5 text-blue-500 hover:bg-blue-50 rounded-lg transition" title="점검 등록"><i class="fas fa-clipboard-check"></i></button>
+                            <button class="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg transition" title="상세 보기"><i class="fas fa-ellipsis-vertical"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // 리스트 위젯 렌더링 함수
+        function renderListWidget(type, list) {
+            const container = helpers.qs('#list-widget-content');
+            if (!container) return;
+
+            if (list.length === 0) {
+                container.innerHTML = `<div class="text-center py-8 text-xs text-gray-400">표시할 데이터가 없습니다.</div>`;
+                return;
+            }
+
+            container.innerHTML = list.map(item => `
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-900/50 border border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition cursor-pointer">
+                    <div class="w-8 h-8 rounded-lg bg-white dark:bg-gray-800 flex items-center justify-center text-gray-400 text-xs shadow-sm">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-black dark:text-gray-200">${item.name}</p>
+                        <p class="text-[9px] text-gray-400">점검 예정: <span class="text-blue-500">${item.next_due_date}</span></p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openSolutionAddModal() {
+            const modal = helpers.qs('#solution-modal');
+            const form = helpers.qs('#solution-form');
+            const title = helpers.qs('#solution-modal-title');
+            if (form) form.reset();
+            if (helpers.qs('#sol-edit-id')) helpers.qs('#sol-edit-id').value = '';
+            if (title) title.textContent = '신규 솔루션 등록';
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeSolutionModal() {
+            const modal = helpers.qs('#solution-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        async function saveSolution() {
+            const form = helpers.qs('#solution-form');
+            if (!form) return;
+
+            const nameInput = form.querySelector('input[name="name"]');
+            const ownerInput = form.querySelector('input[name="owner_user_id"]');
+
+            if (!nameInput.value || !ownerInput.value) {
+                notifications.show('솔루션명과 담당자는 필수 입력 항목입니다.', 'error');
+                return;
+            }
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+
+            const id = helpers.qs('#sol-edit-id')?.value;
+            const method = id ? 'PUT' : 'POST';
+            const url = id ? `/api/inspections/solutions/${id}` : '/api/inspections/solutions';
+
+            try {
+                const res = await fetch(url, {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-TIS-KEY': 'TIS_SECURE_2025' // authMiddleware 통과를 위해 필요
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    notifications.show(id ? '수정되었습니다.' : '정상적으로 등록되었습니다.', 'success');
+                    closeSolutionModal();
+                    fetchSolutions();
+                    fetchInspectionsDashboard();
+                } else {
+                    const err = await res.json();
+                    notifications.show(err.message || '저장 중 오류 발생', 'error');
+                }
+            } catch (err) {
+                notifications.show('서버 통신 오류', 'error');
+            }
         }
 
         // Asset Management Functions
@@ -2907,7 +3231,10 @@
             fetchCveList,
             filterCves,
             openCveModal,
-            closeCveModal
+            closeCveModal,
+            openSolutionAddModal,
+            closeSolutionModal,
+            saveSolution
         };
 
         // --- Security Request CRUD Functions ---
