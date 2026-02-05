@@ -24,12 +24,16 @@ const inspectionsRepo = {
         return solutions.findAll().sort((a, b) => b.id - a.id);
     },
 
-    findSolutionById: (id) => {
+    getSolutionById: (id) => { // Renamed from findSolutionById
         return solutions.findById(id);
     },
 
     updateSolution: (id, data) => {
         return solutions.update(id, data);
+    },
+
+    deleteSolution: (id) => { // New method
+        return solutions.delete(id);
     },
 
     // --- 점검 이력 관리 ---
@@ -139,12 +143,12 @@ const inspectionsRepo = {
     // 내부 메서드: Mock Data 초기화
     _initializeMockSolutions: () => {
         const mocks = [
-            { name: 'WAF (Web Application Firewall)', category: 'Network', owner_user_id: '김보안', cycle_type: 'Monthly', next_due_date: '2026-02-10', status: 'Operation', vendor: 'AhnLab', contract_end_date: '2026-12-31', sla: '99.9%', ssl_expiry: '2026-06-30' },
-            { name: 'EDR (Endpoint Detection)', category: 'Endpoint', owner_user_id: '이대리', cycle_type: 'Monthly', next_due_date: '2026-02-05', status: 'Issue', risk_level: 'High', vendor: 'Genians', contract_end_date: '2026-03-01', sla: '99.5%', invoice_status: 'Pending' },
-            { name: 'DLP (Data Loss Prevention)', category: 'Application', owner_user_id: '박과장', cycle_type: 'Quarterly', next_due_date: '2026-03-15', status: 'Operation', vendor: 'Somansa', contract_end_date: '2026-08-15', sla: '99.0%' },
-            { name: 'DB Safer (Access Control)', category: 'Database', owner_user_id: '최팀장', cycle_type: 'Half-yearly', next_due_date: '2026-06-30', status: 'Operation', vendor: 'PnpSecure', contract_end_date: '2027-01-01', ssl_expiry: '2026-02-20' },
-            { name: 'Anti-Virus Server', category: 'Endpoint', owner_user_id: '정사원', cycle_type: 'Monthly', next_due_date: '2026-02-28', status: 'Issue', risk_level: 'Low', vendor: 'EstSecurity', contract_end_date: '2026-05-20', invoice_status: 'Completed' },
-            { name: 'VPN Gateway', category: 'Network', owner_user_id: '김보안', cycle_type: 'Monthly', next_due_date: '2026-02-02', last_done_date: '2026-02-02', status: 'Operation', vendor: 'PulseSecure', contract_end_date: '2026-11-30' }
+            { name: 'WAF (Web Application Firewall)', category: 'Network', owner_user_id: '김보안', cycle_type: 'Monthly', next_due_date: '2026-02-10', status: 'Operation', vendor: 'AhnLab', contract_end_date: '2026-12-31', engineer_name: '홍길동', engineer_contact: '010-1111-2222', remarks: '규칙 최적화 필요' },
+            { name: 'EDR (Endpoint Detection)', category: 'Endpoint', owner_user_id: '이대리', cycle_type: 'Monthly', next_due_date: '2026-02-05', status: 'Issue', risk_level: 'High', vendor: 'Genians', contract_end_date: '2026-03-01', engineer_name: '김철수', engineer_contact: '010-3333-4444', remarks: '라이선스 갱신 대상' },
+            { name: 'DLP (Data Loss Prevention)', category: 'Application', owner_user_id: '박과장', cycle_type: 'Quarterly', next_due_date: '2026-03-15', status: 'Operation', vendor: 'Somansa', contract_end_date: '2026-08-15', engineer_name: '이영희', engineer_contact: '010-5555-6666', remarks: '안정적 운영 중' },
+            { name: 'DB Safer (Access Control)', category: 'Database', owner_user_id: '최팀장', cycle_type: 'Half-yearly', next_due_date: '2026-06-30', status: 'Operation', vendor: 'PnpSecure', contract_end_date: '2027-01-01', engineer_name: '정민수', engineer_contact: '010-7777-8888', remarks: 'DB 감사 로그 보관 주기 확인' },
+            { name: 'Anti-Virus Server', category: 'Endpoint', owner_user_id: '정사원', cycle_type: 'Monthly', next_due_date: '2026-02-28', status: 'Issue', risk_level: 'Low', vendor: 'EstSecurity', contract_end_date: '2026-05-20', engineer_name: '최지우', engineer_contact: '010-9999-0000', remarks: '업데이트 서버 부하 확인 필요' },
+            { name: 'VPN Gateway', category: 'Network', owner_user_id: '김보안', cycle_type: 'Monthly', next_due_date: '2026-02-02', last_done_date: '2026-02-02', status: 'Operation', vendor: 'PulseSecure', contract_end_date: '2026-11-30', engineer_name: '한석봉', engineer_contact: '010-1234-5678', remarks: '2차 인증 연동 완료' }
         ];
 
         // 날짜 동적 조정 (현재 날짜 기준)
@@ -158,10 +162,10 @@ const inspectionsRepo = {
         mocks[3].ssl_expiry = d2.toISOString().split('T')[0];
 
         mocks.forEach(m => {
-            // 중복 방지
-            const exists = solutions.find({ name: m.name });
+            // 중복 방지: findAll()로 전체 목록을 가져온 후 배열의 find 메서드 사용
+            const exists = solutions.findAll().find(item => item.name === m.name);
             if (!exists) {
-                solutions.insert({ ...m, id: solutions.length + 1 });
+                solutions.insert({ ...m, id: solutions.findAll().length + 1 });
             }
         });
     }

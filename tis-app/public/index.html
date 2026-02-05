@@ -268,8 +268,8 @@
                             </select>
                         </div>
                         <div class="space-y-1.5">
-                            <label class="text-[10px] font-black text-gray-400 uppercase">다음 점검 예정일</label>
-                            <input type="date" name="next_due_date"
+                            <label class="text-[10px] font-black text-gray-400 uppercase">마지막 점검 일자</label>
+                            <input type="date" name="last_done_date"
                                 class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 border-2 border-transparent rounded-2xl text-sm font-bold outline-none focus:ring-4 focus:ring-blue-500/10 transition-all">
                         </div>
                         <div class="space-y-1.5">
@@ -278,8 +278,13 @@
                                 class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 border-2 border-transparent rounded-2xl text-sm font-bold outline-none focus:ring-4 focus:ring-blue-500/10 transition-all">
                         </div>
                         <div class="space-y-1.5">
-                            <label class="text-[10px] font-black text-gray-400 uppercase">SLA</label>
-                            <input type="text" name="sla" placeholder="예: 99.9%, 24/7 지원"
+                            <label class="text-[10px] font-black text-gray-400 uppercase">엔지니어 이름</label>
+                            <input type="text" name="engineer_name" placeholder="유지보수 엔지니어 성함"
+                                class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 border-2 border-transparent rounded-2xl text-sm font-bold outline-none focus:ring-4 focus:ring-blue-500/10 transition-all">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-[10px] font-black text-gray-400 uppercase">엔지니어 연락처</label>
+                            <input type="text" name="engineer_contact" placeholder="010-0000-0000"
                                 class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 border-2 border-transparent rounded-2xl text-sm font-bold outline-none focus:ring-4 focus:ring-blue-500/10 transition-all">
                         </div>
                         <div class="space-y-1.5">
@@ -292,8 +297,8 @@
                             </select>
                         </div>
                         <div class="space-y-1.5 md:col-span-2">
-                            <label class="text-[10px] font-black text-gray-400 uppercase">설명 (메모)</label>
-                            <textarea name="description" placeholder="솔루션에 대한 추가 설명이나 특이사항을 입력하세요." rows="3"
+                            <label class="text-[10px] font-black text-gray-400 uppercase">특이사항 (메모)</label>
+                            <textarea name="remarks" placeholder="솔루션에 대한 상세 설명이나 특이사항을 입력하세요." rows="3"
                                 class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 border-2 border-transparent rounded-2xl text-sm font-bold outline-none focus:ring-4 focus:ring-blue-500/10 transition-all resize-none custom-scrollbar"></textarea>
                         </div>
                     </div>
@@ -304,6 +309,57 @@
                     class="flex-1 py-4 bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 rounded-2xl text-sm font-black text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition">취소</button>
                 <button onclick="app.saveSolution()"
                     class="flex-[2] py-4 bg-blue-600 text-white rounded-2xl text-sm font-black hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">저장하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inspection Record Registration Modal -->
+    <div id="inspection-record-modal"
+        class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white dark:bg-gray-800 w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden animate-fade-in">
+            <div
+                class="p-8 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/20">
+                <div>
+                    <h3 class="text-xl font-black dark:text-gray-100">점검 결과 등록</h3>
+                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-1" id="ins-sol-name">
+                        Solution Name</p>
+                </div>
+                <button onclick="app.closeInspectionModal()"
+                    class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white dark:hover:bg-gray-700 transition shadow-sm">
+                    <i class="fas fa-times text-gray-400"></i>
+                </button>
+            </div>
+            <div class="p-8 space-y-6">
+                <form id="inspection-record-form" class="space-y-6">
+                    <input type="hidden" name="solution_id">
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="space-y-1.5">
+                            <label class="text-[10px] font-black text-gray-400 uppercase">점검일</label>
+                            <input type="date" name="planned_date" required
+                                class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 border-2 border-transparent rounded-2xl text-sm font-bold outline-none focus:ring-4 focus:ring-blue-500/10 transition-all">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-[10px] font-black text-gray-400 uppercase">점검 상태</label>
+                            <select name="overall_status" required
+                                class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 border-2 border-transparent rounded-2xl text-sm font-bold outline-none focus:ring-4 focus:ring-blue-500/10 transition-all">
+                                <option value="Completed">점검 완료 (정상)</option>
+                                <option value="Issue">이슈 발견</option>
+                                <option value="Action Required">조치 필요</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-[10px] font-black text-gray-400 uppercase">비고 및 조치사항</label>
+                            <textarea name="remarks" rows="3" placeholder="점검 특이사항을 입력하세요..."
+                                class="w-full p-3.5 bg-gray-50 dark:bg-gray-900 border-2 border-transparent rounded-2xl text-sm font-bold outline-none focus:ring-4 focus:ring-blue-500/10 transition-all resize-none"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="p-8 bg-gray-50 dark:bg-gray-900/50 flex gap-3">
+                <button onclick="app.closeInspectionModal()"
+                    class="flex-1 py-4 bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 rounded-2xl text-sm font-black text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition">취소</button>
+                <button onclick="app.saveInspection()"
+                    class="flex-[2] py-4 bg-blue-600 text-white rounded-2xl text-sm font-black hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">등록하기</button>
             </div>
         </div>
     </div>

@@ -1202,7 +1202,7 @@
                             <!-- Solutions Table (Full Width) -->
                             <div>
                                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                                    <h3 class="text-xl font-black dark:text-gray-100"><i class="fas fa-server text-blue-500 mr-2"></i>통합 관리 목록</h3>
+                                    <h3 class="text-xl font-black dark:text-gray-100"><i class="fas fa-server text-blue-500 mr-2"></i>정보보호시스템 목록</h3>
                                     <div class="flex items-center gap-2">
                                         <div class="relative">
                                             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
@@ -1214,20 +1214,26 @@
                                     </div>
                                 </div>
 
-                                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden overflow-x-auto">
-                                    <table class="w-full text-left border-collapse min-w-[900px]">
+                                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden overflow-x-auto custom-scrollbar">
+                                    <table class="w-full text-left border-collapse min-w-[1600px]">
                                         <thead>
                                             <tr class="bg-gray-50/50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-700 text-[10px] font-black text-gray-400 uppercase tracking-tighter">
-                                                <th class="px-4 py-3">솔루션 / 벤더</th>
-                                                <th class="px-4 py-3">상태</th>
-                                                <th class="px-4 py-3 text-center">점검 주기</th>
-                                                <th class="px-4 py-3 text-center flex flex-col"><span class="text-blue-500">다음 점검</span><span>마지막 점검</span></th>
-                                                <th class="px-4 py-3">계약 만료 / SLA</th>
-                                                <th class="px-4 py-3 text-center">작업</th>
+                                                <th class="px-8 py-5 whitespace-nowrap">솔루션명</th>
+                                                <th class="px-8 py-5 whitespace-nowrap">분류</th>
+                                                <th class="px-8 py-5 whitespace-nowrap">업체명</th>
+                                                <th class="px-8 py-5 whitespace-nowrap">내부 담당자</th>
+                                                <th class="px-8 py-5 text-center whitespace-nowrap">점검 주기</th>
+                                                <th class="px-8 py-5 text-center whitespace-nowrap">마지막 점검</th>
+                                                <th class="px-8 py-5 text-center whitespace-nowrap">계약 만료일</th>
+                                                <th class="px-8 py-5 whitespace-nowrap">운영상태</th>
+                                                <th class="px-8 py-5 whitespace-nowrap">엔지니어 이름</th>
+                                                <th class="px-8 py-5 whitespace-nowrap">엔지니어 연락처</th>
+                                                <th class="px-8 py-5 whitespace-nowrap">특이사항</th>
+                                                <th class="px-8 py-5 text-center whitespace-nowrap">작업</th>
                                             </tr>
                                         </thead>
                                         <tbody id="sol-list-body" class="divide-y divide-gray-50 dark:divide-gray-700 text-xs font-bold">
-                                            <tr><td colspan="6" class="p-10 text-center text-gray-400"><i class="fas fa-spinner fa-spin mr-2"></i>로딩 중...</td></tr>
+                                            <tr><td colspan="12" class="p-20 text-center text-gray-400"><i class="fas fa-spinner fa-spin mr-2"></i>로딩 중...</td></tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -1757,9 +1763,16 @@
             const body = helpers.qs('#sol-list-body');
             if (!body) return;
 
+            const cycleLabels = {
+                'Monthly': '매월',
+                'Quarterly': '분기',
+                'Half-yearly': '반기',
+                'Yearly': '매년'
+            };
+
             const filtered = (state.solutions || []).filter(s =>
-                s.name.toLowerCase().includes(term) ||
-                s.category.toLowerCase().includes(term) ||
+                (s.name || '').toLowerCase().includes(term) ||
+                (s.category || '').toLowerCase().includes(term) ||
                 (s.vendor && s.vendor.toLowerCase().includes(term)) ||
                 (s.owner_user_id && s.owner_user_id.toLowerCase().includes(term))
             );
@@ -1771,47 +1784,92 @@
 
             body.innerHTML = filtered.map(s => `
                 <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors group">
-                    <td class="px-4 py-3">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center text-[10px]">
-                                <i class="fas fa-shield-halved"></i>
-                            </div>
-                            <div>
-                                <p class="font-black dark:text-gray-200 text-xs">${s.name}</p>
-                                <p class="text-[9px] text-gray-400 uppercase font-bold tracking-wider">${s.vendor || 'Unknown Vendor'} <span class="mx-1">•</span> ${s.category}</p>
-                            </div>
+                    <td class="px-8 py-6 font-black dark:text-gray-100 text-[13px] whitespace-nowrap">${escapeHtml(s.name)}</td>
+                    <td class="px-8 py-6 text-gray-400 font-bold uppercase text-[10px] whitespace-nowrap">${escapeHtml(s.category)}</td>
+                    <td class="px-8 py-6 text-gray-400 font-bold text-[10px] whitespace-nowrap">${escapeHtml(s.vendor || '-')}</td>
+                    <td class="px-8 py-6 whitespace-nowrap">
+                        <div class="flex items-center gap-1 text-[10px] text-gray-400 font-bold bg-gray-50 dark:bg-gray-900/50 px-2 py-0.5 rounded-md w-fit">
+                            <i class="fas fa-user-shield text-[8px]"></i> ${escapeHtml(s.owner_user_id)}
                         </div>
                     </td>
-                    <td class="px-4 py-3">
-                        <span class="flex items-center gap-1.5 ${s.status === 'Issue' ? 'text-red-500' : 'text-emerald-500'}">
+                    <td class="px-8 py-6 text-center whitespace-nowrap">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-lg text-[10px] font-black uppercase tracking-tighter">${cycleLabels[s.cycle_type] || '매월'}</span>
+                    </td>
+                    <td class="px-8 py-6 text-center text-gray-400 text-[10px] font-bold whitespace-nowrap">
+                        ${s.last_done_date || '이력 없음'}
+                    </td>
+                    <td class="px-8 py-6 text-center whitespace-nowrap">
+                        <span class="text-[10px] font-bold ${helpers.getDaysDiff(s.contract_end_date) < 30 ? 'text-red-500 animate-pulse' : 'text-gray-500'}">${s.contract_end_date || '-'}</span>
+                    </td>
+                    <td class="px-8 py-6 whitespace-nowrap">
+                        <span class="inline-flex items-center gap-1.5 text-[11px] font-black ${s.status === 'Issue' ? 'text-red-500' : 'text-emerald-500'}">
                             <span class="w-1.5 h-1.5 rounded-full ${s.status === 'Issue' ? 'bg-red-500 animate-pulse' : 'bg-emerald-500'}"></span>
-                            ${s.status === 'Issue' ? '이슈 발생' : '정상 운영'}
+                            ${s.status === 'Issue' ? '이슈 발생' : (s.status === 'Maintenance' ? '유지보수' : '정상 운영')}
                         </span>
-                        <div class="text-[9px] text-gray-400 mt-0.5">담당: ${s.owner_user_id}</div>
                     </td>
-                    <td class="px-4 py-3 text-center text-gray-500 font-bold">${s.cycle_type || 'Monthly'}</td>
-                    <td class="px-4 py-3 text-center">
-                        <div class="flex flex-col">
-                            <span class="text-blue-600 dark:text-blue-400 font-black">${s.next_due_date || '-'}</span>
-                            <span class="text-[9px] text-gray-400">${s.last_done_date || '-'}</span>
-                        </div>
-                    </td>
-                    <td class="px-4 py-3">
-                        <div class="text-[10px] font-bold">
-                            <p class="${helpers.getDaysDiff(s.contract_end_date) < 30 ? 'text-red-500' : 'text-gray-500'}">
-                                만료: ${s.contract_end_date || '-'}
-                            </p>
-                            <p class="text-gray-400">SLA: ${s.sla || 'N/A'}</p>
-                        </div>
-                    </td>
-                    <td class="px-4 py-3 text-center">
-                         <div class="flex items-center justify-center gap-1">
-                            <button class="p-1.5 text-blue-500 hover:bg-blue-50 rounded-lg transition" title="점검 등록"><i class="fas fa-clipboard-check"></i></button>
-                            <button class="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg transition" title="상세 보기"><i class="fas fa-ellipsis-vertical"></i></button>
+                    <td class="px-8 py-6 text-[10px] font-bold text-gray-500 whitespace-nowrap">${escapeHtml(s.engineer_name || '-')}</td>
+                    <td class="px-8 py-6 text-[10px] font-bold text-gray-500 whitespace-nowrap">${escapeHtml(s.engineer_contact || '-')}</td>
+                    <td class="px-8 py-6 text-[10px] font-bold text-gray-500 min-w-[250px] whitespace-normal" title="${escapeHtml(s.remarks || '-')}">${escapeHtml(s.remarks || '-')}</td>
+                    <td class="px-8 py-6 text-center whitespace-nowrap">
+                         <div class="flex items-center justify-center gap-2">
+                            <button onclick="app.editSolution(${s.id})" class="p-2.5 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/30 rounded-xl transition shadow-sm" title="수정"><i class="fas fa-edit"></i></button>
+                            <button onclick="app.deleteSolution(${s.id})" class="p-2.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition shadow-sm" title="삭제"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </td>
                 </tr>
             `).join('');
+        }
+
+        async function editSolution(id) {
+            const s = state.solutions.find(item => item.id == id);
+            if (!s) return;
+
+            const modal = helpers.qs('#solution-modal');
+            const form = helpers.qs('#solution-form');
+            const title = helpers.qs('#solution-modal-title');
+            const idInput = helpers.qs('#sol-edit-id');
+
+            if (title) title.textContent = '솔루션 정보 수정';
+            if (idInput) idInput.value = id;
+
+            // 폼 필드 채우기
+            if (form) {
+                const inputs = form.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => {
+                    if (s[input.name] !== undefined) {
+                        input.value = s[input.name];
+                    }
+                });
+            }
+
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        async function deleteSolution(id) {
+            if (!confirm('정말로 이 솔루션을 삭제하시겠습니까?\n모든 데이터가 영구적으로 삭제됩니다.')) return;
+
+            try {
+                const res = await fetch(`/api/inspections/solutions/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-TIS-KEY': 'TIS_SECURE_2025'
+                    }
+                });
+
+                if (res.ok) {
+                    notifications.show('솔루션이 성공적으로 삭제되었습니다.', 'success');
+                    fetchSolutions();
+                    fetchInspectionsDashboard();
+                } else {
+                    const err = await res.json();
+                    notifications.show(err.message || '삭제 중 오류 발생', 'error');
+                }
+            } catch (err) {
+                notifications.show('서버 통신 오류', 'error');
+            }
         }
 
         // 리스트 위젯 렌더링 함수
@@ -1883,7 +1941,7 @@
                     method,
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-TIS-KEY': 'TIS_SECURE_2025' // authMiddleware 통과를 위해 필요
+                        'X-TIS-KEY': 'TIS_SECURE_2025'
                     },
                     body: JSON.stringify(data)
                 });
@@ -1893,6 +1951,67 @@
                     closeSolutionModal();
                     fetchSolutions();
                     fetchInspectionsDashboard();
+                } else {
+                    const err = await res.json();
+                    notifications.show(err.message || '저장 중 오류 발생', 'error');
+                }
+            } catch (err) {
+                notifications.show('서버 통신 오류', 'error');
+            }
+        }
+
+        // --- Inspection Registration Functions ---
+
+        function openInspectionAddModal(solutionId) {
+            const solution = state.solutions.find(s => s.id == solutionId);
+            if (!solution) return;
+
+            const modal = helpers.qs('#inspection-record-modal');
+            const form = helpers.qs('#inspection-record-form');
+            if (form) {
+                form.reset();
+                helpers.qs('input[name="solution_id"]', form).value = solutionId;
+                helpers.qs('#ins-sol-name', form).textContent = solution.name;
+                helpers.qs('input[name="planned_date"]', form).value = new Date().toISOString().split('T')[0];
+            }
+
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeInspectionModal() {
+            const modal = helpers.qs('#inspection-record-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        async function saveInspection() {
+            const form = helpers.qs('#inspection-record-form');
+            if (!form) return;
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+
+            try {
+                const res = await fetch('/api/inspections', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-TIS-KEY': 'TIS_SECURE_2025'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    notifications.show('점검 결과가 등록되었습니다.', 'success');
+                    closeInspectionModal();
+                    fetchSolutions(); // 목록 갱신
+                    fetchInspectionsDashboard(); // 통계 갱신
                 } else {
                     const err = await res.json();
                     notifications.show(err.message || '저장 중 오류 발생', 'error');
@@ -3234,7 +3353,14 @@
             closeCveModal,
             openSolutionAddModal,
             closeSolutionModal,
-            saveSolution
+            saveSolution,
+            editSolution,
+            deleteSolution,
+            fetchSolutions,
+            fetchInspectionsDashboard,
+            openInspectionAddModal,
+            closeInspectionModal,
+            saveInspection
         };
 
         // --- Security Request CRUD Functions ---

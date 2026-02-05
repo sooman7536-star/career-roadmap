@@ -444,6 +444,36 @@ app.post('/api/inspections/solutions', authMiddleware, (req, res) => {
     }
 });
 
+// 솔루션 수정
+app.put('/api/inspections/solutions/:id', authMiddleware, (req, res) => {
+    try {
+        const success = inspectionsRepo.updateSolution(req.params.id, req.body);
+        if (success) {
+            writeLog('관리자', '점검관리', '솔루션 정보 수정', { id: req.params.id, name: req.body.name }, 'Success');
+            res.json({ message: '솔루션 정보가 수정되었습니다.' });
+        } else {
+            res.status(404).json({ message: '해당 솔루션을 찾을 수 없습니다.' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: '솔루션 수정 중 오류가 발생했습니다.' });
+    }
+});
+
+// 솔루션 삭제
+app.delete('/api/inspections/solutions/:id', authMiddleware, (req, res) => {
+    try {
+        const success = inspectionsRepo.deleteSolution(req.params.id);
+        if (success) {
+            writeLog('관리자', '점검관리', '솔루션 삭제', { id: req.params.id }, 'Success');
+            res.json({ message: '솔루션이 삭제되었습니다.' });
+        } else {
+            res.status(404).json({ message: '해당 솔루션을 찾을 수 없습니다.' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: '솔루션 삭제 중 오류가 발생했습니다.' });
+    }
+});
+
 // 점검 이력 목록
 app.get('/api/inspections', (req, res) => {
     try {
@@ -464,6 +494,9 @@ app.post('/api/inspections', authMiddleware, (req, res) => {
         res.status(500).json({ message: '점검 결과 저장 중 오류가 발생했습니다.' });
     }
 });
+
+// favicon.ico 404 방지
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // Start Server
 app.listen(PORT, () => {
