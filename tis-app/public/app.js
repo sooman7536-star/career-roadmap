@@ -32,7 +32,10 @@
             allPledges: [],
             currentLogCategory: 'all',
             isEmailVerified: false,
-            policies: []
+            policies: [],
+            certs: [],
+            complianceYear: 2026,
+            complianceCert: 'ISMS'
         };
 
 
@@ -1246,6 +1249,133 @@
                     fetchSolutions();
                 }
             },
+            compliance_dash: {
+                title: '인증/컴플라이언스 통합 대시보드',
+                render: () => `
+                    <div class="section-animate max-w-7xl mx-auto">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h3 class="text-2xl font-black dark:text-gray-100 italic tracking-tighter">Compliance Governance</h3>
+                                <p class="text-xs text-gray-400 font-bold uppercase mt-1">4대 인증 체계 통합 현황 및 일정 관리</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition">심사 일정 등록</button>
+                                <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-500 rounded-xl text-xs font-black border border-gray-200 dark:border-gray-700 hover:bg-gray-200 transition">보고서 내보내기</button>
+                            </div>
+                        </div>
+
+                        <!-- Main Compliance Status Table -->
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden mb-10">
+                            <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/30 dark:bg-gray-900/30">
+                                <h4 class="font-black flex items-center gap-2 dark:text-gray-100"><i class="fas fa-list-check text-blue-500"></i> 인증 체계별 통합 현황</h4>
+                                <span class="text-[10px] font-bold text-gray-400">마지막 동기화: 2026-02-05 16:30</span>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-gray-50/50 dark:bg-gray-900/50 text-[10px] font-black text-gray-400 uppercase tracking-tighter">
+                                            <th class="px-8 py-4">항목</th>
+                                            <th class="px-8 py-4">구분</th>
+                                            <th class="px-8 py-4 text-center">상태</th>
+                                            <th class="px-8 py-4">주요 일정</th>
+                                            <th class="px-8 py-4">진척도</th>
+                                            <th class="px-8 py-4 text-center">작업</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-50 dark:divide-gray-700 text-xs font-bold">
+                                        ${[
+                        { id: 'ISMS', type: '사후 심사', status: '준비 중', date: '2026-05-10', rate: 65, color: 'blue' },
+                        { id: 'ISO27001', type: '갱신 심사', status: '진행 중', date: '2026-08-20', rate: 90, color: 'emerald' },
+                        { id: 'PCI-DSS', type: '정기 심사', status: '대기', date: '2026-11-15', rate: 10, color: 'indigo' },
+                        { id: 'GDPR', type: '자체 점검', status: '상시', date: '-', rate: 45, color: 'amber' }
+                    ].map(c => `
+                                            <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors group">
+                                                <td class="px-8 py-5 font-black dark:text-gray-200">${c.id}</td>
+                                                <td class="px-8 py-5 text-gray-400">${c.type}</td>
+                                                <td class="px-8 py-5 text-center">
+                                                    <span class="px-2 py-0.5 rounded-md text-[9px] font-black ${c.status === '진행 중' ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300'}">
+                                                        ${c.status}
+                                                    </span>
+                                                </td>
+                                                <td class="px-8 py-5 text-gray-500 font-medium">${c.date}</td>
+                                                <td class="px-8 py-5">
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="flex-grow bg-gray-100 dark:bg-gray-700 h-1.5 rounded-full overflow-hidden w-24">
+                                                            <div class="bg-${c.color}-500 h-full" style="width: ${c.rate}%"></div>
+                                                        </div>
+                                                        <span class="text-[10px] font-black dark:text-gray-300 w-8">${c.rate}%</span>
+                                                    </div>
+                                                </td>
+                                                <td class="px-8 py-5 text-center">
+                                                    <button onclick="app.switchComplianceCert('${c.id}')" class="text-blue-500 hover:text-blue-700 transition"><i class="fas fa-arrow-right-to-bracket"></i></button>
+                                                </td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Recent Evidence Library Activity -->
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+                            <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                                <h4 class="font-black flex items-center gap-2"><i class="fas fa-history text-blue-500"></i> 최근 증적 업데이트 현황</h4>
+                                <button onclick="app.loadSection('evidence_lib')" class="text-[10px] font-black text-blue-500 hover:underline">라이브러리 전체보기</button>
+                            </div>
+                            <div class="divide-y divide-gray-50 dark:divide-gray-700">
+                                ${[
+                        { cert: 'ISMS', item: '경영진의 참여', user: '정보보호최고책임자', time: '방금 전', file: '승인문서_2026.pdf' },
+                        { cert: 'ISO27001', item: '접근 권한 관리', user: '시스템운영팀', time: '1시간 전', file: '사용자_전수조사_리스트.xlsx' },
+                        { cert: 'PCI-DSS', item: '카드정보 암호화', user: '개발팀', time: '어제', file: '암호화_알고리즘_검증서.pdf' }
+                    ].map(a => `
+                                    <div class="p-4 hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-10 h-10 rounded-xl bg-gray-50 dark:bg-gray-900 flex items-center justify-center text-blue-500 font-black text-[10px] shadow-inner">${a.cert}</div>
+                                            <div>
+                                                <p class="text-xs font-black dark:text-gray-200">${a.item}</p>
+                                                <div class="flex items-center gap-2 text-[10px] text-gray-400 font-bold mt-0.5">
+                                                    <span>${a.user}</span>
+                                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                                    <span>${a.time}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <span class="text-[10px] font-bold text-gray-400 italic">${a.file}</span>
+                                            <button class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg"><i class="fas fa-download"></i></button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `,
+                afterRender: () => {
+                    // Dashboard initialization if needed
+                }
+            },
+            cert_detail_mgmt: {
+                title: '인증별 관리 (ISMS/ISO/PCI/GDPR)',
+                render: () => renderComplianceDetail(state.complianceCert)
+            },
+            capa_mgmt: {
+                title: '결함 조치(CAPA) 관리',
+                render: () => `
+                    <div class="section-animate max-w-7xl mx-auto">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h3 class="text-2xl font-black dark:text-gray-100 italic tracking-tighter">CAPA Management</h3>
+                                <p class="text-xs text-gray-400 font-bold uppercase mt-1">심사 결함 조치 및 예방 조치 관리</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 p-20 text-center">
+                            <i class="fas fa-hammer text-6xl text-gray-200 dark:text-gray-700 mb-6"></i>
+                            <h4 class="text-xl font-black dark:text-gray-100 mb-2">기능 개발 중</h4>
+                            <p class="text-sm text-gray-400 font-bold">실제 심사 후 발견된 결함 사항에 대한 조치 이력 통합 관리 기능을 준비 중입니다.</p>
+                        </div>
+                    </div>
+                `
+            },
             profile: {
                 title: '내 프로필',
                 render: () => `
@@ -2019,6 +2149,75 @@
             } catch (err) {
                 notifications.show('서버 통신 오류', 'error');
             }
+        }
+
+        // --- Certification Management Functions ---
+
+        async function fetchCertifications() {
+            const body = helpers.qs('#cert-list-body');
+            if (!body) return;
+
+            // Mock Data if API not ready
+            const mockCerts = [
+                { id: 1, name: 'ISMS-P', category: '국내', agency: 'KISA', start_date: '2020-05-10', expiry_date: '2026-05-09', status: 'Valid', owner: '김보안' },
+                { id: 2, name: 'ISO27001', category: '국제', agency: 'BSI', start_date: '2019-11-20', expiry_date: '2025-11-19', status: 'Valid', owner: '이보안' },
+                { id: 3, name: 'ISO27701', category: '국제', agency: 'DNV', start_date: '2023-01-15', expiry_date: '2026-01-14', status: 'In Audit', owner: '최보안' }
+            ];
+
+            state.certs = mockCerts;
+            renderCertTable();
+            renderCertDashboard();
+        }
+
+        function renderCertTable() {
+            const body = helpers.qs('#cert-list-body');
+            if (!body) return;
+
+            body.innerHTML = (state.certs || []).map(c => `
+                <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors group">
+                    <td class="px-8 py-6 font-black dark:text-gray-100 text-[13px] whitespace-nowrap">${escapeHtml(c.name)}</td>
+                    <td class="px-8 py-6 text-gray-400 font-bold uppercase text-[10px] whitespace-nowrap">${escapeHtml(c.category)}</td>
+                    <td class="px-8 py-6 text-gray-400 font-bold text-[10px] whitespace-nowrap">${escapeHtml(c.agency)}</td>
+                    <td class="px-8 py-6 text-center text-gray-400 text-[10px] font-bold whitespace-nowrap">${c.start_date}</td>
+                    <td class="px-8 py-6 text-center whitespace-nowrap">
+                        <span class="text-[10px] font-bold ${helpers.getDaysDiff(c.expiry_date) < 90 ? 'text-red-500 animate-pulse' : 'text-gray-500'}">${c.expiry_date}</span>
+                    </td>
+                    <td class="px-8 py-6 whitespace-nowrap">
+                        <span class="inline-flex items-center gap-1.5 text-[11px] font-black ${c.status === 'Valid' ? 'text-emerald-500' : 'text-amber-500'}">
+                            <span class="w-1.5 h-1.5 rounded-full ${c.status === 'Valid' ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}"></span>
+                            ${c.status === 'Valid' ? '인증 유효' : '심사 진행 중'}
+                        </span>
+                    </td>
+                    <td class="px-8 py-6 text-[10px] font-bold text-gray-500 whitespace-nowrap">${escapeHtml(c.owner)}</td>
+                    <td class="px-8 py-6 text-center whitespace-nowrap">
+                         <div class="flex items-center justify-center gap-2">
+                            <button onclick="app.editCert(${c.id})" class="p-2.5 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/30 rounded-xl transition shadow-sm" title="수정"><i class="fas fa-edit"></i></button>
+                            <button onclick="app.deleteCert(${c.id})" class="p-2.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition shadow-sm" title="삭제"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderCertDashboard() {
+            const total = state.certs.length;
+            const valid = state.certs.filter(c => c.status === 'Valid').length;
+            const audit = state.certs.filter(c => c.status === 'In Audit').length;
+
+            const warningLimit = 30;
+            const cautionLimit = 90;
+            const warning = state.certs.filter(c => helpers.getDaysDiff(c.expiry_date) <= warningLimit).length;
+            const caution = state.certs.filter(c => helpers.getDaysDiff(c.expiry_date) <= cautionLimit).length;
+
+            if (helpers.qs('#cert-stat-total')) helpers.qs('#cert-stat-total').textContent = total;
+            if (helpers.qs('#cert-stat-valid')) helpers.qs('#cert-stat-valid').textContent = valid;
+            if (helpers.qs('#cert-stat-audit')) helpers.qs('#cert-stat-audit').textContent = audit;
+            if (helpers.qs('#cert-stat-warning')) helpers.qs('#cert-stat-warning').textContent = warning;
+            if (helpers.qs('#cert-stat-caution')) helpers.qs('#cert-stat-caution').textContent = caution;
+        }
+
+        function openCertAddModal() {
+            notifications.show('인증 추가 기능을 준비 중입니다.', 'info');
         }
 
         // Asset Management Functions
@@ -3312,6 +3511,152 @@
         }
 
         // Export app instance for global access
+        function renderComplianceDetail() {
+            const currentYear = state.complianceYear;
+            const cert = state.complianceCert;
+
+            // Dynamic Data Map
+            const years = [2024, 2025, 2026, 2027];
+            const certs = [
+                { id: 'ISMS', name: 'ISMS' },
+                { id: 'ISO27001', name: 'ISO27001' },
+                { id: 'PCI-DSS', name: 'PCI-DSS' },
+                { id: 'GDPR', name: 'GDPR' }
+            ];
+
+            // Mock Data based on cert
+            const dataMap = {
+                'ISMS': {
+                    stats: { total: 104, completed: 62, pending: 15, insufficient: 7, notStarted: 20 },
+                    controls: [
+                        { id: '1.1.1', cat: '관리체계 설정', name: '경영진의 참여', owner: '김보안', status: '완료', evidence: '승인_보고서.pdf 외 1건', date: '2026-02-01' },
+                        { id: '1.2.1', cat: '위험 관리', name: '위험 식별 및 평가', owner: '이대리', status: '미흡', evidence: '', date: '2026-01-15' },
+                        { id: '2.1.2', cat: '인적 보안', name: '보안 서약서 징구', owner: '정사원', status: '진행 중', evidence: '', date: '-' }
+                    ]
+                },
+                'ISO27001': {
+                    stats: { total: 114, completed: 80, pending: 20, insufficient: 4, notStarted: 10 },
+                    controls: [
+                        { id: 'A.5.1', cat: '보안 정책', name: '정보보호 정책 수립', owner: '박팀장', status: '완료', evidence: 'ISO_최상위정책_v1.2.pdf', date: '2026-01-10' },
+                        { id: 'A.9.2', cat: '액세스 제어', name: '사용자 등록 및 해지', owner: '최운영', status: '진행 중', evidence: '', date: '-' }
+                    ]
+                },
+                'PCI-DSS': {
+                    stats: { total: 12, completed: 2, pending: 5, insufficient: 2, notStarted: 3 },
+                    controls: [
+                        { id: 'Req 3', cat: '카드 데이터 보호', name: '저장된 카드 소유자 데이터 보호', owner: '시스템운영팀', status: '미흡', evidence: '', date: '2026-01-20' },
+                        { id: 'Req 4', cat: '데이터 전송', name: '오픈 네트워크 전송 시 암호화', owner: '네트워크팀', status: '진행 중', evidence: '', date: '-' }
+                    ]
+                },
+                'GDPR': {
+                    stats: { total: 99, completed: 45, pending: 30, insufficient: 10, notStarted: 14 },
+                    controls: [
+                        { id: 'Art 32', cat: '처리 보안', name: '개인정보 처리 보안 조치', owner: '법무팀', status: '완료', evidence: 'DPIA_보고서_2026.pdf', date: '2026-02-05' },
+                        { id: 'Art 33', cat: '침해 통지', name: '감독기구 전파 절차 마련', owner: '정보보호팀', status: '미착수', evidence: '', date: '-' }
+                    ]
+                }
+            };
+
+            const activeData = dataMap[cert] || dataMap['ISMS'];
+            const stats = activeData.stats;
+            const mockControls = activeData.controls;
+
+            return `
+                <div class="section-animate max-w-7xl mx-auto">
+                    <!-- Top Navigation Area -->
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 mb-8">
+                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <div class="flex flex-wrap items-center gap-4">
+                                <div class="relative">
+                                    <select onchange="app.changeComplianceYear(this.value)" class="appearance-none bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2 pr-10 text-xs font-black focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all cursor-pointer">
+                                        ${years.map(y => `<option value="${y}" ${y === currentYear ? 'selected' : ''}>${y}년도</option>`).join('')}
+                                    </select>
+                                    <i class="fas fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-gray-400 pointer-events-none"></i>
+                                </div>
+                                <div class="flex bg-gray-50 dark:bg-gray-900 p-1 rounded-xl border border-gray-200 dark:border-gray-700">
+                                    ${certs.map(c => `
+                                        <button onclick="app.switchComplianceCert('${c.id}')" class="px-6 py-2 text-[11px] font-black rounded-lg transition-all ${c.id === cert ? 'bg-white dark:bg-gray-700 text-blue-500 shadow-md ring-1 ring-black/5 dark:ring-white/5' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'}">
+                                            ${c.name}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition"><i class="fas fa-copy mr-1"></i> 전년도 데이터 복사</button>
+                            </div>
+                        </div>
+
+                        <!-- Summary Cards -->
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-8">
+                            <div class="bg-blue-50/50 dark:bg-blue-900/10 p-5 rounded-2xl border border-blue-100/50 dark:border-blue-900/30">
+                                <p class="text-[9px] text-blue-500 font-black uppercase mb-1">전체 통제항목</p>
+                                <h4 class="text-2xl font-black dark:text-gray-100">${stats.total}건</h4>
+                            </div>
+                            <div class="bg-emerald-50/50 dark:bg-emerald-900/10 p-5 rounded-2xl border border-emerald-100/50 dark:border-emerald-900/30">
+                                <p class="text-[9px] text-emerald-500 font-black uppercase mb-1">증적 완료</p>
+                                <h4 class="text-2xl font-black text-emerald-500">${stats.completed}건</h4>
+                            </div>
+                            <div class="bg-indigo-50/50 dark:bg-indigo-900/10 p-5 rounded-2xl border border-indigo-100/50 dark:border-indigo-900/30">
+                                <p class="text-[9px] text-indigo-500 font-black uppercase mb-1">검토 대기</p>
+                                <h4 class="text-2xl font-black text-indigo-500">${stats.pending}건</h4>
+                            </div>
+                            <div class="bg-red-50/50 dark:bg-red-900/10 p-5 rounded-2xl border border-red-100/50 dark:border-red-900/30">
+                                <p class="text-[9px] text-red-500 font-black uppercase mb-1">미흡/보완</p>
+                                <h4 class="text-2xl font-black text-red-500">${stats.insufficient}건</h4>
+                            </div>
+                            <div class="bg-gray-50/50 dark:bg-gray-900/10 p-5 rounded-2xl border border-gray-100/50 dark:border-gray-700/30">
+                                <p class="text-[9px] text-gray-400 font-black uppercase mb-1">미착수</p>
+                                <h4 class="text-2xl font-black text-gray-400">${stats.notStarted}건</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Table Area -->
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left border-collapse min-w-[1100px]">
+                            <thead>
+                                <tr class="bg-gray-50/50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-700 text-[10px] font-black text-gray-400 uppercase tracking-tighter">
+                                    <th class="px-8 py-5 w-24">번호</th>
+                                    <th class="px-8 py-5 w-36">통제분류</th>
+                                    <th class="px-8 py-5">통제항목명</th>
+                                    <th class="px-8 py-5 w-28">담당자</th>
+                                    <th class="px-8 py-5 w-28 text-center">상태</th>
+                                    <th class="px-8 py-5">증적 자료 관리</th>
+                                    <th class="px-8 py-5 text-center w-36">최종 업데이트</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-50 dark:divide-gray-700 text-xs font-bold">
+                                ${mockControls.map(c => `
+                                    <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors group">
+                                        <td class="px-8 py-6 font-black dark:text-gray-300 tracking-tighter">${c.id}</td>
+                                        <td class="px-8 py-6"><span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-[9px] font-black text-gray-500 dark:text-gray-400">${c.cat}</span></td>
+                                        <td class="px-8 py-6 dark:text-gray-100">${c.name}</td>
+                                        <td class="px-8 py-6 text-gray-500 uppercase text-[10px]">${c.owner}</td>
+                                        <td class="px-8 py-6 text-center">
+                                            <span class="inline-flex items-center gap-1.5 ${c.status === '완료' ? 'text-emerald-500' : c.status === '진행 중' ? 'text-amber-500' : c.status === '미흡' ? 'text-red-500' : 'text-gray-400'}">
+                                                <i class="fas ${c.status === '완료' ? 'fa-check-circle' : c.status === '미착수' ? 'fa-circle' : 'fa-circle-notch fa-spin'} text-[10px]"></i>
+                                                ${c.status}
+                                            </span>
+                                        </td>
+                                        <td class="px-8 py-6">
+                                            <div class="flex items-center gap-2">
+                                                ${c.evidence ? `<span class="text-[10px] text-blue-500 italic hover:underline cursor-pointer flex items-center gap-1"><i class="fas fa-file-alt"></i> ${c.evidence}</span>` : `
+                                                    <button class="px-2 py-1 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-[9px] hover:bg-blue-50 transition" title="직접 업로드"><i class="fas fa-upload text-blue-500 mr-1"></i> 업로드</button>
+                                                    <button class="px-2 py-1 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-[9px] hover:bg-emerald-50 transition" title="시스템 연동"><i class="fas fa-link text-emerald-500 mr-1"></i> 연동</button>
+                                                    <button class="px-2 py-1 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-[9px] hover:bg-amber-50 transition" title="URL 링크"><i class="fas fa-external-link-alt text-amber-500 mr-1"></i> URL</button>
+                                                `}
+                                            </div>
+                                        </td>
+                                        <td class="px-8 py-6 text-center text-gray-400 text-[10px] font-medium">${c.date}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
         window.app = {
             loadSection,
             saveMenus,
@@ -3360,7 +3705,15 @@
             fetchInspectionsDashboard,
             openInspectionAddModal,
             closeInspectionModal,
-            saveInspection
+            saveInspection,
+            switchComplianceCert: (cert) => {
+                state.complianceCert = cert;
+                loadSection('cert_detail_mgmt');
+            },
+            changeComplianceYear: (year) => {
+                state.complianceYear = parseInt(year);
+                loadSection('cert_detail_mgmt');
+            }
         };
 
         // --- Security Request CRUD Functions ---
