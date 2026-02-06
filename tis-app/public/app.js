@@ -35,7 +35,48 @@
             policies: [],
             certs: [],
             complianceYear: 2026,
-            complianceCert: 'ISMS'
+            complianceCert: 'ISMS',
+            currentCertTaskCategory: 'ISMS',
+            certificationTasks: []
+        };
+
+        const certTaskConfig = {
+            'ISMS': {
+                label: 'ISMS',
+                title: 'ISMS-P 인증 관리',
+                desc: '정보보호 및 개인정보보호 관리체계 (KISA)',
+                code: 'ISMS',
+                cols: ['통제영역', '통제항목', '상세설명', '증적자료', '담당자', '상태'],
+                fields: ['domain', 'item', 'description', 'evidence', 'pic', 'status'],
+                addBtn: 'ISMS 항목 추가'
+            },
+            'ISO27001': {
+                label: 'ISO27001',
+                title: 'ISO/IEC 27001 관리',
+                desc: '국제 표준 정보보호 경영시스템 (ISO)',
+                code: 'ISO',
+                cols: ['Clause', 'Control', 'Description', 'Evidence', 'Owner', 'Status'],
+                fields: ['domain', 'item', 'description', 'evidence', 'pic', 'status'],
+                addBtn: 'ISO 항목 추가'
+            },
+            'PCI-DSS': {
+                label: 'PCI-DSS',
+                title: 'PCI-DSS v4.0 관리',
+                desc: '지불 카드 산업 데이터 보안 표준',
+                code: 'PCI',
+                cols: ['Requirement', 'Control', 'Procedure', 'Evidence', 'Assessor', 'Status'],
+                fields: ['domain', 'item', 'description', 'evidence', 'pic', 'status'],
+                addBtn: 'PCI 항목 추가'
+            },
+            'GDPR': {
+                label: 'GDPR',
+                title: 'GDPR 컴플라이언스',
+                desc: '유럽 연합 일반 개인정보보호법 대응',
+                code: 'GDPR',
+                cols: ['Article', 'Requirement', 'Description', 'DPIA', 'DPO', 'Status'],
+                fields: ['domain', 'item', 'description', 'evidence', 'pic', 'status'],
+                addBtn: 'GDPR 항목 추가'
+            }
         };
 
 
@@ -59,7 +100,7 @@
                             <i class="fas fa-trophy text-6xl text-yellow-500 mb-6"></i>
                             <h3 class="text-2xl font-black mb-2 dark:text-gray-100">퀴즈 결과: ${score}/${questions.length}</h3>
                             <p class="text-gray-500 text-sm mb-8 font-bold">참여해 주셔서 감사합니다! <br> 보안 지수가 +10 포인트 상승했습니다.</p>
-                            <button onclick="app.loadSection('security_center')" class="px-8 py-3 bg-[#1e3a8a] text-white rounded-xl font-bold transition transform active:scale-95">교육 센터로 돌아가기</button>
+                            <button data-action="load-section" data-value="security_center" class="px-8 py-3 bg-[#1e3a8a] text-white rounded-xl font-bold transition transform active:scale-95">교육 센터로 돌아가기</button>
                         </div>
                     `;
                     return;
@@ -223,7 +264,7 @@
                                 <i class="fas fa-lightbulb text-4xl mb-4 text-yellow-400 animate-bounce"></i>
                                 <h3 class="text-xl font-black mb-2">오늘의 보안 퀴즈</h3>
                                 <p class="text-blue-200 text-xs mb-6 leading-relaxed">매일 새로운 퀴즈로 지식을 체크하고<br>활동 배지를 획득하세요!</p>
-                                <button onclick="app.loadSection('quiz')" class="w-full py-4 bg-white text-[#1e3a8a] rounded-2xl font-black hover:bg-blue-50 transition shadow-xl transform hover:-translate-y-1">지금 바로 시작</button>
+                                <button data-action="load-section" data-value="quiz" class="w-full py-4 bg-white text-[#1e3a8a] rounded-2xl font-black hover:bg-blue-50 transition shadow-xl transform hover:-translate-y-1">지금 바로 시작</button>
                             </div>
                         </div>
                     </div>
@@ -239,7 +280,7 @@
                         </div>
                     </div>
                 `,
-                afterRender: () => app.initQuiz()
+                afterRender: () => initQuiz()
             },
             incident: {
                 title: '인시던트 신고',
@@ -408,7 +449,7 @@
                                 <h4 class="text-xl font-black dark:text-gray-100">정보 보안 서약서 <span class="text-gray-400 text-xs font-bold ml-2 uppercase tracking-tighter">Information Security Pledges</span></h4>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto">
-                                <button onclick="app.loadSection('pledge_ko')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-blue-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
+                                <button data-action="load-section" data-value="pledge_ko" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-blue-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
                                     <div class="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                         <i class="fas fa-language text-2xl"></i>
                                     </div>
@@ -417,7 +458,7 @@
                                     <div class="mt-8 px-6 py-2 bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">작성하기</div>
                                 </button>
 
-                                <button onclick="app.loadSection('pledge_en')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-[#1e3a8a] shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
+                                <button data-action="load-section" data-value="pledge_en" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-[#1e3a8a] shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
                                     <div class="w-16 h-16 bg-gray-50 dark:bg-gray-900 rounded-2xl flex items-center justify-center text-[#1e3a8a] mb-6 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors">
                                         <i class="fas fa-globe text-2xl"></i>
                                     </div>
@@ -435,7 +476,7 @@
                 <h4 class="text-xl font-black dark:text-gray-100">초상권 및 개인정보 수집 이용 동의서 <span class="text-gray-400 text-xs font-bold ml-2 uppercase tracking-tighter">Portrait Rights and Personal Information Consent</span></h4>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto">
-                <button onclick="app.loadSection('pledge_portrait_ko')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-emerald-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
+                <button data-action="load-section" data-value="pledge_portrait_ko" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-emerald-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
                     <div class="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                         <i class="fas fa-camera text-2xl"></i>
                     </div>
@@ -444,7 +485,7 @@
                     <div class="mt-8 px-6 py-2 bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 rounded-full text-xs font-black opacity-0 group-hover:opacity-100 transition-opacity">작성하기</div>
                 </button>
 
-                <button onclick="app.loadSection('pledge_portrait_en')" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-emerald-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
+                <button data-action="load-section" data-value="pledge_portrait_en" class="group relative bg-white dark:bg-gray-800 p-8 rounded-3xl border-2 border-transparent hover:border-emerald-500 shadow-xl transition-all transform hover:-translate-y-2 flex flex-col items-center">
                     <div class="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                         <i class="fas fa-globe text-2xl"></i>
                     </div>
@@ -531,7 +572,7 @@
                                     <label>이메일 주소 (2차 인증용)</label>
                                     <div class="flex gap-2">
                                         <input type="email" id="pledge-email" placeholder="example@company.com" class="flex-grow">
-                                        <button onclick="app.sendEmailCode('KO')" id="btn-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">인증번호 발송</button>
+                                        <button data-action="send-email-code" data-type="KO" id="btn-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">인증번호 발송</button>
                                     </div>
                                     <p class="text-[10px] text-blue-500 font-bold mt-2">※ 계정은 2차 인증이 완료된 위 이메일 주소로 발급 및 안내됩니다.</p>
                                 </div>
@@ -542,7 +583,7 @@
                                             <input type="text" id="pledge-auth-code" placeholder="000000" maxlength="6" class="w-full pr-12">
                                             <span id="auth-timer" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
                                         </div>
-                                        <button onclick="app.verifyCode('KO')" id="btn-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">확인</button>
+                                        <button data-action="verify-code" data-type="KO" id="btn-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">확인</button>
                                     </div>
                                     <p class="text-[9px] text-gray-400 mt-1">* 화면에 표시된 6자리 숫자를 입력해 주세요.</p>
                                 </div>
@@ -553,7 +594,7 @@
                                 <span class="text-sm font-black text-gray-700 dark:text-gray-300">위의 모든 조항 및 개인정보 처리에 동의합니다.</span>
                             </label>
 
-                            <button id="final-submit-btn" onclick="app.submitPledge('KO')" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">제출하기 (인증 필요)</button>
+                            <button id="final-submit-btn" data-action="pledge-submit" data-type="KO" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">제출하기 (인증 필요)</button>
                             
                             <div class="mt-16 text-center border-t border-gray-100 dark:border-gray-700 pt-8">
                                 <p class="text-2xl font-black text-gray-800 dark:text-gray-200 tracking-[0.5em]">(주)티웨이항공</p>
@@ -637,7 +678,7 @@
                                     <label>Email Address (2FA)</label>
                                     <div class="flex gap-2">
                                         <input type="email" id="pledge-en-email" placeholder="example@company.com" class="flex-grow">
-                                        <button onclick="app.sendEmailCode('EN')" id="btn-en-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">Send Code</button>
+                                        <button data-action="send-email-code" data-type="EN" id="btn-en-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">Send Code</button>
                                     </div>
                                     <p class="text-[10px] text-blue-500 font-bold mt-2">※ The account will be issued and notified to the 2FA verified email address above.</p>
                                 </div>
@@ -648,7 +689,7 @@
                                             <input type="text" id="pledge-en-auth-code" placeholder="000000" maxlength="6" class="w-full pr-12">
                                             <span id="auth-en-timer" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
                                         </div>
-                                        <button onclick="app.verifyCode('EN')" id="btn-en-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">Verify</button>
+                                        <button data-action="verify-code" data-type="EN" id="btn-en-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">Verify</button>
                                     </div>
                                     <p class="text-[9px] text-gray-400 mt-1">* Please enter the 6-digit number shown on the screen.</p>
                                 </div>
@@ -659,7 +700,7 @@
                                 <span class="text-sm font-black text-gray-700 dark:text-gray-300">I agree to all terms of this pledge and personal information processing.</span>
                             </label>
 
-                            <button id="final-submit-en-btn" onclick="app.submitPledge('EN')" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">Submit (Auth Required)</button>
+                            <button id="final-submit-en-btn" data-action="pledge-submit" data-type="EN" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">Submit (Auth Required)</button>
                             
                             <div class="mt-16 text-center border-t border-gray-100 dark:border-gray-700 pt-8">
                                 <p class="text-2xl font-black text-gray-800 dark:text-gray-200 tracking-[0.5em]">T'WAY AIR Co.,Ltd.</p>
@@ -678,7 +719,7 @@
                             <!-- Category Tabs -->
                             <div class="flex items-center gap-1 p-1.5 bg-gray-100 dark:bg-gray-900 rounded-2xl w-fit mb-8 overflow-x-auto no-scrollbar">
                                 ${Object.keys(assetCategoryConfig).map(cat => `
-                                    <button onclick="app.switchAssetCategory('${cat}')" 
+                                    <button data-action="asset-category" data-category="${cat}" 
                                             class="asset-tab px-6 py-2.5 rounded-xl text-xs font-black transition-all whitespace-nowrap
                                             ${state.currentAssetCategory === cat ? 'bg-white dark:bg-gray-800 text-blue-600 shadow-sm' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'}">
                                         ${assetCategoryConfig[cat].label}
@@ -696,14 +737,14 @@
                                         <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                                         <input type="text" id="asset-search" placeholder="검색 또는 수동 입력" class="pl-11 pr-4 py-2.5 bg-white dark:bg-gray-800 rounded-xl border-none shadow-sm focus:ring-2 focus:ring-blue-500 w-64 text-sm outline-none">
                                     </div>
-                                    <button onclick="app.downloadAssetsExcel()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
+                                    <button data-action="asset-download" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
                                         <i class="fas fa-file-excel"></i> 엑셀 다운로드
                                     </button>
-                                    <button onclick="document.getElementById('asset-import-input').click()" class="bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
+                                    <button data-action="asset-import-trigger" class="bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
                                         <i class="fas fa-file-import"></i> 엑셀 업로드
                                     </button>
-                                    <input type="file" id="asset-import-input" class="hidden" accept=".xlsx, .xls" onchange="app.importAssetsExcel(event)">
-                                    <button id="asset-add-btn" onclick="app.openAssetModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
+                                    <input type="file" id="asset-import-input" class="hidden" accept=".xlsx, .xls" data-action="asset-import">
+                                    <button id="asset-add-btn" data-action="asset-add" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
                                         <i class="fas fa-plus"></i> ${assetCategoryConfig[state.currentAssetCategory].addBtn}
                                     </button>
                                 </div>
@@ -725,7 +766,7 @@
                         </div>
                     </div>
                 `,
-                afterRender: () => app.fetchAssets()
+                afterRender: () => fetchAssets()
             },
 
             policy: {
@@ -738,7 +779,7 @@
                                 <p class="text-xs text-gray-400 mt-1 font-bold">총 <span id="policy-count-badge" class="text-blue-500">0</span>개의 규정이 등록되어 있습니다.</p>
                             </div>
                             <div class="flex gap-2">
-                                <button onclick="app.openPolicyEditModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
+                                <button data-action="policy-add" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
                                     <i class="fas fa-plus"></i> 신규 규정 등록
                                 </button>
                             </div>
@@ -750,7 +791,7 @@
 
                     </div>
                 `,
-                afterRender: () => app.fetchPolicies()
+                afterRender: () => fetchPolicies()
             },
             pledge_portrait_ko: {
                 title: '초상권 및 개인정보 수집 동의서 (국문)',
@@ -841,7 +882,7 @@
                                     <label>이메일 주소 (2차 인증용)</label>
                                     <div class="flex gap-2">
                                         <input type="email" id="portrait-ko-email" placeholder="example@company.com" class="flex-grow">
-                                        <button onclick="app.sendEmailCode('PORTRAIT_KO')" id="btn-portrait-ko-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">인증번호 발송</button>
+                                        <button data-action="send-email-code" data-type="PORTRAIT_KO" id="btn-portrait-ko-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">인증번호 발송</button>
                                     </div>
                                 </div>
                                 <div id="auth-portrait-ko-code-container" class="info-field md:col-span-2 hidden">
@@ -851,12 +892,12 @@
                                             <input type="text" id="portrait-ko-auth-code" placeholder="000000" maxlength="6" class="w-full pr-12">
                                             <span id="auth-portrait-ko-timer" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
                                         </div>
-                                        <button onclick="app.verifyCode('PORTRAIT_KO')" id="btn-portrait-ko-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">확인</button>
+                                        <button data-action="verify-code" data-type="PORTRAIT_KO" id="btn-portrait-ko-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">확인</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <button id="final-submit-portrait-ko-btn" onclick="app.submitPledge('PORTRAIT_KO')" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">동의 및 제출하기 (인증 필요)</button>
+                            <button id="final-submit-portrait-ko-btn" data-action="pledge-submit" data-type="PORTRAIT_KO" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">동의 및 제출하기 (인증 필요)</button>
                             
                             <div class="mt-16 text-center pt-8 border-t border-gray-100 dark:border-gray-700">
                                 <img src="/logo-red.png" alt="t'way" class="h-8 mx-auto mb-4 opacity-80" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/41/Tway_Air_logo.png'">
@@ -956,7 +997,7 @@
                                     <label>Email Address (2FA Verification)</label>
                                     <div class="flex gap-2">
                                         <input type="email" id="portrait-en-email" placeholder="example@company.com" class="flex-grow">
-                                        <button onclick="app.sendEmailCode('PORTRAIT_EN')" id="btn-portrait-en-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">Send Code</button>
+                                        <button data-action="send-email-code" data-type="PORTRAIT_EN" id="btn-portrait-en-send-code" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition">Send Code</button>
                                     </div>
                                 </div>
                                 <div id="auth-portrait-en-code-container" class="info-field md:col-span-2 hidden">
@@ -966,12 +1007,12 @@
                                             <input type="text" id="portrait-en-auth-code" placeholder="000000" maxlength="6" class="w-full pr-12">
                                             <span id="auth-portrait-en-timer" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
                                         </div>
-                                        <button onclick="app.verifyCode('PORTRAIT_EN')" id="btn-portrait-en-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">Verify</button>
+                                        <button data-action="verify-code" data-type="PORTRAIT_EN" id="btn-portrait-en-verify-code" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">Verify</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <button id="final-submit-portrait-en-btn" onclick="app.submitPledge('PORTRAIT_EN')" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">Consent and Submit (Auth Required)</button>
+                            <button id="final-submit-portrait-en-btn" data-action="pledge-submit" data-type="PORTRAIT_EN" disabled class="w-full py-5 bg-gray-300 dark:bg-gray-700 text-white rounded-2xl font-black text-xl cursor-not-allowed transition transform active:scale-98">Consent and Submit (Auth Required)</button>
                             
                             <div class="mt-16 text-center pt-8 border-t border-gray-100 dark:border-gray-700">
                                 <img src="/logo-red.png" alt="t'way" class="h-8 mx-auto mb-4 opacity-80" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/41/Tway_Air_logo.png'">
@@ -1022,67 +1063,7 @@
                 `,
                 afterRender: () => app.initChecklist()
             },
-            reports: {
-                title: '통계 리포트',
-                render: () => `
-                    <div class="section-animate max-w-5xl mx-auto">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm">
-                                <h4 class="font-black text-sm mb-6 uppercase text-gray-400">월간 보안 트렌드</h4>
-                                <canvas id="trend-chart" class="h-64"></canvas>
-                            </div>
-                            <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm">
-                                <h4 class="font-black text-sm mb-6 uppercase text-gray-400">부서별 보안 준수율</h4>
-                                <canvas id="dept-chart" class="h-64"></canvas>
-                            </div>
-                        </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            ${[
-                        { label: '취약점 발견', val: '42', color: 'blue' },
-                        { label: '해결 완료', val: '38', color: 'green' },
-                        { label: '조치 중', val: '4', color: 'orange' }
-                    ].map(c => `
-                                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm text-center">
-                                    <p class="text-[10px] font-black text-gray-400 uppercase mb-2">${c.label}</p>
-                                    <p class="text-4xl font-black text-${c.color}-500">${c.val}</p>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `,
-                afterRender: () => app.initReports()
-            },
-            process: {
-                title: '업무 프로세스',
-                render: () => `
-                    <div class="section-animate max-w-4xl mx-auto">
-                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 p-10">
-                            <h3 class="text-xl font-black mb-10 text-center uppercase tracking-widest text-gray-400">Security Workflow</h3>
-                            <div class="relative border-l-4 border-blue-100 dark:border-blue-900/50 ml-6 space-y-12">
-                                ${[
-                        { step: '01', title: '보안성 검토 요청', desc: '신규 시스템 도입 또는 사내 서비스 구축 시 보안성 검토를 선행합니다.', icon: 'fa-paper-plane' },
-                        { step: '02', title: '취약점 진단 및 조치', desc: '보안팀에서 자동/수동 진단을 수행하며, 발견된 취약점은 해당 부서에서 조치합니다.', icon: 'fa-code-branch' },
-                        { step: '03', title: '보안 요건 검증', desc: '조치 사항이 완벽히 이행되었는지 최종 검증 과정을 거칩니다.', icon: 'fa-user-check' },
-                        { step: '04', title: '시스템 오픈 승인', desc: '검증된 시스템에 대해 최종 보안 승인 후 서비스를 오픈합니다.', icon: 'fa-rocket' }
-                    ].map(s => `
-                                    <div class="relative pl-10 group">
-                                        <div class="absolute -left-3.5 top-0 w-6 h-6 bg-white dark:bg-gray-800 rounded-full border-4 border-blue-500 group-hover:scale-125 transition-transform z-10"></div>
-                                        <div class="flex items-start gap-6">
-                                            <div class="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-[#1e3a8a] dark:text-blue-400 flex items-center justify-center text-xl shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fas ${s.icon}"></i></div>
-                                            <div>
-                                                <span class="text-[10px] font-black text-blue-500 dark:text-blue-400 uppercase tracking-tighter">Step ${s.step}</span>
-                                                <h4 class="text-lg font-black dark:text-gray-100 mb-1">${s.title}</h4>
-                                                <p class="text-sm text-gray-500 leading-relaxed font-bold">${s.desc}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
             faq: {
                 title: 'FAQ',
                 render: () => `
@@ -1211,7 +1192,7 @@
                                             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
                                             <input type="text" id="sol-search" placeholder="검색..." class="pl-9 pr-3 py-2 bg-white dark:bg-gray-800 rounded-lg border-none shadow-sm text-xs outline-none w-48">
                                         </div>
-                                        <button onclick="app.openSolutionAddModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition">
+                                        <button data-action="solution-add" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
@@ -1249,114 +1230,86 @@
                     fetchSolutions();
                 }
             },
-            compliance_dash: {
-                title: '인증/컴플라이언스 통합 대시보드',
+
+            cert_detail_mgmt: {
+                title: '인증 업무 관리',
                 render: () => `
-                    <div class="section-animate max-w-7xl mx-auto">
+                    <div id="cert-detail-mgmt" class="section-animate max-w-7xl mx-auto">
+                        <!-- Top Header -->
                         <div class="flex items-center justify-between mb-8">
                             <div>
-                                <h3 class="text-2xl font-black dark:text-gray-100 italic tracking-tighter">Compliance Governance</h3>
-                                <p class="text-xs text-gray-400 font-bold uppercase mt-1">4대 인증 체계 통합 현황 및 일정 관리</p>
+                                <h3 id="cert-page-title" class="text-2xl font-black dark:text-gray-100 italic tracking-tighter">${certTaskConfig[state.currentCertTaskCategory].title}</h3>
+                                <p id="cert-page-desc" class="text-xs text-gray-400 font-bold uppercase mt-1">${certTaskConfig[state.currentCertTaskCategory].desc}</p>
                             </div>
-                            <div class="flex gap-2">
-                                <button class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition">심사 일정 등록</button>
-                                <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-500 rounded-xl text-xs font-black border border-gray-200 dark:border-gray-700 hover:bg-gray-200 transition">보고서 내보내기</button>
-                            </div>
+                            <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-500 rounded-xl text-xs font-black border border-gray-200 dark:border-gray-700 hover:bg-gray-200 transition">
+                                <i class="fas fa-file-export mr-1"></i> 전체 현황 내보내기
+                            </button>
                         </div>
 
-                        <!-- Main Compliance Status Table -->
-                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden mb-10">
-                            <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/30 dark:bg-gray-900/30">
-                                <h4 class="font-black flex items-center gap-2 dark:text-gray-100"><i class="fas fa-list-check text-blue-500"></i> 인증 체계별 통합 현황</h4>
-                                <span class="text-[10px] font-bold text-gray-400">마지막 동기화: 2026-02-05 16:30</span>
+                        <!-- Tabs -->
+                         <div class="mb-8 p-1 bg-gray-100 dark:bg-gray-800 rounded-2xl inline-flex relative z-0">
+                            ${Object.keys(certTaskConfig).map(key => `
+                                <button data-action="cert-task-category" data-category="${key}" class="cert-task-tab px-6 py-2.5 rounded-xl text-xs font-black transition-all ${state.currentCertTaskCategory === key ? 'bg-white dark:bg-gray-800 text-blue-600 shadow-sm' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'}">
+                                    ${certTaskConfig[key].label}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Main Content -->
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden min-h-[600px] flex flex-col">
+                             <!-- Toolbar -->
+                            <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gray-50/30 dark:bg-gray-900/10">
+                                <div class="flex items-center gap-4">
+                                     <div class="relative">
+                                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs"></i>
+                                        <input type="text" id="cert-task-search" oninput="app.renderCertTaskTable(this.value)" placeholder="항목 검색..." class="pl-10 pr-4 py-2.5 w-64 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-bold focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm">
+                                    </div>
+                                    <h4 id="cert-task-category-label" class="text-lg font-black dark:text-gray-200 hidden md:block">
+                                        ${certTaskConfig[state.currentCertTaskCategory].label}
+                                    </h4>
+                                </div>
+                                <div class="flex gap-2">
+                                    <input type="file" id="cert-task-excel-upload" class="hidden" accept=".xlsx, .xls" onchange="app.handleCertTaskImport(event)">
+                                    <button onclick="document.getElementById('cert-task-excel-upload').click()" class="px-4 py-2.5 bg-green-50 text-green-600 border border-green-200 dark:border-green-900/30 dark:bg-green-900/20 rounded-xl text-xs font-black hover:bg-green-100 transition shadow-sm">
+                                        <i class="fas fa-file-excel mr-1"></i> 엑셀 업로드
+                                    </button>
+                                     <button data-action="cert-task-download" class="px-4 py-2.5 bg-gray-50 text-gray-600 border border-gray-200 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded-xl text-xs font-black hover:bg-gray-100 transition shadow-sm">
+                                        <i class="fas fa-download mr-1"></i> 엑셀 다운로드
+                                    </button>
+                                    <button id="cert-task-add-btn" data-action="cert-task-add" class="px-4 py-2.5 bg-blue-600 text-white rounded-xl text-xs font-black hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">
+                                        <i class="fas fa-plus"></i> ${certTaskConfig[state.currentCertTaskCategory].addBtn}
+                                    </button>
+                                </div>
                             </div>
-                            <div class="overflow-x-auto">
+
+                            <!-- Table -->
+                            <div class="flex-grow overflow-x-auto">
                                 <table class="w-full text-left border-collapse">
-                                    <thead>
-                                        <tr class="bg-gray-50/50 dark:bg-gray-900/50 text-[10px] font-black text-gray-400 uppercase tracking-tighter">
-                                            <th class="px-8 py-4">항목</th>
-                                            <th class="px-8 py-4">구분</th>
-                                            <th class="px-8 py-4 text-center">상태</th>
-                                            <th class="px-8 py-4">주요 일정</th>
-                                            <th class="px-8 py-4">진척도</th>
-                                            <th class="px-8 py-4 text-center">작업</th>
-                                        </tr>
+                                    <thead id="cert-task-table-head">
+                                        <!-- Header injected by JS -->
                                     </thead>
-                                    <tbody class="divide-y divide-gray-50 dark:divide-gray-700 text-xs font-bold">
-                                        ${[
-                        { id: 'ISMS', type: '사후 심사', status: '준비 중', date: '2026-05-10', rate: 65, color: 'blue' },
-                        { id: 'ISO27001', type: '갱신 심사', status: '진행 중', date: '2026-08-20', rate: 90, color: 'emerald' },
-                        { id: 'PCI-DSS', type: '정기 심사', status: '대기', date: '2026-11-15', rate: 10, color: 'indigo' },
-                        { id: 'GDPR', type: '자체 점검', status: '상시', date: '-', rate: 45, color: 'amber' }
-                    ].map(c => `
-                                            <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors group">
-                                                <td class="px-8 py-5 font-black dark:text-gray-200">${c.id}</td>
-                                                <td class="px-8 py-5 text-gray-400">${c.type}</td>
-                                                <td class="px-8 py-5 text-center">
-                                                    <span class="px-2 py-0.5 rounded-md text-[9px] font-black ${c.status === '진행 중' ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-300'}">
-                                                        ${c.status}
-                                                    </span>
-                                                </td>
-                                                <td class="px-8 py-5 text-gray-500 font-medium">${c.date}</td>
-                                                <td class="px-8 py-5">
-                                                    <div class="flex items-center gap-3">
-                                                        <div class="flex-grow bg-gray-100 dark:bg-gray-700 h-1.5 rounded-full overflow-hidden w-24">
-                                                            <div class="bg-${c.color}-500 h-full" style="width: ${c.rate}%"></div>
-                                                        </div>
-                                                        <span class="text-[10px] font-black dark:text-gray-300 w-8">${c.rate}%</span>
-                                                    </div>
-                                                </td>
-                                                <td class="px-8 py-5 text-center">
-                                                    <button onclick="app.switchComplianceCert('${c.id}')" class="text-blue-500 hover:text-blue-700 transition"><i class="fas fa-arrow-right-to-bracket"></i></button>
-                                                </td>
-                                            </tr>
-                                        `).join('')}
+                                    <tbody id="cert-task-list-body" class="divide-y divide-gray-50 dark:divide-gray-700 text-xs font-bold text-gray-600">
+                                        <!-- Body injected by JS -->
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-
-                        <!-- Recent Evidence Library Activity -->
-                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
-                            <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
-                                <h4 class="font-black flex items-center gap-2"><i class="fas fa-history text-blue-500"></i> 최근 증적 업데이트 현황</h4>
-                                <button onclick="app.loadSection('evidence_lib')" class="text-[10px] font-black text-blue-500 hover:underline">라이브러리 전체보기</button>
-                            </div>
-                            <div class="divide-y divide-gray-50 dark:divide-gray-700">
-                                ${[
-                        { cert: 'ISMS', item: '경영진의 참여', user: '정보보호최고책임자', time: '방금 전', file: '승인문서_2026.pdf' },
-                        { cert: 'ISO27001', item: '접근 권한 관리', user: '시스템운영팀', time: '1시간 전', file: '사용자_전수조사_리스트.xlsx' },
-                        { cert: 'PCI-DSS', item: '카드정보 암호화', user: '개발팀', time: '어제', file: '암호화_알고리즘_검증서.pdf' }
-                    ].map(a => `
-                                    <div class="p-4 hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors flex items-center justify-between">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-10 h-10 rounded-xl bg-gray-50 dark:bg-gray-900 flex items-center justify-center text-blue-500 font-black text-[10px] shadow-inner">${a.cert}</div>
-                                            <div>
-                                                <p class="text-xs font-black dark:text-gray-200">${a.item}</p>
-                                                <div class="flex items-center gap-2 text-[10px] text-gray-400 font-bold mt-0.5">
-                                                    <span>${a.user}</span>
-                                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
-                                                    <span>${a.time}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center gap-3">
-                                            <span class="text-[10px] font-bold text-gray-400 italic">${a.file}</span>
-                                            <button class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg"><i class="fas fa-download"></i></button>
-                                        </div>
-                                    </div>
-                                `).join('')}
+                            
+                            <!-- Pagination (Mock) -->
+                             <div class="p-4 border-t border-gray-100 dark:border-gray-700 flex justify-center">
+                                <div class="flex gap-1">
+                                    <button class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-500 text-xs font-bold hover:bg-gray-200"><i class="fas fa-chevron-left"></i></button>
+                                    <button class="w-8 h-8 rounded-lg bg-blue-600 text-white text-xs font-bold shadow-md">1</button>
+                                    <button class="w-8 h-8 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-500 text-xs font-bold hover:bg-gray-100">2</button>
+                                    <button class="w-8 h-8 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-500 text-xs font-bold hover:bg-gray-100">3</button>
+                                    <button class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-500 text-xs font-bold hover:bg-gray-200"><i class="fas fa-chevron-right"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 `,
                 afterRender: () => {
-                    // Dashboard initialization if needed
+                    fetchCertTasks();
                 }
-            },
-            cert_detail_mgmt: {
-                title: '인증별 관리 (ISMS/ISO/PCI/GDPR)',
-                render: () => renderComplianceDetail(state.complianceCert)
             },
             capa_mgmt: {
                 title: '결함 조치(CAPA) 관리',
@@ -1464,7 +1417,7 @@
                                                 <div class="flex gap-2">
                                                     <input type="text" data-menu-id="${item.id}" value="${customNames[item.id] || item.default}" 
                                                         class="menu-input flex-grow p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-bold focus:ring-2 focus:ring-red-500 outline-none">
-                                                    <button onclick="app.resetMenu('${item.id}')" class="p-3 bg-gray-100 dark:bg-gray-700 rounded-xl text-gray-400 hover:text-red-500 transition" title="초기화">
+                                                    <button data-action="menu-reset" data-menu-id="${item.id}" class="p-3 bg-gray-100 dark:bg-gray-700 rounded-xl text-gray-400 hover:text-red-500 transition" title="초기화">
                                                         <i class="fas fa-rotate-left"></i>
                                                     </button>
                                                 </div>
@@ -1472,7 +1425,7 @@
                                         `).join('')}
                                     </div>
                                     <div class="pt-6 border-t border-gray-100 dark:border-gray-700">
-                                        <button onclick="app.saveMenus()" class="w-full py-4 bg-red-600 text-white rounded-2xl font-black text-lg hover:shadow-2xl transition transform active:scale-95">설정 저장 및 새로고침</button>
+                                        <button data-action="menu-save" class="w-full py-4 bg-red-600 text-white rounded-2xl font-black text-lg hover:shadow-2xl transition transform active:scale-95">설정 저장 및 새로고침</button>
                                     </div>
                                 </div>
                             </div>
@@ -1541,11 +1494,11 @@
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                             <h3 class="text-xl font-black dark:text-gray-100"><i class="fas fa-shield-virus text-red-500 mr-2"></i>취약점 현황</h3>
                             <div class="flex items-center gap-3">
-                                <button onclick="app.filterCves('all')" class="cve-filter-btn px-4 py-2 bg-gray-800 text-white rounded-xl text-xs font-bold shadow-lg">전체</button>
-                                <button onclick="app.filterCves('unpatched')" class="cve-filter-btn px-4 py-2 bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-300 rounded-xl text-xs font-bold border border-gray-200 dark:border-gray-600 hover:text-red-500 transition">미조치</button>
-                                <button onclick="app.filterCves('high')" class="cve-filter-btn px-4 py-2 bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-300 rounded-xl text-xs font-bold border border-gray-200 dark:border-gray-600 hover:text-red-500 transition">High Risk</button>
+                                <button data-action="cve-filter" data-filter="all" class="cve-filter-btn px-4 py-2 bg-gray-800 text-white rounded-xl text-xs font-bold shadow-lg">전체</button>
+                                <button data-action="cve-filter" data-filter="unpatched" class="cve-filter-btn px-4 py-2 bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-300 rounded-xl text-xs font-bold border border-gray-200 dark:border-gray-600 hover:text-red-500 transition">미조치</button>
+                                <button data-action="cve-filter" data-filter="high" class="cve-filter-btn px-4 py-2 bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-300 rounded-xl text-xs font-bold border border-gray-200 dark:border-gray-600 hover:text-red-500 transition">High Risk</button>
                                 <div class="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-2"></div>
-                                <button onclick="app.openCveModal()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl text-xs font-black transition shadow-lg flex items-center gap-2">
+                                <button data-action="cve-add" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl text-xs font-black transition shadow-lg flex items-center gap-2">
                                     <i class="fas fa-plus"></i> 등록
                                 </button>
                             </div>
@@ -1601,10 +1554,16 @@
 
                         <!-- Table Header -->
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                            <h3 class="text-xl font-black dark:text-gray-100">서약 제출 상세 목록</h3>
+                            <div class="flex items-center gap-4">
+                                <h3 class="text-xl font-black dark:text-gray-100">서약 제출 상세 목록</h3>
+                                <div class="flex p-1 bg-gray-100 dark:bg-gray-700 rounded-xl">
+                                    <button data-action="pledge-tab" data-tab="security" class="pledge-tab px-4 py-1.5 rounded-lg text-xs font-black transition bg-blue-600 text-white shadow-sm" data-tab="security">정보보안 서약</button>
+                                    <button data-action="pledge-tab" data-tab="portrait" class="pledge-tab px-4 py-1.5 rounded-lg text-xs font-black transition text-gray-500 dark:text-gray-400 hover:text-gray-700" data-tab="portrait">초상권 동의</button>
+                                </div>
+                            </div>
                             <div class="relative">
                                 <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                                <input type="text" id="pledge-search" placeholder="성명 또는 사번 검색..." class="pl-11 pr-4 py-2.5 bg-white dark:bg-gray-800 rounded-xl border-none shadow-sm focus:ring-2 focus:ring-blue-500 w-64 text-sm outline-none">
+                                <input type="text" id="pledge-search" placeholder="성명 검색..." class="pl-11 pr-4 py-2.5 bg-white dark:bg-gray-800 rounded-xl border-none shadow-sm focus:ring-2 focus:ring-blue-500 w-64 text-sm outline-none" onkeyup="app.renderPledgeTable()">
                             </div>
                         </div>
 
@@ -1612,18 +1571,19 @@
                         <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                             <table class="w-full text-left border-collapse min-w-[1000px]">
                                 <thead>
-                                    <tr class="bg-gray-50/50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-700 text-[11px] font-black text-gray-400 uppercase tracking-tighter">
+                                    <tr id="pledge-table-head-row" class="bg-gray-50/50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-700 text-[11px] font-black text-gray-400 uppercase tracking-tighter">
                                         <th class="px-6 py-4">성명</th>
-                                        <th class="px-4 py-4">사번</th>
-                                        <th class="px-4 py-4">부서</th>
-                                        <th class="px-4 py-4">서약 종류</th>
+                                        <th class="px-4 py-4">소속 업체</th>
+                                        <th class="px-4 py-4">연락처</th>
+                                        <th class="px-4 py-4">이메일</th>
+                                        <th class="px-4 py-4">사업명</th>
+                                        <th class="px-4 py-4">업무 기간</th>
                                         <th class="px-4 py-4">제출 일시</th>
-                                        <th class="px-4 py-4">상태</th>
                                     </tr>
                                 </thead>
                                 <tbody id="pledge-list-body" class="divide-y divide-gray-50 dark:divide-gray-700 text-xs font-bold">
                                     <tr>
-                                        <td colspan="6" class="py-20 text-center text-gray-400">데이터를 불러오는 중...</td>
+                                        <td colspan="7" class="py-20 text-center text-gray-400">데이터를 불러오는 중...</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1642,7 +1602,7 @@
                             <!-- Category Tabs -->
                             <div class="flex items-center gap-1 p-1.5 bg-gray-100 dark:bg-gray-900 rounded-2xl w-fit mb-8 overflow-x-auto no-scrollbar">
                                 ${['All', '보안서약', '자산관리', '보안요청', '권한관리', '시스템'].map(cat => `
-                                    <button onclick="app.filterLogs('${cat === 'All' ? 'all' : cat}')" 
+                                    <button data-action="log-filter" data-filter="${cat === 'All' ? 'all' : cat}" 
                                             class="log-tab px-6 py-2.5 rounded-xl text-xs font-black transition-all whitespace-nowrap
                                             ${(state.currentLogCategory || 'all') === (cat === 'All' ? 'all' : cat) ? 'bg-white dark:bg-gray-800 text-blue-600 shadow-sm' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'}"
                                             data-cat="${cat === 'All' ? 'all' : cat}">
@@ -1663,7 +1623,7 @@
                                             onkeyup="if(event.key === 'Enter') app.fetchLogs()"
                                             class="pl-11 pr-4 py-2.5 bg-white dark:bg-gray-800 rounded-xl border-none shadow-sm focus:ring-2 focus:ring-blue-500 w-64 text-sm outline-none">
                                     </div>
-                                    <button onclick="app.fetchLogs()" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2.5 rounded-xl text-xs font-black transition shadow-lg">
+                                    <button data-action="log-refresh" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2.5 rounded-xl text-xs font-black transition shadow-lg">
                                         <i class="fas fa-sync-alt"></i> 새로고침
                                     </button>
                                 </div>
@@ -1693,7 +1653,7 @@
                         </div>
                     </div>
                 `,
-                afterRender: () => app.fetchLogs()
+                afterRender: () => fetchLogs()
             }
         };
 
@@ -1764,14 +1724,17 @@
 
         // Nav Click
         els.navLinks.forEach(link => {
-            link.onclick = (e) => {
-                const id = link.getAttribute('data-section');
-                if (id) {
-                    e.preventDefault();
-                    if (state.currentSection === id) return;
-                    loadSection(id);
-                }
-            };
+            // Only attach navigation handler if it has a data-section attribute
+            if (link.getAttribute('data-section')) {
+                link.onclick = (e) => {
+                    const id = link.getAttribute('data-section');
+                    if (id) {
+                        e.preventDefault();
+                        if (state.currentSection === id) return;
+                        loadSection(id);
+                    }
+                };
+            }
         });
 
         // Hash Change
@@ -1779,6 +1742,34 @@
             const hash = window.location.hash.substring(1);
             if (hash && sections[hash] && state.currentSection !== hash) loadSection(hash);
         };
+
+        // Explicit bindings for Cert Toggle to avoid inline issues
+        const certToggleBtn = helpers.qs('#cert-toggle-btn');
+        if (certToggleBtn) {
+            certToggleBtn.onclick = (e) => {
+                e.preventDefault();
+                toggleSubmenu('cert-submenu');
+            };
+        }
+
+        // Explicit bindings for Cert Submenu Buttons
+        const certButtons = [
+            { id: '#btn-cert-isms', type: 'ISMS' },
+            { id: '#btn-cert-iso', type: 'ISO27001' },
+            { id: '#btn-cert-pci', type: 'PCI-DSS' },
+            { id: '#btn-cert-gdpr', type: 'GDPR' }
+        ];
+
+        certButtons.forEach(btn => {
+            const el = helpers.qs(btn.id);
+            if (el) {
+                el.onclick = (e) => {
+                    e.preventDefault();
+                    // Keep submenu open? Yes, naturally.
+                    navigateToCert(btn.type);
+                };
+            }
+        });
 
         // Emergency Banner handled? No, removed in previous step.
 
@@ -1831,7 +1822,10 @@
 
         async function fetchInspectionsDashboard() {
             try {
-                const res = await fetch('/api/inspections/dashboard');
+                const res = await fetch('/api/inspections/dashboard', {
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
+                if (!res.ok) throw new Error('Failed to fetch dashboard');
                 const data = await res.json();
 
                 // 1. 점검 현황
@@ -1874,7 +1868,10 @@
             if (!body) return;
 
             try {
-                const res = await fetch('/api/inspections/solutions');
+                const res = await fetch('/api/inspections/solutions', {
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
+                if (!res.ok) throw new Error('Failed to fetch solutions');
                 const list = await res.json();
                 state.solutions = list;
                 renderSolutionsTable();
@@ -1942,8 +1939,8 @@
                     <td class="px-8 py-6 text-[10px] font-bold text-gray-500 min-w-[250px] whitespace-normal" title="${escapeHtml(s.remarks || '-')}">${escapeHtml(s.remarks || '-')}</td>
                     <td class="px-8 py-6 text-center whitespace-nowrap">
                          <div class="flex items-center justify-center gap-2">
-                            <button onclick="app.editSolution(${s.id})" class="p-2.5 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/30 rounded-xl transition shadow-sm" title="수정"><i class="fas fa-edit"></i></button>
-                            <button onclick="app.deleteSolution(${s.id})" class="p-2.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition shadow-sm" title="삭제"><i class="fas fa-trash-alt"></i></button>
+                            <button data-action="solution-edit" data-id="${s.id}" class="p-2.5 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/30 rounded-xl transition shadow-sm" title="수정"><i class="fas fa-edit"></i></button>
+                            <button data-action="solution-delete" data-id="${s.id}" class="p-2.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition shadow-sm" title="삭제"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -2191,8 +2188,8 @@
                     <td class="px-8 py-6 text-[10px] font-bold text-gray-500 whitespace-nowrap">${escapeHtml(c.owner)}</td>
                     <td class="px-8 py-6 text-center whitespace-nowrap">
                          <div class="flex items-center justify-center gap-2">
-                            <button onclick="app.editCert(${c.id})" class="p-2.5 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/30 rounded-xl transition shadow-sm" title="수정"><i class="fas fa-edit"></i></button>
-                            <button onclick="app.deleteCert(${c.id})" class="p-2.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition shadow-sm" title="삭제"><i class="fas fa-trash-alt"></i></button>
+                            <button data-action="cert-edit" data-id="${c.id}" class="p-2.5 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/30 rounded-xl transition shadow-sm" title="수정"><i class="fas fa-edit"></i></button>
+                            <button data-action="cert-delete" data-id="${c.id}" class="p-2.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition shadow-sm" title="삭제"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -2220,6 +2217,358 @@
             notifications.show('인증 추가 기능을 준비 중입니다.', 'info');
         }
 
+        // --- Certification Task Management (New) ---
+
+        async function fetchCertTasks() {
+            const body = helpers.qs('#cert-task-list-body');
+            const head = helpers.qs('#cert-task-table-head');
+            if (!body || !head) return;
+
+            try {
+                // 초기 로딩 스피너
+                body.innerHTML = '<tr><td colspan="10" class="py-20 text-center text-gray-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i><p>데이터를 불러오는 중...</p></td></tr>';
+
+                const res = await fetch('/api/requests', {
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
+                if (!res.ok) throw new Error('Failed to fetch cert tasks');
+
+                state.certificationTasks = await res.json();
+                renderCertTaskTable();
+
+                const searchInput = helpers.qs('#cert-task-search');
+                if (searchInput) {
+                    searchInput.oninput = (e) => {
+                        renderCertTaskTable(e.target.value.toLowerCase());
+                    };
+                }
+            } catch (err) {
+                console.error('Fetch Cert Tasks Error:', err);
+                body.innerHTML = '<tr><td colspan="10" class="py-10 text-center text-red-500">데이터 로딩 오류</td></tr>';
+            }
+        }
+
+        function renderCertTaskTable(searchTerm = '') {
+            const body = helpers.qs('#cert-task-list-body');
+            const head = helpers.qs('#cert-task-table-head');
+            if (!body || !head) return;
+
+            const config = certTaskConfig[state.currentCertTaskCategory];
+            const filtered = state.certificationTasks.filter(t => {
+                if (t.category !== state.currentCertTaskCategory) return false;
+                if (!searchTerm) return true;
+                return config.fields.some(f => t[f] && t[f].toString().toLowerCase().includes(searchTerm));
+            });
+
+            head.innerHTML = `
+                <tr class="bg-gray-50/50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-700 text-[11px] font-black text-gray-400 uppercase tracking-tighter">
+                    <th class="px-4 py-4 w-12 text-center">No</th>
+                    ${config.cols.map(col => `<th class="px-4 py-4 whitespace-nowrap">${col}</th>`).join('')}
+                    <th class="px-4 py-4 text-center whitespace-nowrap">관리</th>
+                </tr>
+            `;
+
+            if (filtered.length === 0) {
+                body.innerHTML = `<tr><td colspan="${config.cols.length + 2}" class="py-10 text-center text-gray-400">등록된 항목이 없습니다.</td></tr>`;
+                return;
+            }
+
+            body.innerHTML = filtered.map((item, idx) => `
+                <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-700/30 transition-colors cursor-pointer group">
+                    <td class="px-4 py-4 text-center text-gray-400 font-mono text-[10px]">${idx + 1}</td>
+                    ${config.fields.map(field => `
+                        <td class="px-4 py-4 text-xs font-bold dark:text-gray-200 max-w-[200px] break-words whitespace-normal">${escapeHtml(item[field] || '-')}</td>
+                    `).join('')}
+                    <td class="px-4 py-4 text-center whitespace-nowrap">
+                        <div class="flex justify-center gap-2">
+                             <button data-action="cert-task-edit" data-id="${item.id}" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition" title="수정"><i class="fas fa-edit"></i></button>
+                             <button data-action="cert-task-delete" data-id="${item.id}" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition" title="삭제"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function switchCertTaskCategory(cat) {
+            state.currentCertTaskCategory = cat;
+
+            // Header update
+            const pageTitle = helpers.qs('#cert-page-title');
+            if (pageTitle) pageTitle.textContent = certTaskConfig[cat].title;
+
+            const pageDesc = helpers.qs('#cert-page-desc');
+            if (pageDesc) pageDesc.textContent = certTaskConfig[cat].desc;
+
+            // Tab styling update
+            helpers.qsa('.cert-task-tab').forEach(btn => {
+                const label = btn.textContent.trim();
+                const isSelected = label === certTaskConfig[cat].label;
+                btn.classList.toggle('bg-white', isSelected);
+                btn.classList.toggle('dark:bg-gray-800', isSelected);
+                btn.classList.toggle('text-blue-600', isSelected);
+                btn.classList.toggle('shadow-sm', isSelected);
+                btn.classList.toggle('text-gray-400', !isSelected);
+            });
+
+            const addBtn = helpers.qs('#cert-task-add-btn');
+            if (addBtn) addBtn.innerHTML = `<i class="fas fa-plus"></i> ${certTaskConfig[cat].addBtn}`;
+
+            const label = helpers.qs('#cert-task-category-label');
+            if (label) label.textContent = certTaskConfig[cat].label;
+
+            renderCertTaskTable();
+        }
+
+        function navigateToCert(category) {
+            console.log('Navigating to:', category); // Debug log
+            if (window.event) window.event.preventDefault(); // Fixed: preventDefault instead of stopPropagation might be safer for buttons
+
+            // Always update state first
+            state.currentCertTaskCategory = category;
+
+            // Feedback
+            // notifications.show(`${certTaskConfig[category].label} 관리로 이동합니다.`, 'info');
+
+            if (state.currentSection !== 'cert_detail_mgmt') {
+                loadSection('cert_detail_mgmt');
+            } else {
+                // Already on the page, force switch
+                switchCertTaskCategory(category);
+            }
+
+            // Force scroll after a short delay to ensure DOM is ready
+            setTimeout(() => {
+                const section = helpers.qs('#cert-detail-mgmt');
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                    notifications.show(`${certTaskConfig[category].label} 화면으로 이동했습니다.`, 'success');
+                } else {
+                    console.error('Target section #cert-detail-mgmt not found');
+                }
+            }, 100);
+        }
+
+        function toggleSubmenu(id) {
+            const menu = helpers.qs(`#${id}`);
+            const arrow = helpers.qs(`#${id}-arrow`);
+
+            if (!menu) {
+                console.error('Menu element not found:', id);
+                return;
+            }
+
+            menu.classList.toggle('hidden');
+
+            if (arrow) {
+                if (menu.classList.contains('hidden')) {
+                    arrow.style.transform = 'rotate(0deg)';
+                } else {
+                    arrow.style.transform = 'rotate(180deg)';
+                }
+            }
+        }
+
+        function openCertTaskModal(id = -1) {
+            const modal = helpers.qs('#cert-task-modal');
+            const fieldsContainer = helpers.qs('#cert-task-modal-fields');
+            const title = helpers.qs('#cert-task-modal-title');
+
+            if (!fieldsContainer) return;
+
+            const config = certTaskConfig[state.currentCertTaskCategory];
+            const isEdit = id > -1;
+            const taskData = isEdit ? state.certificationTasks.find(t => t.id === id) : null;
+
+            title.textContent = isEdit ? `${config.label} 항목 수정` : `${config.label} 항목 추가`;
+
+            let fieldsHtml = `<input type="hidden" id="cert-task-edit-id" value="${id}">`;
+
+            config.cols.forEach((col, idx) => {
+                const field = config.fields[idx];
+                const val = taskData ? (taskData[field] || '') : '';
+
+                fieldsHtml += `
+                    <div class="mb-4">
+                        <label class="text-[10px] font-black text-gray-400 uppercase mb-1 block">${col}</label>
+                        <input type="text" data-cert-field="${field}" value="${escapeHtml(val)}" 
+                               class="cert-task-input w-full p-3.5 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                 `;
+            });
+
+            fieldsContainer.innerHTML = fieldsHtml;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCertTaskModal() {
+            const modal = helpers.qs('#cert-task-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function handleCertTaskSubmit() {
+            const id = parseInt(helpers.qs('#cert-task-edit-id').value);
+            const isEdit = id > -1;
+            const config = certTaskConfig[state.currentCertTaskCategory];
+
+            const newData = {
+                id: isEdit ? id : Date.now(),
+                category: state.currentCertTaskCategory
+            };
+
+            const inputs = helpers.qsa('.cert-task-input');
+            inputs.forEach(input => {
+                const field = input.getAttribute('data-cert-field');
+                newData[field] = input.value;
+            });
+
+            if (isEdit) {
+                const idx = state.certificationTasks.findIndex(t => t.id === id);
+                if (idx > -1) {
+                    state.certificationTasks[idx] = { ...state.certificationTasks[idx], ...newData };
+                }
+            } else {
+                state.certificationTasks.push(newData);
+            }
+
+            closeCertTaskModal();
+            renderCertTaskTable();
+            notifications.show('저장되었습니다.', 'success');
+        }
+
+        function deleteCertTask(id) {
+            if (confirm('이 항목을 삭제하시겠습니까?')) {
+                state.certificationTasks = state.certificationTasks.filter(t => t.id !== id);
+                renderCertTaskTable();
+                notifications.show('삭제되었습니다.', 'success');
+            }
+        }
+
+        function downloadCertTasksExcel() {
+            const config = certTaskConfig[state.currentCertTaskCategory];
+            const filtered = state.certificationTasks.filter(t => t.category === state.currentCertTaskCategory);
+
+            if (filtered.length === 0) {
+                notifications.show('다운로드할 데이터가 없습니다.', 'info');
+                return;
+            }
+
+            try {
+                // Map data to rows
+                const excelData = filtered.map(item => {
+                    const row = {};
+                    config.fields.forEach((field, idx) => {
+                        row[config.cols[idx]] = item[field] || '-';
+                    });
+                    return row;
+                });
+
+                // Create Worksheet
+                const worksheet = XLSX.utils.json_to_sheet(excelData);
+
+                // Add Styling (Header and Column Widths)
+                const range = XLSX.utils.decode_range(worksheet['!ref']);
+                const colWidths = [];
+
+                for (let C = range.s.c; C <= range.e.c; ++C) {
+                    let maxWidth = 10;
+                    for (let R = range.s.r; R <= range.e.r; ++R) {
+                        const address = XLSX.utils.encode_cell({ r: R, c: C });
+                        if (!worksheet[address]) continue;
+                        const val = String(worksheet[address].v || '');
+                        const cellWidth = val.split('').reduce((acc, char) => acc + (char.charCodeAt(0) > 255 ? 2.2 : 1.1), 0);
+                        if (cellWidth > maxWidth) maxWidth = cellWidth;
+
+                        // Apply Styles
+                        if (!worksheet[address].s) worksheet[address].s = {};
+                        if (R === 0) { // Header
+                            worksheet[address].s = {
+                                fill: { fgColor: { rgb: "F2F2F2" } },
+                                font: { bold: true, size: 11 },
+                                alignment: { horizontal: "center", vertical: "center" },
+                                border: { top: { style: "thin" }, bottom: { style: "thin" }, left: { style: "thin" }, right: { style: "thin" } }
+                            };
+                        } else { // Body
+                            worksheet[address].s = {
+                                font: { size: 9 },
+                                alignment: { horizontal: "center", vertical: "center" },
+                                border: { top: { style: "thin", color: { rgb: "E5E7EB" } }, bottom: { style: "thin", color: { rgb: "E5E7EB" } }, left: { style: "thin", color: { rgb: "E5E7EB" } }, right: { style: "thin", color: { rgb: "E5E7EB" } } }
+                            };
+                        }
+                    }
+                    colWidths.push({ wch: Math.min(maxWidth + 2, 50) });
+                }
+                worksheet['!cols'] = colWidths;
+
+                const workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, config.label);
+
+                const fileName = `TIS_Cert_${config.code}_${new Date().toISOString().split('T')[0]}.xlsx`;
+                XLSX.writeFile(workbook, fileName);
+
+                notifications.show('엑셀 다운로드가 완료되었습니다.', 'success');
+
+            } catch (err) {
+                console.error('Cert Excel Export Error:', err);
+                notifications.show('엑셀 파일 생성 중 오류가 발생했습니다.', 'error');
+            }
+        }
+
+        async function handleCertTaskImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+                    if (jsonData.length === 0) {
+                        notifications.show('데이터가 없는 파일입니다.', 'error');
+                        return;
+                    }
+
+                    const config = certTaskConfig[state.currentCertTaskCategory];
+                    let addedCount = 0;
+
+                    jsonData.forEach(row => {
+                        const newItem = {
+                            id: Date.now() + Math.random(), // Simple ID generation
+                            category: state.currentCertTaskCategory,
+                            ...row // Assuming Excel headers match or mapped (Simple version: Excel Headers must match mapped keys? No, user enters data into Excel with Header names)
+                            // Refined Logic below
+                        };
+
+                        // Map Excel Headers (Col Names) back to Fields
+                        config.cols.forEach((colName, idx) => {
+                            const fieldKey = config.fields[idx];
+                            if (row[colName] !== undefined) {
+                                newItem[fieldKey] = row[colName];
+                            }
+                        });
+
+                        // Add to State
+                        state.certificationTasks.push(newItem);
+                        addedCount++;
+                    });
+
+                    renderCertTaskTable();
+                    notifications.show(`${addedCount}개 항목이 추가되었습니다.`, 'success');
+                    event.target.value = ''; // Reset input
+
+                } catch (err) {
+                    console.error('Cert Excel Import Error:', err);
+                    notifications.show('엑셀 읽기 중 오류가 발생했습니다.', 'error');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
         // Asset Management Functions
 
         async function fetchAssets() {
@@ -2229,6 +2578,7 @@
             if (!body || !head) return;
 
             try {
+                console.log('[Debug] fetchAssets started');
                 // 초기 로딩 스피너
                 body.innerHTML = '<tr><td colspan="8" class="py-20 text-center text-gray-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i><p>데이터를 불러오는 중...</p></td></tr>';
 
@@ -2236,7 +2586,10 @@
                     cache: 'no-store',
                     headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
                 });
+                console.log('[Debug] fetchAssets response ok:', res.ok);
+                if (!res.ok) throw new Error('Failed to fetch assets');
                 const allData = await res.json();
+                console.log('[Debug] fetchAssets data received, count:', allData.length);
                 state.assets = allData;
 
                 renderAssetTable();
@@ -2260,6 +2613,7 @@
             const badge = helpers.qs('#asset-count-badge');
             if (!body || !head) return;
 
+            console.log('[Debug] renderAssetTable started, current category:', state.currentAssetCategory);
             const config = assetCategoryConfig[state.currentAssetCategory];
             const filtered = state.assets.filter(a => {
                 const matchesCategory = a.main_category === state.currentAssetCategory;
@@ -2305,7 +2659,7 @@
             }
 
             body.innerHTML = filtered.map((s, index) => `
-                <tr onclick="app.editAsset(${s.id})" class="hover:bg-gray-50/80 dark:hover:bg-gray-700/30 transition-colors cursor-pointer group">
+                <tr data-action="asset-edit" data-id="${s.id}" class="hover:bg-gray-50/80 dark:hover:bg-gray-700/30 transition-colors cursor-pointer group">
                     <td class="px-4 py-4 text-center text-gray-400 font-mono text-[10px]">${index + 1}</td>
                     <td class="px-6 py-4 dark:text-gray-200 font-bold group-hover:text-blue-600 transition-colors max-w-[200px] break-words whitespace-normal">${escapeHtml(s[config.fields[0]] || '-')}</td>
                     ${config.fields.slice(1).map(field => {
@@ -2322,8 +2676,8 @@
             }).join('')}
                     <td class="px-4 py-4 text-center">
                         <div class="flex justify-center gap-2">
-                            <button onclick="event.stopPropagation(); app.editAsset(${s.id})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition" title="수정"><i class="fas fa-edit"></i></button>
-                            <button onclick="event.stopPropagation(); app.deleteAsset(${s.id})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition" title="삭제"><i class="fas fa-trash-alt"></i></button>
+                            <button data-action="asset-edit" data-id="${s.id}" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition" title="수정"><i class="fas fa-edit"></i></button>
+                            <button data-action="asset-delete" data-id="${s.id}" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition" title="삭제"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -2492,6 +2846,20 @@
             }
 
             fieldsContainer.innerHTML = fieldsHtml;
+
+            // Delete Button Handling
+            const deleteBtn = helpers.qs('#asset-delete-btn');
+            if (deleteBtn) {
+                if (isEdit) {
+                    deleteBtn.classList.remove('hidden');
+                    // Remove existing event listeners to prevent duplicates (not easily possible with simple properties, so overwrite onclick)
+                    deleteBtn.onclick = () => deleteAsset(id);
+                } else {
+                    deleteBtn.classList.add('hidden');
+                    deleteBtn.onclick = null;
+                }
+            }
+
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
@@ -2768,7 +3136,9 @@
             if (!grid) return;
 
             try {
-                const res = await fetch('/api/policies');
+                const res = await fetch('/api/policies', {
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
                 if (res.ok) {
                     state.policies = await res.json();
                     if (badge) badge.textContent = state.policies.length;
@@ -2781,21 +3151,20 @@
                     grid.innerHTML = state.policies.map(p => `
                         <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all group cursor-pointer relative">
                              <div class="flex justify-between items-start mb-4">
-                                <div onclick="app.viewPolicy(${p.id})" class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white"><i class="fas fa-file-invoice"></i></div>
+                                <div data-action="policy-view" data-id="${p.id}" class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white"><i class="fas fa-file-invoice"></i></div>
                                 <div class="flex flex-col items-end gap-2">
                                     <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-[9px] font-black rounded uppercase dark:text-gray-400">${escapeHtml(p.tag)}</span>
                                     <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <button onclick="app.openPolicyEditModal(${p.id})" class="p-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition" title="수정"><i class="fas fa-edit text-[10px]"></i></button>
-                                        <button onclick="app.deletePolicy(${p.id})" class="p-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition" title="삭제"><i class="fas fa-trash-alt text-[10px]"></i></button>
+                                        <button data-action="policy-edit" data-id="${p.id}" class="p-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition" title="수정"><i class="fas fa-edit text-[10px]"></i></button>
+                                        <button data-action="policy-delete" data-id="${p.id}" class="p-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition" title="삭제"><i class="fas fa-trash-alt text-[10px]"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="app.viewPolicy(${p.id})">
+                            <div data-action="policy-view" data-id="${p.id}">
                                 <h4 class="font-bold text-sm mb-1 dark:text-gray-100 group-hover:text-blue-600 transition-colors">${escapeHtml(p.title)}</h4>
                                 <p class="text-[10px] text-gray-400 font-bold">버전: ${escapeHtml(p.version)} | 개정일: ${escapeHtml(p.date)}</p>
                                 <div class="mt-6 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button class="flex-1 py-2 bg-gray-50 dark:bg-gray-700 rounded-lg text-[9px] font-black uppercase"><i class="fas fa-eye mr-1"></i> View</button>
-                                    <button onclick="event.stopPropagation(); notifications.show('파일 다운로드를 준비합니다.', 'info')" class="flex-1 py-2 bg-gray-50 dark:bg-gray-700 rounded-lg text-[9px] font-black uppercase"><i class="fas fa-download mr-1"></i> Down</button>
+                                    <button class="w-full py-2 bg-gray-50 dark:bg-gray-700 rounded-lg text-[9px] font-black uppercase"><i class="fas fa-eye mr-1"></i> View</button>
                                 </div>
                             </div>
                         </div>
@@ -2923,7 +3292,11 @@
             if (!body) return;
 
             try {
-                const res = await fetch('/api/pledges', { cache: 'no-store' });
+                const res = await fetch('/api/pledges', {
+                    cache: 'no-store',
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
+                if (!res.ok) throw new Error('Failed to fetch pledges');
                 const data = await res.json();
                 state.allPledges = data;
 
@@ -2955,33 +3328,123 @@
             }
         }
 
+        function switchPledgeTab(tab) {
+            state.currentPledgeTab = tab;
+            renderPledgeTable(state.allPledges || []);
+
+            // UI Update
+            helpers.qsa('.pledge-tab').forEach(btn => {
+                const isSelected = btn.dataset.tab === tab;
+                btn.classList.toggle('bg-blue-600', isSelected);
+                btn.classList.toggle('text-white', isSelected);
+                btn.classList.toggle('bg-white', !isSelected);
+                btn.classList.toggle('dark:bg-gray-800', !isSelected);
+                btn.classList.toggle('text-gray-500', !isSelected);
+                btn.classList.toggle('dark:text-gray-400', !isSelected);
+            });
+        }
+
         function renderPledgeTable(data) {
             const body = helpers.qs('#pledge-list-body');
+            const headIdx = helpers.qs('#pledge-table-head-row'); // Will need to add ID to tr in simpler edit if not exists, but let's assume valid target
+            // Actually, best to verify HTML structure first? No, let's inject full table logic if possible or just use a helper to swap header.
+            // Since we can't easily swap Header TR content without ID, let's target the THEAD if possible or just inject the whole table? 
+            // The existing code has defined <thead> structure. 
+            // Let's grab the THEAD to replace content.
+            const thead = helpers.qs('thead', helpers.qs('#admin-pledge-mgmt')); // Safer selection? No ID on section div. 
+            // Let's stick to modifying the render function to assume existing structure or just update content.
+
+            // To allow header update without full section re-render, we need a hook. 
+            // Let's assume we update the TR if we can find it.
+            // It's inside admin_pledge_mgmt render string.
+            // We need to update admin_pledge_mgmt structure first to add IDs.
+
+            // Wait, this function takes `data`.
             if (!body) return;
 
-            if (data.length === 0) {
-                body.innerHTML = '<tr><td colspan="6" class="py-10 text-center text-gray-400">데이터가 없습니다.</td></tr>';
+            const currentTab = state.currentPledgeTab || 'security';
+            const isPortrait = currentTab === 'portrait';
+
+            // Find Header Row to update columns
+            const headRow = body.closest('table').querySelector('thead tr');
+            if (headRow) {
+                if (isPortrait) {
+                    headRow.innerHTML = `
+                        <th class="px-6 py-4">성명</th>
+                        <th class="px-4 py-4">소속</th>
+                        <th class="px-4 py-4">구분</th>
+                        <th class="px-4 py-4">초상권 동의</th>
+                        <th class="px-4 py-4">개인정보 동의</th>
+                        <th class="px-4 py-4">제출 일시</th>
+                    `;
+                } else {
+                    headRow.innerHTML = `
+                        <th class="px-6 py-4">성명</th>
+                        <th class="px-4 py-4">소속 업체</th>
+                        <th class="px-4 py-4">연락처</th>
+                        <th class="px-4 py-4">이메일</th>
+                        <th class="px-4 py-4">사업명</th>
+                        <th class="px-4 py-4">업무 기간</th>
+                        <th class="px-4 py-4">제출 일시</th>
+                    `;
+                }
+            }
+
+            const searchInput = helpers.qs('#pledge-search');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+
+            const listToRender = data || state.allPledges || [];
+
+            const filtered = listToRender.filter(p => {
+                // Tab filter
+                const matchesTab = isPortrait ? (p.type && p.type.startsWith('PORTRAIT')) : (!p.type || !p.type.startsWith('PORTRAIT'));
+                if (!matchesTab) return false;
+
+                // Search filter
+                if (searchTerm) {
+                    return (p.name && p.name.toLowerCase().includes(searchTerm)) ||
+                        (p.dept && p.dept.toLowerCase().includes(searchTerm)) ||
+                        (p.project && p.project.toLowerCase().includes(searchTerm));
+                }
+
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                body.innerHTML = `<tr><td colspan="${isPortrait ? 6 : 7}" class="py-20 text-center text-gray-400">데이터가 없습니다.</td></tr>`;
                 return;
             }
 
-            body.innerHTML = data.map(p => `
-            <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-700/30 transition-colors">
-                <td class="px-6 py-4 dark:text-gray-200 font-bold">${escapeHtml(p.name)}</td>
-                <td class="px-4 py-4 dark:text-gray-400 font-mono">${escapeHtml(p.emp_id)}</td>
-                <td class="px-4 py-4 text-gray-500">${escapeHtml(p.dept)}</td>
-                <td class="px-4 py-4">
-                    <span class="px-2.5 py-1 ${p.type === 'KO' ? 'bg-blue-50 text-blue-600' : 'bg-indigo-50 text-indigo-600'} dark:bg-opacity-10 rounded-lg text-[9px] font-black">
-                        ${p.type === 'KO' ? '국문' : 'ENGLISH'}
-                    </span>
-                </td>
-                <td class="px-4 py-4 text-gray-400">${p.submitted_at ? p.submitted_at.replace('T', ' ').split('.')[0] : '-'}</td>
-                <td class="px-4 py-4">
-                    <span class="inline-flex items-center gap-1.5 px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-lg text-[9px] font-black">
-                        제출완료
-                    </span>
-                </td>
-            </tr>
-        `).join('');
+            body.innerHTML = filtered.map(p => {
+                if (isPortrait) {
+                    return `
+                        <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors">
+                            <td class="px-6 py-4 font-black dark:text-gray-100">${escapeHtml(p.name)}</td>
+                            <td class="px-4 py-4 text-gray-500">${escapeHtml(p.dept)}</td>
+                            <td class="px-4 py-4 text-gray-500 text-[10px]">${escapeHtml(p.type_detail || '-')}</td>
+                            <td class="px-4 py-4">
+                                <span class="px-2 py-1 rounded-lg text-[10px] font-bold ${p.consent1 === '동의' ? 'bg-blue-50 text-blue-600' : 'bg-red-50 text-red-600'}">${escapeHtml(p.consent1 || '-')}</span>
+                            </td>
+                            <td class="px-4 py-4">
+                                <span class="px-2 py-1 rounded-lg text-[10px] font-bold ${p.consent2 === '동의' ? 'bg-blue-50 text-blue-600' : 'bg-red-50 text-red-600'}">${escapeHtml(p.consent2 || '-')}</span>
+                            </td>
+                            <td class="px-4 py-4 text-gray-400 text-[10px]">${p.submitted_at ? p.submitted_at.replace('T', ' ').split('.')[0] : '-'}</td>
+                        </tr>
+                    `;
+                } else {
+                    return `
+                        <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-900/30 transition-colors">
+                            <td class="px-6 py-4 font-black dark:text-gray-100">${escapeHtml(p.name)}</td>
+                            <td class="px-4 py-4 text-gray-500">${escapeHtml(p.dept)}</td>
+                            <td class="px-4 py-4 text-gray-500 text-[10px]">${escapeHtml(p.phone || '-')}</td>
+                            <td class="px-4 py-4 text-gray-500 text-[10px]">${escapeHtml(p.email || '-')}</td>
+                            <td class="px-4 py-4 text-gray-500 text-[10px] max-w-[150px] truncate" title="${escapeHtml(p.project || '')}">${escapeHtml(p.project || '-')}</td>
+                            <td class="px-4 py-4 text-gray-500 text-[10px]">${escapeHtml(p.period || '-')}</td>
+                            <td class="px-4 py-4 text-gray-400 text-[10px]">${p.submitted_at ? p.submitted_at.replace('T', ' ').split('.')[0] : '-'}</td>
+                        </tr>
+                    `;
+                }
+            }).join('');
         }
 
         async function submitPledge(type) {
@@ -3109,7 +3572,7 @@
                             <input type="text" id="${inputId}" placeholder="000000" maxlength="6" class="w-full pr-12">
                             <span id="${timerId}" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-red-500">03:00</span>
                         </div>
-                        <button onclick="app.verifyCode('${type}')" id="btn-verify-temp" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">${btnTxt}</button>
+                        <button data-action="verify-code" data-type="${type}" id="btn-verify-temp" class="px-6 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">${btnTxt}</button>
                     </div>
                 `;
             }
@@ -3266,7 +3729,10 @@
             const category = state.currentLogCategory || 'all';
 
             try {
-                const res = await fetch(`/api/logs?category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}`, { cache: 'no-store' });
+                const res = await fetch(`/api/logs?category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}`, {
+                    cache: 'no-store',
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
                 if (!res.ok) throw new Error('Failed to fetch logs');
                 const logs = await res.json();
 
@@ -3326,6 +3792,7 @@
                 const res = await fetch('/api/cves', {
                     headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
                 });
+                if (!res.ok) throw new Error('Failed to fetch CVEs');
                 state.cveData = await res.json();
                 renderCveTable();
                 updateCveStats();
@@ -3405,7 +3872,7 @@
                         : `<span class="px-2 py-1 bg-gray-100 text-gray-500 rounded-lg text-[10px]"><i class="fas fa-minus-circle mr-1"></i>Ignored</span>`;
 
                 return `
-                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition cursor-pointer" onclick="app.openCveModal(${c.id})">
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition cursor-pointer" data-action="cve-view" data-id="${c.id}">
                     <td class="px-6 py-4 font-mono text-blue-600 dark:text-blue-400 hover:underline">${escapeHtml(c.cve_id)}</td>
                     <td class="px-4 py-4">
                         <div class="flex items-center gap-3">
@@ -3510,6 +3977,24 @@
             }
         }
 
+        async function deleteCve(id) {
+            if (!confirm('취약점 항목을 삭제하시겠습니까?')) return;
+            try {
+                const res = await fetch(`/api/cves/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
+                if (res.ok) {
+                    notifications.show('삭제되었습니다.', 'success');
+                    fetchCveList();
+                } else {
+                    notifications.show('삭제 중 오류가 발생했습니다.', 'error');
+                }
+            } catch (e) {
+                notifications.show('서버 통신 오류', 'error');
+            }
+        }
+
         // Export app instance for global access
         function renderComplianceDetail() {
             const currentYear = state.complianceYear;
@@ -3575,7 +4060,7 @@
                                 </div>
                                 <div class="flex bg-gray-50 dark:bg-gray-900 p-1 rounded-xl border border-gray-200 dark:border-gray-700">
                                     ${certs.map(c => `
-                                        <button onclick="app.switchComplianceCert('${c.id}')" class="px-6 py-2 text-[11px] font-black rounded-lg transition-all ${c.id === cert ? 'bg-white dark:bg-gray-700 text-blue-500 shadow-md ring-1 ring-black/5 dark:ring-white/5' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'}">
+                                        <button data-action="compliance-cert" data-cert="${c.id}" class="px-6 py-2 text-[11px] font-black rounded-lg transition-all ${c.id === cert ? 'bg-white dark:bg-gray-700 text-blue-500 shadow-md ring-1 ring-black/5 dark:ring-white/5' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'}">
                                             ${c.name}
                                         </button>
                                     `).join('')}
@@ -3657,64 +4142,8 @@
             `;
         }
 
-        window.app = {
-            loadSection,
-            saveMenus,
-            resetMenu,
-            openAssetModal,
-            closeAssetModal,
-            editAsset: openAssetModal,
-            deleteAsset,
-            fetchAssets,
-            updateAssetCodes,
-            downloadAssetsExcel,
-            importAssetsExcel,
-            fetchSecurityRequests,
-            openRequestModal,
-            closeRequestModal,
-            editSecurityRequest,
-            deleteSecurityRequest,
-            handleRequestSubmit,
-            handleAssetSubmit,
-            submitPledge,
-            fetchPolicies,
-            viewPolicy,
-            closePolicyView,
-            openPolicyEditModal,
-            closePolicyModal,
-            handlePolicySubmit,
-            deletePolicy,
-            fetchPledges,
-            sendEmailCode,
-            verifyCode,
-            initQuiz,
-            switchAssetCategory,
-            renderAssetTable,
-            fetchLogs,
-            filterLogs,
-            fetchCveList,
-            filterCves,
-            openCveModal,
-            closeCveModal,
-            openSolutionAddModal,
-            closeSolutionModal,
-            saveSolution,
-            editSolution,
-            deleteSolution,
-            fetchSolutions,
-            fetchInspectionsDashboard,
-            openInspectionAddModal,
-            closeInspectionModal,
-            saveInspection,
-            switchComplianceCert: (cert) => {
-                state.complianceCert = cert;
-                loadSection('cert_detail_mgmt');
-            },
-            changeComplianceYear: (year) => {
-                state.complianceYear = parseInt(year);
-                loadSection('cert_detail_mgmt');
-            }
-        };
+        // Public API is defined at the end of DOMContentLoaded
+
 
         // --- Security Request CRUD Functions ---
 
@@ -3724,7 +4153,10 @@
             if (!container) return;
 
             try {
-                const res = await fetch('/api/requests');
+                const res = await fetch('/api/requests', {
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
+                if (!res.ok) throw new Error('Failed to fetch requests');
                 state.requests = await res.json();
 
                 if (badge) badge.textContent = state.requests.length;
@@ -3751,10 +4183,10 @@
                             </div>
                         </div>
                         <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onclick="app.editSecurityRequest(${item.id})" class="p-2 text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-xl transition">
+                            <button data-action="security-request-edit" data-id="${item.id}" class="p-2 text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-xl transition">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button onclick="app.deleteSecurityRequest(${item.id})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition">
+                            <button data-action="security-request-delete" data-id="${item.id}" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -3861,15 +4293,6 @@
             return div.innerHTML;
         }
 
-        // Initial Route
-        applyCustomMenuNames();
-        const initial = window.location.hash.substring(1) || 'home';
-        loadSection(initial);
-
-        // Global Event Delegation for Forms
-        document.addEventListener('submit', (e) => {
-            if (e.target.id === 'security-request-form') handleRequestSubmit(e);
-        });
 
         // --- Initialize Modal HTML (Inject to body to avoid transform clipping) ---
         const modalContainer = document.createElement('div');
@@ -3885,15 +4308,20 @@
                             </div>
                             <h3 id="modal-title" class="text-xl font-black dark:text-gray-100">소프트웨어 추가</h3>
                         </div>
-                        <button onclick="app.closeAssetModal()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-times"></i></button>
+                        <button data-action="asset-modal-close" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-times"></i></button>
                     </div>
                     <div id="asset-modal-fields" class="p-6 md:p-8 space-y-5 overflow-y-auto custom-scrollbar flex-grow">
                         <!-- 동적 필드 영역 -->
                     </div>
                     <div class="p-6 md:p-8 pt-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-900/10">
-                        <button onclick="app.handleAssetSubmit(event)" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-[0.98]">
-                            <i class="fas fa-save mr-2"></i> 자산 정보 저장하기
-                        </button>
+                        <div class="flex gap-3">
+                            <button id="asset-delete-btn" type="button" class="hidden flex-1 py-4 bg-red-50 text-red-500 border border-red-100 dark:border-red-900/30 dark:bg-red-900/20 rounded-2xl font-black hover:bg-red-100 dark:hover:bg-red-900/40 transition transform active:scale-[0.98]">
+                                <i class="fas fa-trash-alt mr-2"></i> 삭제
+                            </button>
+                            <button data-action="asset-save" class="flex-[3] py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-[0.98]">
+                                <i class="fas fa-save mr-2"></i> 자산 정보 저장하기
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3903,7 +4331,7 @@
                 <div class="bg-white dark:bg-gray-800 w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 max-h-[90vh] flex flex-col">
                     <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-900">
                         <h3 id="cve-modal-title" class="text-xl font-black dark:text-gray-100 flex items-center gap-2"><i class="fas fa-bug text-red-500"></i> <span>CVE 상세 정보</span></h3>
-                        <button onclick="app.closeCveModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fas fa-times text-xl"></i></button>
+                        <button data-action="cve-modal-close" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><i class="fas fa-times text-xl"></i></button>
                     </div>
                     <div class="p-8 overflow-y-auto custom-scrollbar">
                         <form id="cve-form" class="space-y-6">
@@ -3984,7 +4412,7 @@
                             </div>
                             <h3 id="policy-modal-title" class="text-xl font-black dark:text-gray-100">보안 규정 편집</h3>
                         </div>
-                        <button onclick="app.closePolicyModal()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-times"></i></button>
+                        <button data-action="policy-modal-close" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="p-6 md:p-8 space-y-5 overflow-y-auto custom-scrollbar flex-grow">
                         <input type="hidden" id="policy-edit-id">
@@ -4018,7 +4446,7 @@
                         </div>
                     </div>
                     <div class="p-6 md:p-8 pt-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-900/10">
-                        <button onclick="app.handlePolicySubmit(event)" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-[0.98]">
+                        <button data-action="policy-save" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-[0.98]">
                             <i class="fas fa-save mr-2"></i> 규정 저장하기
                         </button>
                     </div>
@@ -4034,7 +4462,7 @@
                             <h3 id="view-policy-title" class="text-2xl font-black dark:text-gray-100">정책 제목</h3>
                             <p class="text-xs text-gray-400 font-bold mt-1">버전: <span id="view-policy-version">-</span> | 개정일: <span id="view-policy-date">-</span></p>
                         </div>
-                        <button onclick="app.closePolicyView()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 transition-colors"><i class="fas fa-times"></i></button>
+                        <button data-action="policy-view-close" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 transition-colors"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="p-8 overflow-y-auto custom-scrollbar flex-grow bg-white dark:bg-gray-800">
                         <div id="view-policy-content" class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed font-bold text-sm whitespace-pre-wrap">
@@ -4042,12 +4470,337 @@
                         </div>
                     </div>
                     <div class="p-6 bg-gray-50 dark:bg-gray-900/50 flex justify-end gap-3 border-t border-gray-100 dark:border-gray-700">
-                        <button onclick="app.closePolicyView()" class="px-6 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-black transition">닫기</button>
-                        <button onclick="notifications.show('개정 이력이 기록된 PDF를 생성합니다.', 'info')" class="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-xs font-black shadow-lg shadow-blue-500/20"><i class="fas fa-download mr-2"></i>PDF 다운로드</button>
+                        <button data-action="policy-view-close" class="px-6 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-black transition">닫기</button>
+
                     </div>
                  </div>
             </div>
+
+            <!-- Certification Task Modal -->
+            <div id="cert-task-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6 bg-black/60 backdrop-blur-sm">
+                <div class="bg-white dark:bg-gray-800 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 flex flex-col max-h-[95vh]">
+                    <div class="p-6 md:p-8 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/20">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600">
+                                <i class="fas fa-certificate text-lg"></i>
+                            </div>
+                            <h3 id="cert-task-modal-title" class="text-xl font-black dark:text-gray-100">인증 항목 추가</h3>
+                        </div>
+                        <button data-action="cert-task-modal-close" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div id="cert-task-modal-fields" class="p-6 md:p-8 space-y-4 overflow-y-auto custom-scrollbar flex-grow">
+                        <!-- Dynamic fields injected here -->
+                    </div>
+                    <div class="p-6 md:p-8 pt-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-900/10">
+                        <button data-action="cert-task-save" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition transform active:scale-[0.98]">
+                            <i class="fas fa-save mr-2"></i> 저장하기
+                        </button>
+                    </div>
+                </div>
+            </div>
         `;
         document.body.appendChild(modalContainer);
+
+        // Public API
+        window.app = {
+            loadSection,
+            saveMenus, resetMenu,
+            openAssetModal, closeAssetModal, editAsset: openAssetModal, deleteAsset, handleAssetSubmit,
+            fetchAssets, renderAssetTable, switchAssetCategory, updateAssetCodes, downloadAssetsExcel, handleAssetImport: importAssetsExcel,
+            fetchSecurityRequests, openRequestModal, closeRequestModal, editSecurityRequest: openRequestModal, deleteSecurityRequest, handleRequestSubmit,
+            submitPledge, fetchPledges, renderPledgeTable, switchPledgeTab,
+            fetchPolicies, viewPolicy, closePolicyView, openPolicyEditModal, closePolicyModal, handlePolicySubmit, deletePolicy,
+            sendEmailCode, verifyCode,
+            initQuiz,
+            fetchLogs, filterLogs,
+            fetchCveList, filterCves, openCveModal, closeCveModal, deleteCve, handleCveSubmit,
+            openSolutionAddModal, closeSolutionModal, saveSolution, editSolution, deleteSolution, fetchSolutions,
+            fetchInspectionsDashboard, openInspectionAddModal, closeInspectionModal, saveInspection,
+
+            fetchCertTasks, renderCertTaskTable, switchCertTaskCategory, openCertTaskModal, closeCertTaskModal, handleCertTaskSubmit, deleteCertTask, downloadCertTasksExcel, handleCertTaskImport,
+            navigateToCert, toggleSubmenu,
+            switchComplianceCert: (cert) => {
+                state.complianceCert = cert;
+                loadSection('cert_detail_mgmt');
+            },
+            changeComplianceYear: (year) => {
+                state.complianceYear = parseInt(year);
+                loadSection('cert_detail_mgmt');
+            }
+        };
+
+        // --- Initial Route & Event Listeners ---
+        // window.app이 완전히 할당된 후에 실행되어야 race condition을 방지할 수 있습니다.
+
+        applyCustomMenuNames();
+        const initial = window.location.hash.substring(1) || 'home';
+        loadSection(initial);
+
+        // Global Event Delegation for Forms
+        document.addEventListener('submit', (e) => {
+            if (e.target.id === 'security-request-form') handleRequestSubmit(e);
+        });
+
+        // ========================================
+        // 🎯 Global Event Delegation (Click)
+        // 인라인 onclick 대신 data 속성 + 클래스 기반 이벤트 처리
+        // ========================================
+        document.addEventListener('click', (e) => {
+            const target = e.target.closest('[data-action]');
+            if (!target) return;
+
+            const action = target.dataset.action;
+            const id = target.dataset.id;
+            const category = target.dataset.category;
+            const type = target.dataset.type;
+            const value = target.dataset.value;
+
+            // 이벤트 버블링 방지 (필요한 경우)
+            e.stopPropagation();
+
+            switch (action) {
+                // --- 자산 관리 ---
+                case 'asset-edit':
+                    openAssetModal(id);
+                    break;
+                case 'asset-delete':
+                    deleteAsset(id);
+                    break;
+                case 'asset-category':
+                    switchAssetCategory(category);
+                    break;
+                case 'asset-download':
+                    downloadAssetsExcel();
+                    break;
+                case 'asset-add':
+                    openAssetModal();
+                    break;
+                case 'asset-import-trigger':
+                    document.getElementById('asset-import-input').click();
+                    break;
+
+                // --- 정책 ---
+                case 'policy-view':
+                    viewPolicy(id);
+                    break;
+                case 'policy-edit':
+                    openPolicyEditModal(id);
+                    break;
+                case 'policy-delete':
+                    deletePolicy(id);
+                    break;
+                case 'policy-add':
+                    openPolicyEditModal();
+                    break;
+                case 'policy-close-view':
+                    closePolicyView();
+                    break;
+                case 'policy-close-modal':
+                    closePolicyModal();
+                    break;
+                case 'policy-submit':
+                    handlePolicySubmit(e);
+                    break;
+
+                // --- 보안 요청 ---
+                case 'request-edit':
+                    openRequestModal(id);
+                    break;
+                case 'request-delete':
+                    deleteSecurityRequest(id);
+                    break;
+                case 'request-add':
+                    openRequestModal();
+                    break;
+                case 'request-close':
+                    closeRequestModal();
+                    break;
+
+                // --- CVE ---
+                case 'cve-edit':
+                    openCveModal(id);
+                    break;
+                case 'cve-delete':
+                    deleteCve(id);
+                    break;
+                case 'cve-add':
+                    openCveModal();
+                    break;
+                case 'cve-close':
+                    closeCveModal();
+                    break;
+                case 'cve-submit':
+                    handleCveSubmit();
+                    break;
+
+                // --- 솔루션/점검 ---
+                case 'solution-add':
+                    openSolutionAddModal();
+                    break;
+                case 'solution-edit':
+                    editSolution(id);
+                    break;
+                case 'solution-delete':
+                    deleteSolution(id);
+                    break;
+                case 'solution-close':
+                    closeSolutionModal();
+                    break;
+                case 'solution-submit':
+                    saveSolution();
+                    break;
+                case 'inspection-add':
+                    openInspectionAddModal(id);
+                    break;
+                case 'inspection-close':
+                    closeInspectionModal();
+                    break;
+                case 'inspection-submit':
+                    saveInspection();
+                    break;
+
+                // --- 인증 업무 ---
+                case 'cert-task-add':
+                    openCertTaskModal();
+                    break;
+                case 'cert-task-edit':
+                    openCertTaskModal(id);
+                    break;
+                case 'cert-task-delete':
+                    deleteCertTask(id);
+                    break;
+                case 'cert-task-close':
+                    closeCertTaskModal();
+                    break;
+                case 'cert-task-submit':
+                    handleCertTaskSubmit();
+                    break;
+                case 'cert-task-category':
+                    switchCertTaskCategory(category);
+                    break;
+                case 'cert-task-download':
+                    downloadCertTasksExcel();
+                    break;
+
+                // --- 서약서 ---
+                case 'pledge-tab':
+                    switchPledgeTab(target.dataset.tab);
+                    break;
+                case 'pledge-submit':
+                    submitPledge(type);
+                    break;
+                case 'send-email-code':
+                    sendEmailCode(type);
+                    break;
+                case 'verify-code':
+                    verifyCode(type);
+                    break;
+
+                // --- 네비게이션 ---
+                case 'load-section':
+                    loadSection(value);
+                    break;
+                case 'toggle-submenu':
+                    toggleSubmenu(e);
+                    break;
+                case 'navigate-cert':
+                    navigateToCert(value);
+                    break;
+
+                // --- 모달 닫기 공통 ---
+                case 'close-asset-modal':
+                case 'asset-modal-close':
+                    closeAssetModal();
+                    break;
+                case 'asset-save':
+                    handleAssetSubmit(e);
+                    break;
+                case 'cve-modal-close':
+                    closeCveModal();
+                    break;
+                case 'cve-view':
+                    openCveModal(id);
+                    break;
+                case 'cve-filter':
+                    filterCves(target.dataset.filter);
+                    break;
+                case 'policy-modal-close':
+                    closePolicyModal();
+                    break;
+                case 'policy-view-close':
+                    closePolicyView();
+                    break;
+                case 'policy-save':
+                    handlePolicySubmit(e);
+                    break;
+                case 'cert-task-modal-close':
+                    closeCertTaskModal();
+                    break;
+                case 'cert-task-save':
+                    handleCertTaskSubmit();
+                    break;
+                case 'log-filter':
+                    filterLogs(target.dataset.filter);
+                    break;
+                case 'log-refresh':
+                    fetchLogs();
+                    break;
+                case 'menu-reset':
+                    resetMenu(target.dataset.menuId);
+                    break;
+                case 'menu-save':
+                    saveMenus();
+                    break;
+                case 'cert-edit':
+                    editCert(id);
+                    break;
+                case 'cert-delete':
+                    deleteCert(id);
+                    break;
+                case 'compliance-cert':
+                    switchComplianceCert(target.dataset.cert);
+                    break;
+                case 'security-request-edit':
+                    editSecurityRequest(id);
+                    break;
+                case 'security-request-delete':
+                    deleteSecurityRequest(id);
+                    break;
+
+                default:
+                    console.warn('[Event Delegation] Unknown action:', action);
+            }
+        });
+
+        // ========================================
+        // 🎯 Global Event Delegation (Change)
+        // select, input 변경 이벤트 처리
+        // ========================================
+        document.addEventListener('change', (e) => {
+            const target = e.target;
+            const action = target.dataset.action;
+
+            if (!action) return;
+
+            switch (action) {
+                case 'asset-import':
+                    importAssetsExcel(e);
+                    break;
+                case 'cert-task-import':
+                    handleCertTaskImport(e);
+                    break;
+                case 'compliance-year':
+                    state.complianceYear = parseInt(target.value);
+                    loadSection('cert_detail_mgmt');
+                    break;
+                case 'compliance-cert':
+                    state.complianceCert = target.value;
+                    loadSection('cert_detail_mgmt');
+                    break;
+                default:
+                    console.warn('[Event Delegation] Unknown change action:', action);
+            }
+        });
     });
+
 })();

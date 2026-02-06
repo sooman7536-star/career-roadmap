@@ -77,6 +77,11 @@ app.get('/api/health', (req, res) => {
  */
 app.get('/api/requests', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const requests = require('./db/index').getCollection('requests');
+        if (requests && typeof requests._init === 'function') {
+            requests._init();
+        }
         const list = requestsRepo.findAll();
         res.json(list);
     } catch (err) {
@@ -171,6 +176,12 @@ app.delete('/api/requests/:id', (req, res) => {
 
 app.get('/api/assets', authMiddleware, (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const assets = require('./db/index').getCollection('assets');
+        if (assets && typeof assets._init === 'function') {
+            assets._init();
+        }
+
         const list = assetsRepo.findAll();
         res.json(list);
     } catch (err) {
@@ -218,6 +229,11 @@ app.delete('/api/assets/:id', authMiddleware, (req, res) => {
 
 app.get('/api/policies', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const policies = require('./db/index').getCollection('policies');
+        if (policies && typeof policies._init === 'function') {
+            policies._init();
+        }
         const list = policiesRepo.findAll();
         res.json(list);
     } catch (err) {
@@ -273,6 +289,11 @@ app.delete('/api/policies/:id', authMiddleware, (req, res) => {
 
 app.get('/api/pledges', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const pledges = require('./db/index').getCollection('pledges');
+        if (pledges && typeof pledges._init === 'function') {
+            pledges._init();
+        }
         const list = pledgesRepo.findAll();
         res.json(list);
     } catch (err) {
@@ -310,6 +331,12 @@ app.post('/api/pledges', (req, res) => {
 
 app.get('/api/logs', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const logsCol = require('./db/index').getCollection('logs');
+        if (logsCol && typeof logsCol._init === 'function') {
+            logsCol._init();
+        }
+
         const { category, search } = req.query;
         let logs = logsRepo.findAll();
 
@@ -337,8 +364,13 @@ app.get('/api/logs', (req, res) => {
 
 app.get('/api/cves', authMiddleware, (req, res) => {
     try {
-        const cves = cveRepo.findAll();
-        res.json(cves);
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const cves = require('./db/index').getCollection('cve_items');
+        if (cves && typeof cves._init === 'function') {
+            cves._init();
+        }
+        const list = cveRepo.findAll();
+        res.json(list);
     } catch (err) {
         res.status(500).json({ message: 'CVE 목록을 가져오는 중 오류가 발생했습니다.' });
     }
@@ -416,6 +448,12 @@ app.post('/api/auth/verify', (req, res) => {
 // 대시보드 요약
 app.get('/api/inspections/dashboard', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const ins = require('./db/index').getCollection('inspections');
+        const sol = require('./db/index').getCollection('solutions');
+        if (ins && typeof ins._init === 'function') ins._init();
+        if (sol && typeof sol._init === 'function') sol._init();
+
         const summary = inspectionsRepo.getDashboardSummary();
         res.json(summary);
     } catch (err) {
@@ -426,6 +464,10 @@ app.get('/api/inspections/dashboard', (req, res) => {
 // 솔루션 목록
 app.get('/api/inspections/solutions', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const sol = require('./db/index').getCollection('solutions');
+        if (sol && typeof sol._init === 'function') sol._init();
+
         const list = inspectionsRepo.findAllSolutions();
         res.json(list);
     } catch (err) {

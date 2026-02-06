@@ -25,34 +25,9 @@
     "notes": "V3 중앙관리솔루션 서버"
   },
   {
-    "id": 2,
-    "group_code": "SV-LI",
-    "asset_no": "SV-LI-002",
-    "created_at": "2026-01-30 05:27:26",
-    "main_category": "server",
-    "name": "OTP#1",
-    "service": "정보보호시스템",
-    "ip": "192.168.120.2",
-    "hostname": "OTP1",
-    "os_ver": "Rocky 9.7",
-    "location": "목동 DC 1 센터",
-    "operator": "김태운",
-    "manager": "남신우",
-    "dept": "IT인프라파트",
-    "imp_c": 3,
-    "imp_i": 3,
-    "imp_a": 2,
-    "imp_score": 8,
-    "grade": "1",
-    "hw_spec": "Dell R350",
-    "cert_isms": "O",
-    "cert_iso": "O",
-    "notes": "OTP#1"
-  },
-  {
     "id": 3,
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-003",
+    "asset_no": "SV-LI-002",
     "created_at": "2026-01-30 05:27:26",
     "main_category": "server",
     "name": "OTP#2",
@@ -75,59 +50,9 @@
     "notes": "OTP#2"
   },
   {
-    "id": 4,
-    "group_code": "SV-LI",
-    "asset_no": "SV-LI-004",
-    "created_at": "2026-01-30 05:27:26",
-    "main_category": "server",
-    "name": "HIWARE",
-    "service": "정보보호시스템",
-    "ip": "192.168.111.224",
-    "hostname": "tway_psm",
-    "os_ver": "Centos",
-    "location": "목동 DC 1 센터",
-    "operator": "김태운",
-    "manager": "남신우",
-    "dept": "IT인프라파트",
-    "imp_c": 3,
-    "imp_i": 3,
-    "imp_a": 3,
-    "imp_score": 9,
-    "grade": "1",
-    "hw_spec": "Dell R340XL",
-    "cert_isms": "O",
-    "cert_iso": "O",
-    "notes": "서버접근제어(HIWARE)"
-  },
-  {
-    "id": 5,
-    "group_code": "SV-LI",
-    "asset_no": "SV-LI-005",
-    "created_at": "2026-01-30 05:27:27",
-    "main_category": "server",
-    "name": "TW-EDR-Proxy SVR",
-    "service": "정보보호시스템",
-    "ip": "192.168.111.115",
-    "hostname": "NETHELPERDB",
-    "os_ver": "CENTOS 7.5",
-    "location": "목동 DC 1 센터",
-    "operator": "김태운",
-    "manager": "남신우",
-    "dept": "IT인프라파트",
-    "imp_c": 1,
-    "imp_i": 2,
-    "imp_a": 1,
-    "imp_score": 4,
-    "grade": "3",
-    "hw_spec": "IBM System x3850 X5",
-    "cert_isms": "O",
-    "cert_iso": "O",
-    "notes": "EDR Proxy 서버"
-  },
-  {
     "id": 6,
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-006",
+    "asset_no": "SV-LI-003",
     "created_at": "2026-01-30 05:27:27",
     "main_category": "server",
     "name": "TW-EDR INSTALL SVR",
@@ -151,7 +76,7 @@
   {
     "id": 7,
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-007",
+    "asset_no": "SV-LI-004",
     "created_at": "2026-01-30 05:27:27",
     "main_category": "server",
     "name": "Zenius",
@@ -177,7 +102,7 @@
   {
     "id": 9,
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-009",
+    "asset_no": "SV-LI-005",
     "created_at": "2026-01-30 05:27:27",
     "main_category": "server",
     "name": "IDC_WAF1",
@@ -200,7 +125,7 @@
   {
     "id": 10,
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-010",
+    "asset_no": "SV-LI-006",
     "created_at": "2026-01-30 06:32:24",
     "main_category": "server",
     "name": "IPS_SMS",
@@ -223,7 +148,7 @@
   {
     "id": 11,
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-011",
+    "asset_no": "SV-LI-007",
     "created_at": "2026-01-30 06:32:24",
     "main_category": "server",
     "name": "SSL VPN Active",
@@ -244,32 +169,9 @@
     "notes": "SSL VPN/CUSTOM OS 스크립트 수행 불가"
   },
   {
-    "id": 12,
-    "group_code": "SV-LI",
-    "asset_no": "SV-LI-012",
-    "created_at": "2026-01-30 06:32:24",
-    "main_category": "server",
-    "name": "SSL VPN Standby",
-    "service": "정보보호시스템",
-    "ip": "192.168.107.131",
-    "os_ver": "CENTOS 7",
-    "location": "목동 DC 1 센터",
-    "operator": "김태운",
-    "manager": "남신우",
-    "dept": "IT인프라파트",
-    "imp_c": 3,
-    "imp_i": 3,
-    "imp_a": 1,
-    "imp_score": 7,
-    "grade": "2",
-    "cert_isms": "O",
-    "cert_iso": "O",
-    "notes": "SSL VPN/CUSTOM OS 스크립트 수행 불가"
-  },
-  {
     "id": 13,
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-013",
+    "asset_no": "SV-LI-008",
     "created_at": "2026-01-30 06:32:24",
     "main_category": "server",
     "name": "Spam Sniper",
@@ -292,7 +194,7 @@
   {
     "id": 14,
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-014",
+    "asset_no": "SV-LI-009",
     "created_at": "2026-01-30 06:32:24",
     "main_category": "server",
     "name": "TPS(IPS1)",
@@ -315,7 +217,7 @@
   {
     "id": 15,
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-015",
+    "asset_no": "SV-LI-010",
     "created_at": "2026-01-30 06:32:24",
     "main_category": "server",
     "name": "TPS(IPS2)",
@@ -381,7 +283,7 @@
     "cert_isms": "O",
     "notes": "신규 Jenkins서버(+Nexacro)",
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-016"
+    "asset_no": "SV-LI-011"
   },
   {
     "id": 18,
@@ -428,7 +330,7 @@
     "cert_isms": "O",
     "notes": "서버 통합 보안솔루션 (TrendMicro Deep Security)",
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-017"
+    "asset_no": "SV-LI-012"
   },
   {
     "id": 20,
@@ -521,7 +423,7 @@
     "grade": "1",
     "cert_isms": "O",
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-018"
+    "asset_no": "SV-LI-013"
   },
   {
     "id": 24,
@@ -541,7 +443,7 @@
     "grade": "1",
     "cert_isms": "O",
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-019"
+    "asset_no": "SV-LI-014"
   },
   {
     "id": 25,
@@ -566,7 +468,7 @@
     "cert_iso": "O",
     "notes": "CREW 운영 사이트 DB 서버",
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-020"
+    "asset_no": "SV-LI-015"
   },
   {
     "id": 26,
@@ -591,6 +493,6 @@
     "cert_iso": "O",
     "notes": "TED DB\r\nTOCS",
     "group_code": "SV-LI",
-    "asset_no": "SV-LI-021"
+    "asset_no": "SV-LI-016"
   }
 ]

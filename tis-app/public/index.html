@@ -45,17 +45,40 @@
                             data-section="assets"><i class="fas fa-laptop w-5"></i><span>자산 관리</span></a></li>
                     <li><a href="#inspection-mgmt" class="nav-link flex items-center gap-3 p-3 rounded-xl"
                             data-section="inspection_mgmt"><i class="fas fa-clipboard-check w-5"></i><span>정보보호시스템
-                                관리</span></a></li>
+                                점검</span></a></li>
                 </ul>
 
                 <div class="text-[10px] uppercase font-bold text-blue-400 mb-2 px-3">인증/심사 관리</div>
                 <ul class="space-y-1 mb-6">
-                    <li><a href="#compliance-dash" class="nav-link flex items-center gap-3 p-3 rounded-xl"
-                            data-section="compliance_dash"><i class="fas fa-chart-line w-5"></i><span>통합 대시보드</span></a>
+
+                    <li class="relative">
+                        <button id="cert-toggle-btn"
+                            class="w-full nav-link flex items-center gap-3 p-3 rounded-xl hover:bg-white dark:hover:bg-gray-800 transition text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-certificate w-5"></i>
+                            <span class="flex-1 text-left font-bold">인증 업무</span>
+                            <i id="cert-submenu-arrow"
+                                class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                        <!-- Submenu: Default hidden, toggled via JS -->
+                        <div id="cert-submenu" class="hidden bg-gray-50/50 dark:bg-gray-900/50 rounded-b-xl pb-2">
+                            <button type="button" id="btn-cert-isms"
+                                class="w-full text-left pl-12 pr-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-900/20 text-xs font-bold text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> ISMS-P
+                            </button>
+                            <button type="button" id="btn-cert-iso"
+                                class="w-full text-left pl-12 pr-4 py-2 hover:bg-purple-50 dark:hover:bg-purple-900/20 text-xs font-bold text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> ISO 27001
+                            </button>
+                            <button type="button" id="btn-cert-pci"
+                                class="w-full text-left pl-12 pr-4 py-2 hover:bg-green-50 dark:hover:bg-green-900/20 text-xs font-bold text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> PCI-DSS
+                            </button>
+                            <button type="button" id="btn-cert-gdpr"
+                                class="w-full text-left pl-12 pr-4 py-2 hover:bg-orange-50 dark:hover:bg-orange-900/20 text-xs font-bold text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> GDPR
+                            </button>
+                        </div>
                     </li>
-                    <li><a href="#cert-detail-mgmt" class="nav-link flex items-center gap-3 p-3 rounded-xl"
-                            data-section="cert_detail_mgmt"><i
-                                class="fas fa-certificate w-5"></i><span>인증/컴플라이언스</span></a></li>
                     <li><a href="#capa-mgmt" class="nav-link flex items-center gap-3 p-3 rounded-xl"
                             data-section="capa_mgmt"><i class="fas fa-tools w-5"></i><span>결함 조치</span></a>
                     </li>
@@ -64,7 +87,7 @@
                 <div class="text-[10px] uppercase font-bold text-blue-400 mb-2 px-3">정책 및 가이드</div>
                 <ul class="space-y-1 mb-6">
                     <li><a href="#policy" class="nav-link flex items-center gap-3 p-3 rounded-xl"
-                            data-section="policy"><i class="fas fa-file-shield w-5"></i><span>보안 규정</span></a></li>
+                            data-section="policy"><i class="fas fa-file-shield w-5"></i><span>내부 보안 규정</span></a></li>
                     <li><a href="#pledge-select" class="nav-link flex items-center gap-3 p-3 rounded-xl"
                             data-section="pledge_select"><i class="fas fa-signature w-5"></i><span>보안 서약서</span></a>
                     </li>
@@ -72,13 +95,6 @@
 
                 <div class="text-[10px] uppercase font-bold text-blue-400 mb-2 px-3">기타</div>
                 <ul class="space-y-1 mb-6">
-                    <li><a href="#reports" class="nav-link flex items-center gap-3 p-3 rounded-xl"
-                            data-section="reports"><i class="fas fa-chart-pie w-5"></i><span>통계 / 리포트</span></a>
-                    </li>
-                    <li><a href="#process" class="nav-link flex items-center gap-3 p-3 rounded-xl"
-                            data-section="process"><i class="fas fa-diagram-project w-5"></i><span>업무
-                                프로세스</span></a>
-                    </li>
                     <li><a href="#faq" class="nav-link flex items-center gap-3 p-3 rounded-xl" data-section="faq"><i
                                 class="fas fa-circle-question w-5"></i><span>FAQ</span></a></li>
                 </ul>
