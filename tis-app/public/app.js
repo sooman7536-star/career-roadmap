@@ -1498,6 +1498,9 @@
                                 <button data-action="cve-filter" data-filter="unpatched" class="cve-filter-btn px-4 py-2 bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-300 rounded-xl text-xs font-bold border border-gray-200 dark:border-gray-600 hover:text-red-500 transition">미조치</button>
                                 <button data-action="cve-filter" data-filter="high" class="cve-filter-btn px-4 py-2 bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-300 rounded-xl text-xs font-bold border border-gray-200 dark:border-gray-600 hover:text-red-500 transition">High Risk</button>
                                 <div class="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-2"></div>
+                                <button data-action="cve-sync-rss" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-xs font-black transition shadow-lg flex items-center gap-2">
+                                    <i class="fas fa-sync-alt"></i> KRCERT RSS 동기화
+                                </button>
                                 <button data-action="cve-add" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl text-xs font-black transition shadow-lg flex items-center gap-2">
                                     <i class="fas fa-plus"></i> 등록
                                 </button>
@@ -2337,6 +2340,7 @@
             }
 
             // Force scroll after a short delay to ensure DOM is ready
+            // loadSection 내부 setTimeout이 300ms이므로, 렌더링 완료 후 실행되도록 400ms로 설정
             setTimeout(() => {
                 const section = helpers.qs('#cert-detail-mgmt');
                 if (section) {
@@ -2345,7 +2349,7 @@
                 } else {
                     console.error('Target section #cert-detail-mgmt not found');
                 }
-            }, 100);
+            }, 400);
         }
 
         function toggleSubmenu(id) {
@@ -3802,6 +3806,42 @@
             }
         }
 
+        /**
+         * KRCERT RSS 피드에서 CVE 데이터를 동기화합니다.
+         */
+        async function syncCveFromRss() {
+            const btn = helpers.qs('[data-action="cve-sync-rss"]');
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> 동기화 중...';
+            }
+
+            try {
+                const res = await fetch('/api/cves/sync-rss', {
+                    method: 'POST',
+                    headers: { 'X-TIS-KEY': 'TIS_SECURE_2025' }
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    notifications.show(data.message, 'success');
+                    // CVE 목록 새로고침
+                    await fetchCveList();
+                } else {
+                    notifications.show(data.message || 'RSS 동기화 실패', 'error');
+                }
+            } catch (err) {
+                console.error('RSS Sync Error:', err);
+                notifications.show('RSS 동기화 중 오류가 발생했습니다.', 'error');
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-sync-alt"></i> KRCERT RSS 동기화';
+                }
+            }
+        }
+
         function updateCveStats() {
             const data = state.cveData || [];
             if (helpers.qs('#cve-count-critical')) helpers.qs('#cve-count-critical').textContent = data.filter(c => c.cvss_score >= 9.0).length;
@@ -4513,7 +4553,7 @@
             sendEmailCode, verifyCode,
             initQuiz,
             fetchLogs, filterLogs,
-            fetchCveList, filterCves, openCveModal, closeCveModal, deleteCve, handleCveSubmit,
+            fetchCveList, filterCves, openCveModal, closeCveModal, deleteCve, handleCveSubmit, syncCveFromRss,
             openSolutionAddModal, closeSolutionModal, saveSolution, editSolution, deleteSolution, fetchSolutions,
             fetchInspectionsDashboard, openInspectionAddModal, closeInspectionModal, saveInspection,
 
@@ -4723,6 +4763,9 @@
                     break;
                 case 'cve-filter':
                     filterCves(target.dataset.filter);
+                    break;
+                case 'cve-sync-rss':
+                    syncCveFromRss();
                     break;
                 case 'policy-modal-close':
                     closePolicyModal();

@@ -3522,5 +3522,73 @@
     "details": "제목: (규정) 자산추가/폐기",
     "status": "Success",
     "timestamp": "2026-02-06 12:58:12"
+  },
+  {
+    "id": 299,
+    "created_at": "2026-02-06 14:26:03",
+    "user": "시스템",
+    "menu": "보안서약",
+    "action": "인증번호 생성 (메일 생략)",
+    "details": {
+      "email": "das****@gmail.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-06 14:26:03"
+  },
+  {
+    "id": 300,
+    "created_at": "2026-02-06 14:26:05",
+    "user": "시스템",
+    "menu": "보안서약",
+    "action": "이메일 인증 성공",
+    "details": {
+      "email": "das****@gmail.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-06 14:26:05"
+  },
+  {
+    "id": 301,
+    "created_at": "2026-02-06 14:26:06",
+    "user": "KSM",
+    "menu": "보안서약",
+    "action": "서약서 제출",
+    "details": {
+      "type": "KO",
+      "dept": "SONO",
+      "email": "das****@gmail.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-06 14:26:06"
+  },
+  {
+    "id": 302,
+    "created_at": "2026-02-07 09:54:52",
+    "user": "시스템",
+    "menu": "취약점관리",
+    "action": "KRCERT RSS 동기화",
+    "details": "10개 CVE 추가됨",
+    "status": "Success",
+    "timestamp": "2026-02-07 09:54:52"
+  },
+  {
+    "id": 303,
+    "created_at": "2026-02-07 09:57:26",
+    "user": "시스템",
+    "menu": "취약점관리",
+    "action": "KRCERT RSS 동기화",
+    "details": "0개 CVE 추가됨",
+    "status": "Success",
+    "timestamp": "2026-02-07 09:57:26"
+  },
+  {
+    "id": 304,
+    "created_at": "2026-02-07 11:04:21",
+    "user": "시스템",
+    "menu": "취약점관리",
+    "action": "KRCERT RSS 동기화",
+    "details": "0개 CVE 추가됨",
+    "status": "Success",
+    "timestamp": "2026-02-07 11:04:21"
   }
 ]

@@ -11,6 +11,7 @@ const logsRepo = require('./db/repositories/logsRepo');
 const cveRepo = require('./db/repositories/cveRepo');
 const policiesRepo = require('./db/repositories/policiesRepo');
 const inspectionsRepo = require('./db/repositories/inspectionsRepo');
+const { fetchRssFeed } = require('./utils/rssParser');
 
 /**
  * 로그 기록 헬퍼
@@ -395,6 +396,54 @@ app.put('/api/cves/:id', authMiddleware, (req, res) => {
         res.json({ message: '수정되었습니다.' });
     } catch (err) {
         res.status(500).json({ message: 'CVE 수정 중 오류가 발생했습니다.' });
+    }
+});
+
+/**
+ * RSS 동기화: KRCERT에서 최신 CVE 정보 가져오기
+ */
+app.post('/api/cves/sync-rss', authMiddleware, async (req, res) => {
+    try {
+        console.log('[RSS Sync] KRCERT RSS 동기화 시작...');
+
+        // RSS 피드 가져오기
+        const rssItems = await fetchRssFeed();
+        console.log(`[RSS Sync] ${rssItems.length}개 항목 수신`);
+
+        // 기존 CVE ID 목록 가져오기
+        const existingCves = cveRepo.findAll();
+        const existingIds = new Set(existingCves.map(c => c.cve_id));
+
+        // 새로운 CVE만 추가
+        let addedCount = 0;
+        const addedItems = [];
+
+        for (const item of rssItems) {
+            if (!existingIds.has(item.cve_id)) {
+                const id = cveRepo.create(item);
+                addedCount++;
+                addedItems.push({ id, cve_id: item.cve_id });
+                console.log(`[RSS Sync] 새 CVE 추가: ${item.cve_id}`);
+            }
+        }
+
+        writeLog('시스템', '취약점관리', 'KRCERT RSS 동기화', `${addedCount}개 CVE 추가됨`, 'Success');
+
+        res.json({
+            success: true,
+            message: `${addedCount}개의 새로운 CVE가 추가되었습니다.`,
+            total_fetched: rssItems.length,
+            added: addedCount,
+            added_items: addedItems
+        });
+    } catch (err) {
+        console.error('[RSS Sync] 오류:', err);
+        writeLog('시스템', '취약점관리', 'KRCERT RSS 동기화 실패', err.message, 'Fail');
+        res.status(500).json({
+            success: false,
+            message: 'RSS 동기화 중 오류가 발생했습니다.',
+            error: err.message
+        });
     }
 });
 
