@@ -3313,17 +3313,45 @@
   },
   {
     "id": 280,
-    "created_at": "2026-02-02 01:25:29",
-    "user": "관리자",
-    "menu": "보안규정",
-    "action": "보안 규정 등록",
-    "details": "제목: 계약 관리 규정",
+    "created_at": "2026-01-30 12:59:22",
+    "user": "시스템",
+    "menu": "보안서약",
+    "action": "인증번호 생성 (메일 생략)",
+    "details": {
+      "email": "soo****@gmail.com"
+    },
     "status": "Success",
-    "timestamp": "2026-02-02 01:25:29"
+    "timestamp": "2026-01-30 12:59:22"
   },
   {
     "id": 281,
-    "created_at": "2026-02-05 02:08:59",
+    "created_at": "2026-01-30 12:59:31",
+    "user": "시스템",
+    "menu": "보안서약",
+    "action": "이메일 인증 성공",
+    "details": {
+      "email": "soo****@gmail.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 12:59:31"
+  },
+  {
+    "id": 282,
+    "created_at": "2026-01-30 12:59:33",
+    "user": "김수민",
+    "menu": "보안서약",
+    "action": "서약서 제출",
+    "details": {
+      "type": "KO",
+      "dept": "티웨이항공",
+      "email": "soo****@gmail.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-01-30 12:59:33"
+  },
+  {
+    "id": 283,
+    "created_at": "2026-02-05 06:54:55",
     "user": "관리자",
     "menu": "점검관리",
     "action": "신규 솔루션 등록",
@@ -3331,6 +3359,236 @@
       "name": "Akamai"
     },
     "status": "Success",
-    "timestamp": "2026-02-05 02:08:59"
+    "timestamp": "2026-02-05 06:54:55"
+  },
+  {
+    "id": 284,
+    "created_at": "2026-02-05 07:12:45",
+    "user": "관리자",
+    "menu": "점검관리",
+    "action": "솔루션 삭제",
+    "details": {
+      "id": "1"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-05 07:12:45"
+  },
+  {
+    "id": 285,
+    "created_at": "2026-02-05 07:12:56",
+    "user": "관리자",
+    "menu": "점검관리",
+    "action": "솔루션 삭제",
+    "details": {
+      "id": "5"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-05 07:12:56"
+  },
+  {
+    "id": 286,
+    "created_at": "2026-02-06 11:11:59",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 5",
+    "status": "Success",
+    "timestamp": "2026-02-06 11:11:59"
+  },
+  {
+    "id": 287,
+    "created_at": "2026-02-06 11:21:16",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 2",
+    "status": "Success",
+    "timestamp": "2026-02-06 11:21:16"
+  },
+  {
+    "id": 288,
+    "created_at": "2026-02-06 11:28:30",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 4",
+    "status": "Success",
+    "timestamp": "2026-02-06 11:28:30"
+  },
+  {
+    "id": 289,
+    "created_at": "2026-02-06 11:28:38",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 12",
+    "status": "Success",
+    "timestamp": "2026-02-06 11:28:38"
+  },
+  {
+    "id": 290,
+    "created_at": "2026-02-06 11:36:11",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 수정",
+    "details": "제목: 계약 관리 규정",
+    "status": "Success",
+    "timestamp": "2026-02-06 11:36:11"
+  },
+  {
+    "id": 291,
+    "created_at": "2026-02-06 12:31:19",
+    "user": "관리자",
+    "menu": "취약점관리",
+    "action": "CVE 상태 변경",
+    "details": "ID: 3 -> Ignored",
+    "status": "Success",
+    "timestamp": "2026-02-06 12:31:19"
+  },
+  {
+    "id": 292,
+    "created_at": "2026-02-06 12:44:37",
+    "user": "시스템",
+    "menu": "보안서약",
+    "action": "인증번호 생성 (메일 생략)",
+    "details": {
+      "email": "smk****@twayair.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-06 12:44:37"
+  },
+  {
+    "id": 293,
+    "created_at": "2026-02-06 12:44:40",
+    "user": "시스템",
+    "menu": "보안서약",
+    "action": "이메일 인증 성공",
+    "details": {
+      "email": "smk****@twayair.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-06 12:44:40"
+  },
+  {
+    "id": 294,
+    "created_at": "2026-02-06 12:44:42",
+    "user": "김수민",
+    "menu": "보안서약",
+    "action": "서약서 제출",
+    "details": {
+      "type": "KO",
+      "dept": "티웨이항공",
+      "email": "smk****@twayair.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-06 12:44:42"
+  },
+  {
+    "id": 295,
+    "created_at": "2026-02-06 12:51:48",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 등록",
+    "details": "제목: 사실조회",
+    "status": "Success",
+    "timestamp": "2026-02-06 12:51:48"
+  },
+  {
+    "id": 296,
+    "created_at": "2026-02-06 12:51:59",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 수정",
+    "details": "제목: (추가 검토) 사실조회",
+    "status": "Success",
+    "timestamp": "2026-02-06 12:51:59"
+  },
+  {
+    "id": 297,
+    "created_at": "2026-02-06 12:52:38",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 수정",
+    "details": "제목: (메뉴추가) 사실조회",
+    "status": "Success",
+    "timestamp": "2026-02-06 12:52:38"
+  },
+  {
+    "id": 298,
+    "created_at": "2026-02-06 12:58:12",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 등록",
+    "details": "제목: (규정) 자산추가/폐기",
+    "status": "Success",
+    "timestamp": "2026-02-06 12:58:12"
+  },
+  {
+    "id": 299,
+    "created_at": "2026-02-06 14:26:03",
+    "user": "시스템",
+    "menu": "보안서약",
+    "action": "인증번호 생성 (메일 생략)",
+    "details": {
+      "email": "das****@gmail.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-06 14:26:03"
+  },
+  {
+    "id": 300,
+    "created_at": "2026-02-06 14:26:05",
+    "user": "시스템",
+    "menu": "보안서약",
+    "action": "이메일 인증 성공",
+    "details": {
+      "email": "das****@gmail.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-06 14:26:05"
+  },
+  {
+    "id": 301,
+    "created_at": "2026-02-06 14:26:06",
+    "user": "KSM",
+    "menu": "보안서약",
+    "action": "서약서 제출",
+    "details": {
+      "type": "KO",
+      "dept": "SONO",
+      "email": "das****@gmail.com"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-06 14:26:06"
+  },
+  {
+    "id": 302,
+    "created_at": "2026-02-07 09:54:52",
+    "user": "시스템",
+    "menu": "취약점관리",
+    "action": "KRCERT RSS 동기화",
+    "details": "10개 CVE 추가됨",
+    "status": "Success",
+    "timestamp": "2026-02-07 09:54:52"
+  },
+  {
+    "id": 303,
+    "created_at": "2026-02-07 09:57:26",
+    "user": "시스템",
+    "menu": "취약점관리",
+    "action": "KRCERT RSS 동기화",
+    "details": "0개 CVE 추가됨",
+    "status": "Success",
+    "timestamp": "2026-02-07 09:57:26"
+  },
+  {
+    "id": 304,
+    "created_at": "2026-02-07 11:04:21",
+    "user": "시스템",
+    "menu": "취약점관리",
+    "action": "KRCERT RSS 동기화",
+    "details": "0개 CVE 추가됨",
+    "status": "Success",
+    "timestamp": "2026-02-07 11:04:21"
   }
 ]

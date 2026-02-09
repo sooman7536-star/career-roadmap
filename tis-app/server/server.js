@@ -11,6 +11,7 @@ const logsRepo = require('./db/repositories/logsRepo');
 const cveRepo = require('./db/repositories/cveRepo');
 const policiesRepo = require('./db/repositories/policiesRepo');
 const inspectionsRepo = require('./db/repositories/inspectionsRepo');
+const { fetchRssFeed } = require('./utils/rssParser');
 
 /**
  * 로그 기록 헬퍼
@@ -77,6 +78,11 @@ app.get('/api/health', (req, res) => {
  */
 app.get('/api/requests', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const requests = require('./db/index').getCollection('requests');
+        if (requests && typeof requests._init === 'function') {
+            requests._init();
+        }
         const list = requestsRepo.findAll();
         res.json(list);
     } catch (err) {
@@ -171,6 +177,12 @@ app.delete('/api/requests/:id', (req, res) => {
 
 app.get('/api/assets', authMiddleware, (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const assets = require('./db/index').getCollection('assets');
+        if (assets && typeof assets._init === 'function') {
+            assets._init();
+        }
+
         const list = assetsRepo.findAll();
         res.json(list);
     } catch (err) {
@@ -218,6 +230,11 @@ app.delete('/api/assets/:id', authMiddleware, (req, res) => {
 
 app.get('/api/policies', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const policies = require('./db/index').getCollection('policies');
+        if (policies && typeof policies._init === 'function') {
+            policies._init();
+        }
         const list = policiesRepo.findAll();
         res.json(list);
     } catch (err) {
@@ -273,6 +290,11 @@ app.delete('/api/policies/:id', authMiddleware, (req, res) => {
 
 app.get('/api/pledges', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const pledges = require('./db/index').getCollection('pledges');
+        if (pledges && typeof pledges._init === 'function') {
+            pledges._init();
+        }
         const list = pledgesRepo.findAll();
         res.json(list);
     } catch (err) {
@@ -310,6 +332,12 @@ app.post('/api/pledges', (req, res) => {
 
 app.get('/api/logs', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const logsCol = require('./db/index').getCollection('logs');
+        if (logsCol && typeof logsCol._init === 'function') {
+            logsCol._init();
+        }
+
         const { category, search } = req.query;
         let logs = logsRepo.findAll();
 
@@ -337,8 +365,13 @@ app.get('/api/logs', (req, res) => {
 
 app.get('/api/cves', authMiddleware, (req, res) => {
     try {
-        const cves = cveRepo.findAll();
-        res.json(cves);
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const cves = require('./db/index').getCollection('cve_items');
+        if (cves && typeof cves._init === 'function') {
+            cves._init();
+        }
+        const list = cveRepo.findAll();
+        res.json(list);
     } catch (err) {
         res.status(500).json({ message: 'CVE 목록을 가져오는 중 오류가 발생했습니다.' });
     }
@@ -363,6 +396,54 @@ app.put('/api/cves/:id', authMiddleware, (req, res) => {
         res.json({ message: '수정되었습니다.' });
     } catch (err) {
         res.status(500).json({ message: 'CVE 수정 중 오류가 발생했습니다.' });
+    }
+});
+
+/**
+ * RSS 동기화: KRCERT에서 최신 CVE 정보 가져오기
+ */
+app.post('/api/cves/sync-rss', authMiddleware, async (req, res) => {
+    try {
+        console.log('[RSS Sync] KRCERT RSS 동기화 시작...');
+
+        // RSS 피드 가져오기
+        const rssItems = await fetchRssFeed();
+        console.log(`[RSS Sync] ${rssItems.length}개 항목 수신`);
+
+        // 기존 CVE ID 목록 가져오기
+        const existingCves = cveRepo.findAll();
+        const existingIds = new Set(existingCves.map(c => c.cve_id));
+
+        // 새로운 CVE만 추가
+        let addedCount = 0;
+        const addedItems = [];
+
+        for (const item of rssItems) {
+            if (!existingIds.has(item.cve_id)) {
+                const id = cveRepo.create(item);
+                addedCount++;
+                addedItems.push({ id, cve_id: item.cve_id });
+                console.log(`[RSS Sync] 새 CVE 추가: ${item.cve_id}`);
+            }
+        }
+
+        writeLog('시스템', '취약점관리', 'KRCERT RSS 동기화', `${addedCount}개 CVE 추가됨`, 'Success');
+
+        res.json({
+            success: true,
+            message: `${addedCount}개의 새로운 CVE가 추가되었습니다.`,
+            total_fetched: rssItems.length,
+            added: addedCount,
+            added_items: addedItems
+        });
+    } catch (err) {
+        console.error('[RSS Sync] 오류:', err);
+        writeLog('시스템', '취약점관리', 'KRCERT RSS 동기화 실패', err.message, 'Fail');
+        res.status(500).json({
+            success: false,
+            message: 'RSS 동기화 중 오류가 발생했습니다.',
+            error: err.message
+        });
     }
 });
 
@@ -416,6 +497,12 @@ app.post('/api/auth/verify', (req, res) => {
 // 대시보드 요약
 app.get('/api/inspections/dashboard', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const ins = require('./db/index').getCollection('inspections');
+        const sol = require('./db/index').getCollection('solutions');
+        if (ins && typeof ins._init === 'function') ins._init();
+        if (sol && typeof sol._init === 'function') sol._init();
+
         const summary = inspectionsRepo.getDashboardSummary();
         res.json(summary);
     } catch (err) {
@@ -426,6 +513,10 @@ app.get('/api/inspections/dashboard', (req, res) => {
 // 솔루션 목록
 app.get('/api/inspections/solutions', (req, res) => {
     try {
+        // [임시 조치] 파일 시스템의 최신 데이터를 강제로 다시 읽어옵니다.
+        const sol = require('./db/index').getCollection('solutions');
+        if (sol && typeof sol._init === 'function') sol._init();
+
         const list = inspectionsRepo.findAllSolutions();
         res.json(list);
     } catch (err) {
@@ -441,6 +532,36 @@ app.post('/api/inspections/solutions', authMiddleware, (req, res) => {
         res.status(201).json({ id, message: '솔루션이 등록되었습니다.' });
     } catch (err) {
         res.status(500).json({ message: '솔루션 저장 중 오류가 발생했습니다.' });
+    }
+});
+
+// 솔루션 수정
+app.put('/api/inspections/solutions/:id', authMiddleware, (req, res) => {
+    try {
+        const success = inspectionsRepo.updateSolution(req.params.id, req.body);
+        if (success) {
+            writeLog('관리자', '점검관리', '솔루션 정보 수정', { id: req.params.id, name: req.body.name }, 'Success');
+            res.json({ message: '솔루션 정보가 수정되었습니다.' });
+        } else {
+            res.status(404).json({ message: '해당 솔루션을 찾을 수 없습니다.' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: '솔루션 수정 중 오류가 발생했습니다.' });
+    }
+});
+
+// 솔루션 삭제
+app.delete('/api/inspections/solutions/:id', authMiddleware, (req, res) => {
+    try {
+        const success = inspectionsRepo.deleteSolution(req.params.id);
+        if (success) {
+            writeLog('관리자', '점검관리', '솔루션 삭제', { id: req.params.id }, 'Success');
+            res.json({ message: '솔루션이 삭제되었습니다.' });
+        } else {
+            res.status(404).json({ message: '해당 솔루션을 찾을 수 없습니다.' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: '솔루션 삭제 중 오류가 발생했습니다.' });
     }
 });
 
@@ -464,6 +585,9 @@ app.post('/api/inspections', authMiddleware, (req, res) => {
         res.status(500).json({ message: '점검 결과 저장 중 오류가 발생했습니다.' });
     }
 });
+
+// favicon.ico 404 방지
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // Start Server
 app.listen(PORT, () => {
