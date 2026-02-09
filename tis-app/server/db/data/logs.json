@@ -3770,5 +3770,77 @@
     "details": "ID: 20",
     "status": "Success",
     "timestamp": "2026-02-09 05:14:25"
+  },
+  {
+    "id": 323,
+    "created_at": "2026-02-09 06:44:03",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OCI_TELLER_DB01"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-09 06:44:03"
+  },
+  {
+    "id": 324,
+    "created_at": "2026-02-09 06:44:03",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "EHR_DB_N"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-09 06:44:03"
+  },
+  {
+    "id": 325,
+    "created_at": "2026-02-09 06:44:03",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-db-rds-csdataanlz"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-09 06:44:03"
+  },
+  {
+    "id": 326,
+    "created_at": "2026-02-09 07:13:21",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "AWS_TED"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-09 07:13:21"
+  },
+  {
+    "id": 327,
+    "created_at": "2026-02-09 07:13:21",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "eHR모바일 WEB, 채용 WEB"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-09 07:13:21"
+  },
+  {
+    "id": 328,
+    "created_at": "2026-02-09 07:13:21",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DNS_Solution_Backup 어플라이언스"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-09 07:13:21"
   }
 ]

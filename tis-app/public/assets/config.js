@@ -87,14 +87,14 @@ const assetCategoryConfig = {
         cols: [
             '그룹코드', '자산코드', '자산명', 'IP', '제품명(모델명)/버전',
             '자산위치', '운영자', '관리자', '관리부서', '기밀성',
-            '무결성', '가용성', '중요도점수', '등급', 'ISMS',
-            'IOSA', '내부', '비고'
+            '무결성', '가용성', '중요도점수', '등급', '제조업체',
+            '서비스범위', '비고'
         ],
         fields: [
             'group_code', 'asset_no', 'name', 'ip', 'model_ver',
             'location', 'operator', 'manager', 'dept', 'imp_c',
-            'imp_i', 'imp_a', 'imp_score', 'grade', 'cert_isms',
-            'cert_iso', 'cert_internal', 'notes'
+            'imp_i', 'imp_a', 'imp_score', 'grade', 'manufacturer',
+            'service_range', 'notes'
         ]
     },
     cloud: {

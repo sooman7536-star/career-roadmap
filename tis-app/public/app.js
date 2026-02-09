@@ -2952,22 +2952,35 @@
                 return matchesCategory && matchesSearch;
             });
 
-            if (filtered.length === 0) {
-                notifications.show('다운로드할 데이터가 없습니다.', 'info');
-                return;
-            }
+            // 현재 카테고리 설정 가져오기
+            const config = assetCategoryConfig[state.currentAssetCategory];
+
+            // 데이터 여부에 따라 샘플 양식 또는 실제 데이터 다운로드 결정
+            const isTemplateDownload = filtered.length === 0;
 
             try {
                 // 엑셀에 들어갈 데이터 가공
-                const config = assetCategoryConfig[state.currentAssetCategory];
-                const excelData = filtered.map(item => {
-                    const row = {};
-                    // 카테고리별 설정된 컬럼(cols)과 필드(fields)를 매핑
-                    config.fields.forEach((field, idx) => {
-                        row[config.cols[idx]] = item[field] || '-';
+                let excelData;
+
+                if (isTemplateDownload) {
+                    // 데이터가 없으면 빈 행 하나 생성 (헤더만 표시하기 위함)
+                    // 빈 객체에 모든 컬럼명을 키로 설정하여 헤더 보장
+                    const emptyRow = {};
+                    config.cols.forEach(col => {
+                        emptyRow[col] = ''; // 빈 값으로 샘플 양식 생성
                     });
-                    return row;
-                });
+                    excelData = [emptyRow];
+                } else {
+                    // 실제 데이터 매핑
+                    excelData = filtered.map(item => {
+                        const row = {};
+                        // 카테고리별 설정된 컬럼(cols)과 필드(fields)를 매핑
+                        config.fields.forEach((field, idx) => {
+                            row[config.cols[idx]] = item[field] || '-';
+                        });
+                        return row;
+                    });
+                }
 
                 // 워크북 및 워크시트 생성
                 const worksheet = XLSX.utils.json_to_sheet(excelData);
@@ -3026,11 +3039,32 @@
                 const workbook = XLSX.utils.book_new();
                 XLSX.utils.book_append_sheet(workbook, worksheet, "Assets");
 
-                // 파일 다운로드 실행
-                const fileName = `TIS_Assets_${new Date().toISOString().split('T')[0]}.xlsx`;
-                XLSX.writeFile(workbook, fileName);
+                // 파일 다운로드 실행 (샘플 양식일 때는 _Template 접미사 추가)
+                const categoryLabel = config.label; // 카테고리명 (예: 서버, 데이터베이스)
+                const dateSuffix = new Date().toISOString().split('T')[0];
+                const fileName = isTemplateDownload
+                    ? `TIS_${categoryLabel}_Template_${dateSuffix}.xlsx`  // 샘플 양식
+                    : `TIS_${categoryLabel}_${dateSuffix}.xlsx`;          // 실제 데이터
 
-                notifications.show('헤더 스타일이 적용된 엑셀 다운로드가 시작되었습니다.', 'success');
+                // Blob URL 방식으로 파일 다운로드 (명시적 파일명 지정)
+                // XLSX.writeFile 대신 사용하여 브라우저 호환성 향상
+                const xlsxData = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+                const blob = new Blob([xlsxData], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = fileName; // 명시적 파일명 지정
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url); // 메모리 해제
+
+
+                // 알림 메시지 (샘플 양식 vs 실제 데이터)
+                const message = isTemplateDownload
+                    ? `${categoryLabel} 샘플 양식이 다운로드되었습니다. 엑셀 업로드 시 이 양식을 사용하세요.`
+                    : '엑셀 다운로드가 완료되었습니다.';
+                notifications.show(message, 'success');
             } catch (err) {
                 console.error('Excel Download Error:', err);
                 notifications.show('엑셀 파일 생성 중 오류가 발생했습니다.', 'error');
