@@ -3590,5 +3590,185 @@
     "details": "0개 CVE 추가됨",
     "status": "Success",
     "timestamp": "2026-02-07 11:04:21"
+  },
+  {
+    "id": 305,
+    "created_at": "2026-02-09 01:50:32",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 등록",
+    "details": "제목: 예산 관리",
+    "status": "Success",
+    "timestamp": "2026-02-09 01:50:32"
+  },
+  {
+    "id": 306,
+    "created_at": "2026-02-09 03:43:04",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 22",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:04"
+  },
+  {
+    "id": 307,
+    "created_at": "2026-02-09 03:43:05",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 10",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:05"
+  },
+  {
+    "id": 308,
+    "created_at": "2026-02-09 03:43:06",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 11",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:06"
+  },
+  {
+    "id": 309,
+    "created_at": "2026-02-09 03:43:07",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 13",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:07"
+  },
+  {
+    "id": 310,
+    "created_at": "2026-02-09 03:43:08",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 14",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:08"
+  },
+  {
+    "id": 311,
+    "created_at": "2026-02-09 03:43:09",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 9",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:09"
+  },
+  {
+    "id": 312,
+    "created_at": "2026-02-09 03:43:26",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 3",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:26"
+  },
+  {
+    "id": 313,
+    "created_at": "2026-02-09 03:43:30",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 17",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:30"
+  },
+  {
+    "id": 314,
+    "created_at": "2026-02-09 03:43:32",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 7",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:32"
+  },
+  {
+    "id": 315,
+    "created_at": "2026-02-09 03:43:33",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 15",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:33"
+  },
+  {
+    "id": 316,
+    "created_at": "2026-02-09 03:43:34",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 19",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:34"
+  },
+  {
+    "id": 317,
+    "created_at": "2026-02-09 03:43:35",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 23",
+    "status": "Success",
+    "timestamp": "2026-02-09 03:43:35"
+  },
+  {
+    "id": 318,
+    "created_at": "2026-02-09 05:14:14",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 6",
+    "status": "Success",
+    "timestamp": "2026-02-09 05:14:14"
+  },
+  {
+    "id": 319,
+    "created_at": "2026-02-09 05:14:15",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 24",
+    "status": "Success",
+    "timestamp": "2026-02-09 05:14:15"
+  },
+  {
+    "id": 320,
+    "created_at": "2026-02-09 05:14:16",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 25",
+    "status": "Success",
+    "timestamp": "2026-02-09 05:14:16"
+  },
+  {
+    "id": 321,
+    "created_at": "2026-02-09 05:14:17",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 18",
+    "status": "Success",
+    "timestamp": "2026-02-09 05:14:17"
+  },
+  {
+    "id": 322,
+    "created_at": "2026-02-09 05:14:25",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "자산 삭제",
+    "details": "ID: 20",
+    "status": "Success",
+    "timestamp": "2026-02-09 05:14:25"
   }
 ]
