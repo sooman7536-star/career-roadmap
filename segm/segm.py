@@ -216,6 +216,47 @@ async def run_automation():
                                 # 버튼 역시 안전하게 JS 클릭 방식을 사용합니다.
                                 await select_confirm_btn.evaluate("el => el.click()")
                                 print("     🚀 '선택' 확인 버튼 클릭 완료! (ID: WD015B)")
+                                
+
+                                # [최종] WD011F 클릭 -> ID(#WD0121) 클릭 후 F4 키 입력
+                                # -------------------------------------------------------
+                                await asyncio.sleep(2.0)
+
+                                print("   - [작업 5] 'WD011F' (테이블 셀) 클릭 중...")
+                                found_cell = False
+                                for p_obj_sub in context.pages:
+                                    for f_sub in p_obj_sub.frames:
+                                        try:
+                                            # 테이블 셀 WD011F 찾기
+                                            cell_loc = f_sub.locator("#WD011F")
+                                            if await cell_loc.count() > 0:
+                                                await cell_loc.click()
+                                                print("     ✅ 테이블 셀(#WD011F) 클릭 성공!")
+                                                found_cell = True
+                                                
+                                                # 숨겨진 입력창 #WD0121 클릭 및 F4 키 입력 (검색창 열기)
+                                                await asyncio.sleep(1.0)
+                                                print("   - [작업 6] 입력창(#WD0121) 클릭 및 F4 키(검색 확인) 입력 중...")
+                                                
+                                                # 프레임 내에서 WD0121 찾기 (WD011F 내부에 생성됨)
+                                                input_loc = f_sub.locator("#WD0121")
+                                                
+                                                if await input_loc.count() > 0:
+                                                    await input_loc.click()
+                                                    await asyncio.sleep(0.5)
+                                                    await input_loc.press("F4")  # F4 키 입력 (검색 버튼 효과)
+                                                    print("     🚀 입력창(#WD0121) 클릭 후 'F4' 키 입력 완료!")
+                                                else:
+                                                    print("     ⚠️ 입력창(#WD0121)이 나타나지 않았습니다.")
+                                                
+                                                break
+                                        except: pass
+                                    if found_cell: break
+                                
+                                if not found_cell:
+                                    print("     ⚠️ 테이블 셀(#WD011F)을 찾지 못했습니다.")
+                                # -------------------------------------------------------
+
                             else:
                                 print("     ⚠️ '선택' 버튼(#WD015B)을 찾지 못했습니다.")
                         else:
