@@ -742,6 +742,33 @@
   .cloud-btn.saving { opacity: 0.65; cursor: default; }
 
 
+
+  /* ── 인앱 브라우저 안내 ── */
+  .inapp-banner {
+    display: none;
+    background: #FFF3E0;
+    border: 1.5px solid #FFB300;
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-bottom: 1rem;
+    font-size: 13px;
+    color: #7A4F00;
+    line-height: 1.6;
+    text-align: left;
+  }
+  .inapp-banner.show { display: block; }
+  .inapp-banner strong { font-weight: 700; display: block; margin-bottom: 4px; }
+  .open-browser-btn {
+    display: block; width: 100%;
+    margin-top: 10px; padding: 11px;
+    background: #FF8F00; color: #fff;
+    border: none; border-radius: 999px;
+    font-size: 14px; font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer; text-align: center;
+    text-decoration: none;
+  }
+
   /* ── 로그인 전용 전체화면 ── */
   .login-screen {
     position: fixed; inset: 0;
@@ -1267,6 +1294,11 @@
       <div class="login-feature-item"><div class="login-feature-icon">📱</div>PC · 폰 · 회사 어디서든 동일 데이터</div>
       <div class="login-feature-item"><div class="login-feature-icon">🔐</div>내 계정 데이터만 접근 가능</div>
     </div>
+    <div class="inapp-banner" id="inapp-banner">
+      <strong>⚠ 앱 내 브라우저에서는 Google 로그인이 제한됩니다</strong>
+      아래 버튼을 눌러 Chrome 또는 Safari로 열어주세요.
+      <a id="open-browser-btn" class="open-browser-btn" href="#">Chrome으로 열기</a>
+    </div>
     <button class="login-google-btn" id="btn-google-overlay">
       <svg width="20" height="20" viewBox="0 0 48 48">
         <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.6 32.7 29.3 35 24 35c-6.1 0-11-4.9-11-11s4.9-11 11-11c2.8 0 5.3 1 7.2 2.7l5.7-5.7C33.7 7.3 29.1 5 24 5 13.5 5 5 13.5 5 24s8.5 19 19 19 19-8.5 19-19c0-1.3-.1-2.6-.4-3.9z"/>
@@ -1281,11 +1313,14 @@
 </div>
 
 <script type="module">
-import { initializeApp }     from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged }
-                             from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { initializeApp }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAuth, GoogleAuthProvider,
+         signInWithPopup, signInWithRedirect, getRedirectResult,
+         signOut, onAuthStateChanged, setPersistence, browserLocalPersistence }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import { getFirestore, doc, setDoc, getDoc }
-                             from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 // ── Firebase 설정 ──────────────────────────────────────────────
 const FIREBASE_CONFIG = {
@@ -1302,64 +1337,121 @@ const app  = initializeApp(FIREBASE_CONFIG);
 const auth = getAuth(app);
 const db   = getFirestore(app);
 
-// redirect 로그인 후 결과 처리 (GitHub Pages 등 외부 환경)
-getRedirectResult(auth).then(result => {
-  if (result && result.user) {
-    console.log('Redirect 로그인 성공:', result.user.displayName);
-  }
-}).catch(e => {
-  if (e.code !== 'auth/cancelled-popup-request') {
-    console.error('Redirect result error:', e.code, e.message);
-    showToast('로그인 오류: ' + (e.code || e.message));
-  }
-});
+// ── UI 헬퍼 ───────────────────────────────────────────────────
+function showLoginScreen() {
+  document.getElementById('main-content').classList.remove('visible');
+  const ls = document.getElementById('login-screen');
+  ls.style.display = 'flex';
+  ls.classList.remove('hidden');
+  document.getElementById('header-logged-in').style.display = 'none';
+}
 
-// ── 인증 상태 감지 ─────────────────────────────────────────────
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    // 로그인 화면 숨기기 (fade out)
-    const loginScreen = document.getElementById('login-screen');
-    loginScreen.classList.add('hidden');
-    setTimeout(() => { loginScreen.style.display = 'none'; }, 350);
-    // 메인 콘텐츠 표시
-    document.getElementById('main-content').classList.add('visible');
-    document.getElementById('header-logged-out').style.display = 'none';
-    document.getElementById('header-logged-in').style.display  = 'flex';
-    const wrap = document.getElementById('user-avatar-wrap');
-    if (user.photoURL) {
-      wrap.innerHTML = `<img class="user-avatar" src="${user.photoURL}" referrerpolicy="no-referrer">`;
-    } else {
-      const ini = (user.displayName || 'U').charAt(0).toUpperCase();
-      wrap.innerHTML = `<div class="user-avatar-placeholder">${ini}</div>`;
-    }
-    document.getElementById('user-display-name').textContent = user.displayName || '사용자';
-    document.getElementById('user-email').textContent        = user.email || '';
-    await loadFromCloud(user.uid);
-    showToast('☁ ' + (user.displayName || '사용자') + '님, 반갑습니다!');
+function showMainScreen(user) {
+  const ls = document.getElementById('login-screen');
+  ls.classList.add('hidden');
+  setTimeout(() => { ls.style.display = 'none'; }, 350);
+  document.getElementById('main-content').classList.add('visible');
+  document.getElementById('header-logged-out').style.display = 'none';
+  document.getElementById('header-logged-in').style.display  = 'flex';
+  const wrap = document.getElementById('user-avatar-wrap');
+  if (user.photoURL) {
+    wrap.innerHTML = `<img class="user-avatar" src="${user.photoURL}" referrerpolicy="no-referrer">`;
   } else {
-    // 로그아웃 시 메인 콘텐츠 숨기고 로그인 화면 다시 표시
-    document.getElementById('main-content').classList.remove('visible');
-    const loginScreen = document.getElementById('login-screen');
-    loginScreen.style.display = 'flex';
-    loginScreen.classList.remove('hidden');
-    document.getElementById('header-logged-out').style.display = 'none';
-    document.getElementById('header-logged-in').style.display  = 'none';
+    const ini = (user.displayName || 'U').charAt(0).toUpperCase();
+    wrap.innerHTML = `<div class="user-avatar-placeholder">${ini}</div>`;
   }
-});
+  document.getElementById('user-display-name').textContent = user.displayName || '사용자';
+  document.getElementById('user-email').textContent        = user.email || '';
+}
 
-// ── Google 로그인 (redirect 우선, popup 폴백) ─────────────────
+// ── Toast ──────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── 앱 시작 시 처리 순서 ───────────────────────────────────────
+// 1) 로컬 persistence 설정 (iOS Safari ITP 대응)
+// 2) redirect 결과 먼저 확인
+// 3) onAuthStateChanged로 상태 감지
+async function initAuth() {
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+  } catch(e) { console.warn('setPersistence error:', e); }
+
+  // redirect 후 돌아왔을 때 결과 처리
+  try {
+    const result = await getRedirectResult(auth);
+    if (result && result.user) {
+      // redirect 성공 → onAuthStateChanged가 이어서 처리
+      console.log('Redirect login OK:', result.user.email);
+    }
+  } catch(e) {
+    console.error('getRedirectResult error:', e.code, e.message);
+    if (e.code !== 'auth/cancelled-popup-request' &&
+        e.code !== 'auth/popup-closed-by-user') {
+      showToast('로그인 오류: ' + (e.code || e.message));
+    }
+  }
+
+  // 인증 상태 감지
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      showMainScreen(user);
+      await loadFromCloud(user.uid);
+      showToast('☁ ' + (user.displayName || '사용자') + '님, 반갑습니다!');
+    } else {
+      showLoginScreen();
+    }
+  });
+}
+
+initAuth();
+
+// ── 인앱 브라우저 감지 ─────────────────────────────────────────
+function isInAppBrowser() {
+  const ua = navigator.userAgent || '';
+  return /KAKAOTALK|NAVER|Line|Instagram|FB_IAB|FBAV|Twitter|Snapchat|WeChat/i.test(ua)
+    || (ua.includes('iPhone') && !ua.includes('Safari') && !ua.includes('CriOS'))
+    || (/Android/i.test(ua) && /wv/.test(ua));
+}
+
+// ── Google 로그인 ──────────────────────────────────────────────
 async function signInWithGoogle() {
+  // 인앱 브라우저 안내
+  if (isInAppBrowser()) {
+    const banner = document.getElementById('inapp-banner');
+    const openBtn = document.getElementById('open-browser-btn');
+    banner.classList.add('show');
+    if (/Android/i.test(navigator.userAgent)) {
+      openBtn.href = 'intent://' + location.host + location.pathname
+        + '#Intent;scheme=https;package=com.android.chrome;end';
+    } else {
+      openBtn.href = location.href;
+      openBtn.textContent = 'Safari로 열기';
+    }
+    return;
+  }
+
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
+
+  const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
   try {
-    // GitHub Pages 등 외부 환경에서는 redirect가 안정적
-    if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-      await signInWithRedirect(auth, provider);
-    } else {
+    if (isLocal) {
+      // 로컬: 팝업 방식
       await signInWithPopup(auth, provider);
+    } else {
+      // 외부(GitHub Pages, iOS Safari 포함): redirect 방식
+      await signInWithRedirect(auth, provider);
     }
   } catch (e) {
-    if (e.code !== 'auth/popup-closed-by-user') {
+    if (e.code === 'auth/popup-blocked' || e.code === 'auth/operation-not-supported-in-this-environment') {
+      // 팝업 차단 시 redirect로 폴백
+      try { await signInWithRedirect(auth, provider); } catch(e2) { console.error(e2); }
+    } else if (e.code !== 'auth/popup-closed-by-user') {
       showToast('로그인 실패: ' + (e.code || e.message));
       console.error(e);
     }
@@ -1397,9 +1489,7 @@ async function loadFromCloud(uid) {
   try {
     const snap = await getDoc(doc(db, 'career', uid));
     if (snap.exists()) { applyData(snap.data()); }
-  } catch (e) {
-    console.warn('Cloud load error:', e);
-  }
+  } catch (e) { console.warn('Cloud load error:', e); }
 }
 
 // ── 자격증 탭 전환 ─────────────────────────────────────────────
@@ -1428,13 +1518,15 @@ let goalIdCounter = 10;
 const tagLabels  = { short: '단기', mid: '중기', long: '장기' };
 const tagClasses = { short: 'tag-short', mid: 'tag-mid', long: 'tag-long' };
 
-// ── 데이터 수집 / 적용 ─────────────────────────────────────────
 function collectData() {
   const now = new Date();
   const ts  = now.toLocaleDateString('ko-KR') + ' ' + now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
-  return { pname: document.getElementById('pname').value, psub: document.getElementById('psub').value,
-    notes: document.getElementById('notes').value, skills, goals, goalIdCounter, lastSaved: ts };
+  return { pname: document.getElementById('pname').value,
+    psub: document.getElementById('psub').value,
+    notes: document.getElementById('notes').value,
+    skills, goals, goalIdCounter, lastSaved: ts };
 }
+
 function applyData(d) {
   document.getElementById('pname').value = d.pname || '정보보안 담당자';
   document.getElementById('psub').value  = d.psub  || '중견기업 인하우스 · 5~10년차';
@@ -1446,14 +1538,6 @@ function applyData(d) {
   renderSkills(); renderGoals(); updateStats();
 }
 
-// ── Toast ──────────────────────────────────────────────────────
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-// ── 스킬 ──────────────────────────────────────────────────────
 function renderSkills() {
   const list = document.getElementById('skills-list');
   list.innerHTML = '';
@@ -1468,13 +1552,14 @@ function renderSkills() {
   btn.addEventListener('click', promptAddSkill);
   list.appendChild(btn);
 }
+
 function promptAddSkill() {
   const name = prompt('추가할 기술이나 자격증:');
   if (name && name.trim()) { skills.push({ name: name.trim(), highlight: false }); renderSkills(); }
 }
+
 function removeSkill(i) { skills.splice(i, 1); renderSkills(); }
 
-// ── 목표 ──────────────────────────────────────────────────────
 function renderGoals() {
   const list = document.getElementById('goals-list');
   list.innerHTML = '';
@@ -1492,11 +1577,14 @@ function renderGoals() {
   });
   updateStats();
 }
+
 function toggleGoal(id) {
   const g = goals.find(g => g.id === id);
   if (g) { g.done = !g.done; renderGoals(); }
 }
+
 function removeGoal(id) { goals = goals.filter(g => g.id !== id); renderGoals(); }
+
 function addGoal() {
   const input = document.getElementById('goal-input');
   const tag   = document.getElementById('goal-tag').value;
@@ -1505,22 +1593,21 @@ function addGoal() {
   goals.push({ id: goalIdCounter++, title, sub: '', tag, done: false });
   input.value = ''; renderGoals();
 }
+
 function updateStats() {
   document.getElementById('stat-done').textContent  = goals.filter(g => g.done).length;
   document.getElementById('stat-total').textContent = goals.length;
 }
 
-// ── window._app 네임스페이스로 전역 노출 ──────────────────────
+// ── window._app 전역 노출 ──────────────────────────────────────
 window._app = {
-  signInWithGoogle, signOutUser, saveToCloud,
-  switchCertTab, removeSkill, toggleGoal, removeGoal, addGoal
+  signInWithGoogle, signOutUser, saveToCloud, switchCertTab,
+  removeSkill, toggleGoal, removeGoal, addGoal, promptAddSkill
 };
 
 // ── DOMContentLoaded: 버튼 이벤트 연결 ────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   const $ = id => document.getElementById(id);
-
-  const loginBtn   = $('btn-google-login');
   const overlayBtn = $('btn-google-overlay');
   const logoutBtn  = $('btn-logout');
   const saveBtn    = $('cloud-save-btn');
