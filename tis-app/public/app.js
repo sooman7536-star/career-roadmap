@@ -3134,6 +3134,41 @@
                                 nextIdx = maxNum + 1;
                             }
                             body.asset_no = `${groupCode}-${nextIdx.toString().padStart(3, '0')}`;
+                        } else if (state.currentAssetCategory === 'security' && (!body.group_code || !body.asset_no)) {
+                            // 보안 자산 코드 자동 생성 로직
+                            let subCode = 'OT'; // 기본값 (Other)
+                            const type = (body.type || '').toUpperCase();
+                            const name = (body.name || '').toUpperCase();
+
+                            // WAF / 웹방화벽 -> FW
+                            if (type.includes('WAF') || type.includes('웹방화벽') || name.includes('WAF')) subCode = 'FW';
+                            // VPN -> VN
+                            else if (type.includes('VPN')) subCode = 'VN';
+                            // NAC -> NA
+                            else if (type.includes('NAC')) subCode = 'NA';
+                            // IPS -> IP
+                            else if (type.includes('IPS')) subCode = 'IP';
+                            // DLP -> DL
+                            else if (type.includes('DLP')) subCode = 'DL';
+
+                            const groupCode = `SS-${subCode}`;
+                            body.group_code = groupCode;
+
+                            // 자산 번호 생성
+                            const allKnownAssets = [...state.assets];
+                            const sameGroupAssets = allKnownAssets.filter(a => a.group_code === groupCode);
+
+                            let nextIdx = 1;
+                            if (sameGroupAssets.length > 0) {
+                                const maxNum = Math.max(...sameGroupAssets.map(a => {
+                                    if (!a.asset_no) return 0;
+                                    const parts = a.asset_no.split('-');
+                                    const num = parseInt(parts[parts.length - 1]);
+                                    return isNaN(num) ? 0 : num;
+                                }));
+                                nextIdx = maxNum + 1;
+                            }
+                            body.asset_no = `${groupCode}-${nextIdx.toString().padStart(3, '0')}`;
                         }
 
                         try {
@@ -3221,7 +3256,7 @@
             helpers.qs('#view-policy-tag').textContent = policy.tag;
             helpers.qs('#view-policy-version').textContent = policy.version;
             helpers.qs('#view-policy-date').textContent = policy.date;
-            helpers.qs('#view-policy-content').textContent = policy.content;
+            helpers.qs('#view-policy-content').innerHTML = policy.content;
 
             helpers.qs('#policy-view-modal').classList.remove('hidden');
             helpers.qs('#policy-view-modal').classList.add('flex');

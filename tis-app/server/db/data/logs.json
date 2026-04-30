@@ -3842,5 +3842,272 @@
     },
     "status": "Success",
     "timestamp": "2026-02-09 07:13:21"
+  },
+  {
+    "id": 329,
+    "created_at": "2026-02-09 23:33:06",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 등록",
+    "details": "제목: Admin 계정 적정성 검토",
+    "status": "Success",
+    "timestamp": "2026-02-09 23:33:06"
+  },
+  {
+    "id": 330,
+    "created_at": "2026-02-09 23:33:36",
+    "user": "관리자",
+    "menu": "보안규정",
+    "action": "보안 규정 수정",
+    "details": "제목: 접근권한 적정성 검토",
+    "status": "Success",
+    "timestamp": "2026-02-09 23:33:36"
+  },
+  {
+    "id": 331,
+    "created_at": "2026-02-11 23:46:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "서버 통합 보안솔루션(Cloud)",
+      "type": "서버보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:53"
+  },
+  {
+    "id": 332,
+    "created_at": "2026-02-11 23:46:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP(Active)",
+      "type": "사용자보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:53"
+  },
+  {
+    "id": 333,
+    "created_at": "2026-02-11 23:46:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "OTP(Backup)",
+      "type": "사용자보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:53"
+  },
+  {
+    "id": 334,
+    "created_at": "2026-02-11 23:46:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "TMEMS",
+      "type": "메일보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:53"
+  },
+  {
+    "id": 335,
+    "created_at": "2026-02-11 23:46:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "Zenius",
+      "type": "보안관제"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:53"
+  },
+  {
+    "id": 336,
+    "created_at": "2026-02-11 23:46:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "CDN(WAF)",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:53"
+  },
+  {
+    "id": 337,
+    "created_at": "2026-02-11 23:46:53",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "FortiAnalyzer",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:53"
+  },
+  {
+    "id": 338,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-sec-ing-alb-pub-dev-otaapi",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 339,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-sec-ing-alb-pub-dev-open",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 340,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-sec-ing-alb-pub-prd-otaapi",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 341,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-dev-eks-alb-pri",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 342,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "tw-cus-prd-eks-alb-pri",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 343,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "VPN(IPCamera ,본사Wifi)",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 344,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "V3 EPP",
+      "type": "사용자보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 345,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "EXT_OTP_WEB",
+      "type": "사용자보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 346,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "DATA BACKUP",
+      "type": "데이터보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 347,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "D.AMO SG-KMS",
+      "type": "데이터보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 348,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "웹방화벽_2a",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
+  },
+  {
+    "id": 349,
+    "created_at": "2026-02-11 23:46:54",
+    "user": "관리자",
+    "menu": "자산관리",
+    "action": "신규 자산 등록",
+    "details": {
+      "name": "웹방화벽_2c",
+      "type": "네트워크보안"
+    },
+    "status": "Success",
+    "timestamp": "2026-02-11 23:46:54"
   }
 ]

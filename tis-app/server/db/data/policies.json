@@ -58,5 +58,23 @@
     "version": "v1.0",
     "date": "2026.02.09",
     "content": "판관)전산비_전산용역비\n-SSL VPN 유지보수 비용\n-OTP 유지보수 비용\n-관제 유지보수 비용\n-클라우드 웹방화벽 유지보수 비용\n-웹방화벽(WAF) 유지보수 비용\n-침입탐지 시스템(IPS) 유지보수 비용\n-PCI DSS 내부/외부 취약점 스캔 라이선스\n-사용자 단말 보안 솔루션 계약(EPP)\n-DB암호화 솔루션 유지보수 비용\n-해킹메일 모의훈련 서비스 비용\n-OTP 추가개발 비용\n-AWS 방화벽 VM 라이선스 비용\n-서버 통합 보안솔루션(TM) 비용\n-단말 보안 솔루션(PC백신, EDR, 매체제어) 비용\n-단말기 사용자 관리 솔루션(AD) 비용\n\n판관)전산비_전산소모품비\n-이메일 APT 솔루션 비용\n\n판관)전산비_전산사용료\n-Akamai 서비스 이용료\n-망연계 솔루션 비용\n-망분리 솔루션 비용\n-단말기 사용자 관리 솔루션 라이선스(AD)\n\n판관)용역비_기술자문료\n-웹/앱 취약점 자문 서비스 수수료\n-ISMS 인증 컨설팅 비용\n-정보보호 공시 컨설팅 비용\n-PCI DSS 평가지원 및 준수서비스 비용\n\n판관)지급수수료_기타\n-ISMS 인증 심사 비용\n-ISO27001 심사 비용\n\n판관)보험료_기타\n-개인정보보호 배상책임 보험료"
+  },
+  {
+    "id": 8,
+    "created_at": "2026-02-09 23:33:06",
+    "title": "접근권한 적정성 검토",
+    "tag": "필독",
+    "version": "v1.0",
+    "date": "2026.02.10",
+    "content": "."
+  },
+  {
+    "id": 9,
+    "created_at": "2026-02-12 09:00:00",
+    "title": "마스킹 규정",
+    "tag": "필독",
+    "version": "v1.0",
+    "date": "2026.02.12",
+    "content": "<h3>1. 마스킹의 기본 원칙</h3>\n<ul>\n    <li>개인정보가 포함된 데이터를 화면에 출력하거나 파일로 저장할 때, 식별할 수 없도록 마스킹 처리해야 한다.</li>\n    <li>업무 목적상 필요한 최소한의 정보만 노출하며, 불필요한 정보는 노출을 제한한다.</li>\n</ul>\n\n<h3>2. 마스킹 적용 기준 (ISMS-P 인증기준 안내서)</h3>\n<table class=\"w-full text-sm text-left text-gray-500 dark:text-gray-400 border-collapse border border-gray-200 dark:border-gray-700 mt-4\">\n    <thead class=\"text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400\">\n        <tr>\n            <th scope=\"col\" class=\"px-6 py-3 border border-gray-200 dark:border-gray-700\">항목</th>\n            <th scope=\"col\" class=\"px-6 py-3 border border-gray-200 dark:border-gray-700\">마스킹 기준</th>\n            <th scope=\"col\" class=\"px-6 py-3 border border-gray-200 dark:border-gray-700\">예시</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class=\"bg-white border-b dark:bg-gray-800 dark:border-gray-700\">\n            <td class=\"px-6 py-4 font-medium text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700\">성명</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">이름의 일부를 마스킹 (가운데 글자 등)</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">홍*동, 김**</td>\n        </tr>\n        <tr class=\"bg-white border-b dark:bg-gray-800 dark:border-gray-700\">\n            <td class=\"px-6 py-4 font-medium text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700\">주민등록번호</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">뒤 7자리 중 성별 식별번호를 제외한 6자리 마스킹</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">900101-1******</td>\n        </tr>\n        <tr class=\"bg-white border-b dark:bg-gray-800 dark:border-gray-700\">\n            <td class=\"px-6 py-4 font-medium text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700\">전화번호</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">국번 또는 끝 4자리 마스킹</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">010-1234-****, 010-****-5678</td>\n        </tr>\n        <tr class=\"bg-white border-b dark:bg-gray-800 dark:border-gray-700\">\n            <td class=\"px-6 py-4 font-medium text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700\">카드번호</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">일부 번호 마스킹 (보안 정책에 따름)</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">1234-56**-****-1234</td>\n        </tr>\n        <tr class=\"bg-white border-b dark:bg-gray-800 dark:border-gray-700\">\n            <td class=\"px-6 py-4 font-medium text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700\">계좌번호</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">일부 번호 마스킹</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">123-**-456789</td>\n        </tr>\n         <tr class=\"bg-white border-b dark:bg-gray-800 dark:border-gray-700\">\n            <td class=\"px-6 py-4 font-medium text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700\">이메일</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">아이디의 일부 마스킹</td>\n            <td class=\"px-6 py-4 border border-gray-200 dark:border-gray-700\">ab***@domain.com</td>\n        </tr>\n    </tbody>\n</table>"
   }
 ]
